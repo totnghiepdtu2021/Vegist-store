@@ -5,7 +5,8 @@ import {
   getInfo,
   createComment,
   getComment,
-  getBill
+  getBill,
+  addCart,
 } from '../../../redux/actions';
 import { AiFillHeart, AiOutlineIdcard } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
@@ -29,11 +30,12 @@ import {
   Form,
   Radio,
   InputNumber,
-  Pagination
+  Pagination,
 } from 'antd';
 import moment from 'moment';
 
 import './style.scss';
+import history from '../../../until/history';
 
 const ProductDetail = ({
   createComment,
@@ -47,7 +49,8 @@ const ProductDetail = ({
   listComment,
   countComment,
   billData,
-  getBill
+  getBill,
+  addCart,
 }) => {
   console.log('billData', billData);
   const product = productDetail.product;
@@ -62,8 +65,13 @@ const ProductDetail = ({
   const { t } = useTranslation();
   const { TabPane } = Tabs;
 
-  const success = value => toast(`🦄 ${value}`);
-  const error = value => toast.error(`🦄 ${value}`);
+  const success = (value) => toast(`🦄 ${value}`);
+  const error = (value) => toast.error(`🦄 ${value}`);
+
+  const [authData, setAuthData] = useState();
+  useEffect(() => {
+    setAuthData(() => JSON.parse(localStorage.getItem('profile')));
+  }, []);
 
   useEffect(() => {
     getProductDetail(productId);
@@ -74,7 +82,7 @@ const ProductDetail = ({
     getComment({
       id: productId,
       page: current,
-      limit: 10
+      limit: 10,
     });
     // eslint-disable-next-line
   }, [listComment, current, productId]);
@@ -83,7 +91,7 @@ const ProductDetail = ({
     document.title = 'Vegist | Trang Chi tiết';
     getBill({
       user: info?.email,
-      isPayment: true
+      isPayment: true,
     });
   }, [productId]);
   const { Panel } = Collapse;
@@ -100,21 +108,21 @@ const ProductDetail = ({
       id: 1,
       icon: <FaTruckMoving />,
       name: 'DELIVERY INFO',
-      content: 'From then, delivery is generally within 2-10 days, depending on your location.'
+      content: 'From then, delivery is generally within 2-10 days, depending on your location.',
     },
     {
       id: 2,
       icon: <FaMoneyBillWave />,
       name: '30 DAYS RETURNS',
       content:
-        "Not the right fit? No worries. We'll arrange pick up and a full refund within 7 days including the delivery fee."
+        "Not the right fit? No worries. We'll arrange pick up and a full refund within 7 days including the delivery fee.",
     },
     {
       id: 3,
       icon: <GiShoppingBag />,
       name: '10 YEAR WARRANTY',
-      content: 'Quality comes first and our products are designed to last.'
-    }
+      content: 'Quality comes first and our products are designed to last.',
+    },
   ];
   const description = [
     {
@@ -122,30 +130,30 @@ const ProductDetail = ({
       title: 'More detail',
       content: [
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        'Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsumum is simply dummy text.'
-      ]
+        'Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsumum is simply dummy text.',
+      ],
     },
     {
       id: 2,
       title: 'Key Specification',
       content: [
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        'Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsumum is simply dummy text.'
-      ]
-    }
+        'Lorem Ipsum has been the ‘s standard dummy text. Lorem Ipsumum is simply dummy text.',
+      ],
+    },
   ];
 
-  const handleSubmitForm = value => {};
-  const handleSubmitFormComment = value => {
+  const handleSubmitForm = (value) => {};
+  const handleSubmitFormComment = (value) => {
     if (info) {
-      if (billData?.cartData?.findIndex(item => item.id == productId) !== -1) {
+      if (billData?.cartData?.findIndex((item) => item.id == productId) !== -1) {
         createComment({
           ...value,
           idUser: infoUser.id,
           idProduct: productId,
           name: `${infoUser.first + infoUser.last}`,
           datetime: moment().format('YYYY-MM-DD HH:mm:ss'),
-          rate: rateValue
+          rate: rateValue,
         });
         success('Thanks for your comment !');
         setIsShowFormComment(false);
@@ -157,6 +165,38 @@ const ProductDetail = ({
       error("You don't login !");
     }
   };
+
+  const handleAddToCart = ({ id, name, newPrice, img }) => {
+    if (!authData) {
+      history.push('/login');
+    } else {
+      let arrData = [];
+      const productItem = { id, name, price: newPrice, img, amount: 1 };
+      const cartData = JSON.parse(localStorage.getItem('CartData'));
+      if (cartData.length) {
+        const findItem = cartData.find((item) => item.id === id);
+        if (findItem) {
+          const indexItem = cartData.findIndex((item) => item.id === id);
+          cartData.splice(indexItem, 1, {
+            ...findItem,
+            amount: parseInt(findItem.amount) + 1,
+          });
+          arrData = [...cartData];
+        } else arrData = [...cartData, productItem];
+      } else arrData.push(productItem);
+      addCart({ user: authData.email, cartData: [...arrData] });
+      toast.success(`😍 ${t('Add card success')}!`, {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   const renderProductDetail = () => {
     return (
       <>
@@ -217,17 +257,17 @@ const ProductDetail = ({
                 <p className="gray-color">{t('productDetail.description')}</p>
               </div>
               <Form name="validate_other" onFinish={handleSubmitForm}>
-                <Form.Item name="radio-button" label={<p>{t('productDetail.Size')}</p>}>
+                {/* <Form.Item name="radio-button" label={<p>{t('productDetail.Size')}</p>}>
                   <Radio.Group defaultValue={'5'}>
                     <Radio.Button value="5">5 KG</Radio.Button>
                     <Radio.Button value="10">10 KG</Radio.Button>
                     <Radio.Button value="15">15 KG</Radio.Button>
                   </Radio.Group>
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item name="radio" label={<p>{t('productDetail.Material')}</p>}>
                   <Radio.Group defaultValue={'a'}>
-                    <Radio.Button value="a">CANADA</Radio.Button>
-                    <Radio.Button value="b">INDIA</Radio.Button>
+                    {/* <Radio.Button value="a">CANADA</Radio.Button>
+                    <Radio.Button value="b">INDIA</Radio.Button> */}
                     <Radio.Button value="c">GERMANY</Radio.Button>
                   </Radio.Group>
                 </Form.Item>
@@ -242,7 +282,10 @@ const ProductDetail = ({
                       <AiFillHeart />
                     </Tooltip>
                   </div>
-                  <div className="productDetail__btn--item">
+                  <div
+                    className="productDetail__btn--item"
+                    onClick={() => handleAddToCart(product)}
+                  >
                     <Tooltip title="ADD TO CART" color="black" key="white">
                       <GiShoppingBag />
                     </Tooltip>
@@ -283,6 +326,7 @@ const ProductDetail = ({
       </>
     );
   };
+
   return (
     <>
       <section className="productDetail">
@@ -346,15 +390,15 @@ const ProductDetail = ({
                       <div className="review__content--form">
                         <Form onFinish={handleSubmitFormComment}>
                           <p>{t('productDetail.Review__rating')}</p>
-                          <Rate onChange={value => handleChangRate(value)} />
+                          <Rate onChange={(value) => handleChangRate(value)} />
                           <p>{t('productDetail.Review__title')}</p>
                           <Form.Item
                             name="title"
                             rules={[
                               {
                                 required: true,
-                                message: t('productDetail.Review__validate.title')
-                              }
+                                message: t('productDetail.Review__validate.title'),
+                              },
                             ]}
                           >
                             <Input />
@@ -365,8 +409,8 @@ const ProductDetail = ({
                             rules={[
                               {
                                 max: 1000,
-                                message: t('productDetail.Review__validate.content')
-                              }
+                                message: t('productDetail.Review__validate.content'),
+                              },
                             ]}
                           >
                             <Input.TextArea />
@@ -385,7 +429,7 @@ const ProductDetail = ({
                     header={`${countComment} replies`}
                     itemLayout="horizontal"
                     dataSource={comments}
-                    renderItem={item => (
+                    renderItem={(item) => (
                       <li>
                         <Comment
                           author={item.name}
@@ -418,7 +462,7 @@ const ProductDetail = ({
                       total={countComment}
                       defaultCurrent={1}
                       current={current}
-                      onChange={page => {
+                      onChange={(page) => {
                         setCurrent(page);
                         window.scrollTo(0, 0);
                       }}
@@ -450,7 +494,7 @@ const ProductDetail = ({
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { productDetail, comments, listComment, countComment } = state.productDetailReducer;
   const { infoUser } = state.accountReducer;
   const { billData } = state.paymentReducer;
@@ -460,16 +504,17 @@ const mapStateToProps = state => {
     comments,
     listComment,
     countComment,
-    billData
+    billData,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getProductDetail: params => dispatch(getProductDetail(params)),
-    getInfo: params => dispatch(getInfo(params)),
-    createComment: params => dispatch(createComment(params)),
-    getComment: params => dispatch(getComment(params)),
-    getBill: params => dispatch(getBill(params))
+    getProductDetail: (params) => dispatch(getProductDetail(params)),
+    getInfo: (params) => dispatch(getInfo(params)),
+    createComment: (params) => dispatch(createComment(params)),
+    getComment: (params) => dispatch(getComment(params)),
+    getBill: (params) => dispatch(getBill(params)),
+    addCart: (params) => dispatch(addCart(params)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);

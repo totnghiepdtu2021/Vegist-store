@@ -1120,6 +1120,24 @@
       "name": "a admin",
       "role": "admin",
       "id": 25
+    },
+    {
+      "first": "Tin",
+      "last": "Truong",
+      "email": "t6user@gmail.com",
+      "password": "$2a$12$0tDa7.kU8e79WZm0YT27luytJfSZzPtdBz4W8oP9csHlCsY0iAUUi",
+      "name": "Tin Truong",
+      "role": "user",
+      "id": 26
+    },
+    {
+      "first": "Tin",
+      "last": "Truong",
+      "email": "t6admin@gmail.com",
+      "password": "$2a$12$EwF2froAjZjuwO3fEJB80OYGGz/U.eFsTCwnxp821qjUfZYs00ToO",
+      "name": "Tin Truong",
+      "role": "admin",
+      "id": 27
     }
   ],
   "carts": [
@@ -1152,6 +1170,48 @@
         }
       ],
       "id": 1
+    },
+    {
+      "user": "t6user@gmail.com",
+      "cartData": [
+        {
+          "id": 1,
+          "name": "Orange Juice (5ltr) ",
+          "price": 60000,
+          "img": [
+            "https://cdn.shopify.com/s/files/1/0412/8151/9765/products/49_590X668_crop_center.jpg?v=1595939069",
+            "https://cdn.shopify.com/s/files/1/0412/8151/9765/products/47_590X668_crop_center.jpg?v=1595939069",
+            "https://cdn.shopify.com/s/files/1/0412/8151/9765/products/49_590X668_crop_center.jpg?v=1595939069",
+            "https://cdn.shopify.com/s/files/1/0412/8151/9765/products/47_590X668_crop_center.jpg?v=1595939069"
+          ],
+          "amount": 2
+        },
+        {
+          "id": 2,
+          "name": "Fresh Blueberry",
+          "price": 23000,
+          "img": [
+            " https://cdn.shopify.com/s/files/1/0412/8151/9765/products/1_da8f6f9f-7e5f-4601-ab50-8cfde5005293_590X668_crop_center.jpg?v=1620642742",
+            " https://cdn.shopify.com/s/files/1/0412/8151/9765/products/16_026e9257-47ff-4543-ac04-597e044125ed_590X668_crop_center.jpg?v=1620642742",
+            " https://cdn.shopify.com/s/files/1/0412/8151/9765/products/1_da8f6f9f-7e5f-4601-ab50-8cfde5005293_590X668_crop_center.jpg?v=1620642742",
+            " https://cdn.shopify.com/s/files/1/0412/8151/9765/products/16_026e9257-47ff-4543-ac04-597e044125ed_590X668_crop_center.jpg?v=1620642742"
+          ],
+          "amount": 3
+        },
+        {
+          "id": 3,
+          "name": "Organic Coconet ",
+          "price": 35000,
+          "img": [
+            "https://cdn.shopify.com/s/files/1/0412/8151/9765/products/2_590X668_crop_center.jpg?v=1620642391 ",
+            "https://cdn.shopify.com/s/files/1/0412/8151/9765/products/39_590X668_crop_center.jpg?v=1620642397 ",
+            "https://cdn.shopify.com/s/files/1/0412/8151/9765/products/2_590X668_crop_center.jpg?v=1620642391 ",
+            "https://cdn.shopify.com/s/files/1/0412/8151/9765/products/39_590X668_crop_center.jpg?v=1620642397 "
+          ],
+          "amount": 1
+        }
+      ],
+      "id": 2
     }
   ],
   "listComment": [

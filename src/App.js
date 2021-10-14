@@ -26,6 +26,7 @@ import ListUser from './pages/Admin/ListUser';
 import HomeAdmin from './pages/Admin/HomeAdmin';
 import ProductsAdmin from './pages/Admin/ProductsAdmin';
 import AddProductAdmin from './pages/Admin/ProductsAdmin/components/AddProduct';
+import About from './pages/User/About/index';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <DefaultLayout exact path="/product/:id" component={ProductDetail} />
           <DefaultLayout exact path="/profile" component={Profile} />
           <DefaultLayout exact path="/success/:id" component={Success} />
+          <DefaultLayout exact path="/about" component={About} />
 
           <PaymentLayout exact path="/infoPayment" component={Information} />
           <PaymentLayout exact path="/shipping" component={Shipping} />
