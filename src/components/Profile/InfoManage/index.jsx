@@ -1,36 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Collapse, Row, Button, Input, Form as FormAnt,Spin } from 'antd';
+import { Col, Collapse, Row, Button, Input, Form as FormAnt, Spin } from 'antd';
 import { BsPencilSquare } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { connect } from 'react-redux';
-import { editProfile, getInfo,editUserPassword } from '../../../redux/actions';
+import { editProfile, getInfo, editUserPassword } from '../../../redux/actions';
 import * as Yup from 'yup';
-import { toastSuccess,toastComingSoon,toastError } from '../../../until/toast';
+import { toastSuccess, toastComingSoon, toastError } from '../../../util/toast';
 import './style.scss';
-import history from '../../../until/history';
+import history from '../../../util/history';
 const { Panel } = Collapse;
 
 function InfoManage(prop) {
-  const { editProfile, infoUser, getInfo,editUserPassword, tabValue } = prop;
+  const { editProfile, infoUser, getInfo, editUserPassword, tabValue } = prop;
   const { t } = useTranslation();
 
   const [editable, setEditable] = useState(false);
   const [isShowChangePw, setIsShowChangePw] = useState(false);
   document.title = 'Vegist | Trang Thông tin cá nhân';
-  
+
   useEffect(() => {
     getInfo();
   }, []);
 
   useEffect(() => {
-    tabValue !=='1' && getInfo();
+    tabValue !== '1' && getInfo();
   }, [tabValue]);
 
-
-  const handleSubmitInfo = async(value) => {
-  delete value.phoneNumber
-   await editProfile({
+  const handleSubmitInfo = async (value) => {
+    delete value.phoneNumber;
+    await editProfile({
       ...value,
     });
 
@@ -38,15 +37,16 @@ function InfoManage(prop) {
     setEditable(!editable);
   };
 
-  const handleSubmitPassword = async(values) => {
-   infoUser?.data?.email ? await editUserPassword({
+  const handleSubmitPassword = async (values) => {
+    infoUser?.data?.email
+      ? await editUserPassword({
           password: values.passwordInner,
           newPassword: values.passwordNew,
-      })
-      : toastError('Bạn chưa có email !')
-      
-      getInfo();
-      setIsShowChangePw(false);
+        })
+      : toastError('Bạn chưa có email !');
+
+    getInfo();
+    setIsShowChangePw(false);
   };
 
   const callback = () => {
@@ -84,147 +84,151 @@ function InfoManage(prop) {
   return (
     <>
       {/* <div className="profile__modal"></div> */}
-      {
-        infoUser.load ? (
-          <div className="loading">
-              <Spin />
-          </div>
-        ):
-      <section className="profile fadeIn">
-        <div className="container">
-          <h2>
-            {t('Profile.welcome')} { infoUser?.data?.fullName}
-          </h2>
-          <div className="profile__content">
-            <Row>
-              <Col xs={24} md={12} sm={24} lg={12}>
-                <div className="profile__content--cart">
-                  <p>{t('Categories.My_Account.name')}</p>
-                  <ul>
-                    <li>
-                      <span onClick={()=>{
-                        toastComingSoon()
-                      }}>{t('Categories.My_Account.My Wishlist')}</span>
-                    </li>
-                    <li>
-                      <span onClick={()=>history.push('/cart')}>{t('Categories.My_Account.My Cart')}</span>
-                    </li>
-                    <li>
-                      <Collapse
-                        activeKey={[`${isShowChangePw === true ? 1 : ''}`]}
-                        ghost
-                        accordion
-                        bordered={false}
-                        destroyInactivePanel={true}
-                        onChange={callback}
-                      >
-                        <Panel
-                          showArrow={false}
-                          header={
-                            <>
-                              <span>
-                                {t('Profile.edit')}
-                                <span>
-                                  <BsPencilSquare />
-                                </span>
-                              </span>
-                            </>
-                          }
-                          key="1"
+      {infoUser.load ? (
+        <div className="loading">
+          <Spin />
+        </div>
+      ) : (
+        <section className="profile fadeIn">
+          <div className="container">
+            <h2>
+              {t('Profile.welcome')} {infoUser?.data?.fullName}
+            </h2>
+            <div className="profile__content">
+              <Row>
+                <Col xs={24} md={12} sm={24} lg={12}>
+                  <div className="profile__content--cart">
+                    <p>{t('Categories.My_Account.name')}</p>
+                    <ul>
+                      <li>
+                        <span
+                          onClick={() => {
+                            toastComingSoon();
+                          }}
                         >
-                          <FormAnt
-                            onFinish={handleSubmitPassword}
-                            name="basic"
-                            initialValues={{ remember: true }}
+                          {t('Categories.My_Account.My Wishlist')}
+                        </span>
+                      </li>
+                      <li>
+                        <span onClick={() => history.push('/cart')}>
+                          {t('Categories.My_Account.My Cart')}
+                        </span>
+                      </li>
+                      <li>
+                        <Collapse
+                          activeKey={[`${isShowChangePw === true ? 1 : ''}`]}
+                          ghost
+                          accordion
+                          bordered={false}
+                          destroyInactivePanel={true}
+                          onChange={callback}
+                        >
+                          <Panel
+                            showArrow={false}
+                            header={
+                              <>
+                                <span>
+                                  {t('Profile.edit')}
+                                  <span>
+                                    <BsPencilSquare />
+                                  </span>
+                                </span>
+                              </>
+                            }
+                            key="1"
                           >
-                            <div>{t('Profile.inner')}</div>
-
-                            <FormAnt.Item
-                              name="passwordInner"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: t('validate.password.required'),
-                                },
-                                {
-                                  min: 8,
-                                  message: t('validate.password.regex'),
-                                },
-                              ]}
-                              hasFeedback
+                            <FormAnt
+                              onFinish={handleSubmitPassword}
+                              name="basic"
+                              initialValues={{ remember: true }}
                             >
-                              <Input.Password />
-                            </FormAnt.Item>
-                            <div>{t('Profile.new')}</div>
+                              <div>{t('Profile.inner')}</div>
 
-                            <FormAnt.Item
-                              name="passwordNew"
-                              dependencies={['passwordInner']}
-                              rules={[
-                                {
-                                  required: true,
-                                  message: t('validate.password.required'),
-                                },
-                                {
-                                  min: 8,
-                                  message: t('validate.password.regex'),
-                                },
-                                ({ getFieldValue }) => ({
-                                  validator(rule, value) {
-                                    if (value && getFieldValue('passwordInner') === value) {
-                                      return Promise.reject(t('Profile.confirm_pw'));
-                                    }
-
-                                    return Promise.resolve();
+                              <FormAnt.Item
+                                name="passwordInner"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: t('validate.password.required'),
                                   },
-                                }),
-                              ]}
-                              hasFeedback
-                            >
-                              <Input.Password />
-                            </FormAnt.Item>
+                                  {
+                                    min: 8,
+                                    message: t('validate.password.regex'),
+                                  },
+                                ]}
+                                hasFeedback
+                              >
+                                <Input.Password />
+                              </FormAnt.Item>
+                              <div>{t('Profile.new')}</div>
 
-                            <div>{t('Profile.confirm')}</div>
+                              <FormAnt.Item
+                                name="passwordNew"
+                                dependencies={['passwordInner']}
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: t('validate.password.required'),
+                                  },
+                                  {
+                                    min: 8,
+                                    message: t('validate.password.regex'),
+                                  },
+                                  ({ getFieldValue }) => ({
+                                    validator(rule, value) {
+                                      if (value && getFieldValue('passwordInner') === value) {
+                                        return Promise.reject(t('Profile.confirm_pw'));
+                                      }
 
-                            <FormAnt.Item
-                              name="passwordConfirm"
-                              dependencies={['passwordNew']}
-                              hasFeedback
-                              rules={[
-                                {
-                                  required: true,
-                                  message: t('validate.password.required'),
-                                },
-                                ({ getFieldValue }) => ({
-                                  validator(rule, value) {
-                                    if (getFieldValue('passwordNew') === value) {
                                       return Promise.resolve();
-                                    }
+                                    },
+                                  }),
+                                ]}
+                                hasFeedback
+                              >
+                                <Input.Password />
+                              </FormAnt.Item>
 
-                                    return Promise.reject(t('Profile.confirm_pwNew'));
+                              <div>{t('Profile.confirm')}</div>
+
+                              <FormAnt.Item
+                                name="passwordConfirm"
+                                dependencies={['passwordNew']}
+                                hasFeedback
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: t('validate.password.required'),
                                   },
-                                }),
-                              ]}
-                            >
-                              <Input.Password />
-                            </FormAnt.Item>
-                            <FormAnt.Item>
-                              <Button htmlType="submit" type="primary">
-                                <h6>{t('Profile.submit')}</h6>
-                              </Button>
-                            </FormAnt.Item>
-                          </FormAnt>
-                        </Panel>
-                      </Collapse>
-                    </li>
-                  </ul>
-                </div>
-              </Col>
-              <Col xs={24} md={12} sm={24} lg={12}>
-                <div className="profile__content--info">
-                  <p>{t('Profile.account.title')}</p>
-                  <div className="profile__content--info-detail">
-                     
+                                  ({ getFieldValue }) => ({
+                                    validator(rule, value) {
+                                      if (getFieldValue('passwordNew') === value) {
+                                        return Promise.resolve();
+                                      }
+
+                                      return Promise.reject(t('Profile.confirm_pwNew'));
+                                    },
+                                  }),
+                                ]}
+                              >
+                                <Input.Password />
+                              </FormAnt.Item>
+                              <FormAnt.Item>
+                                <Button htmlType="submit" type="primary">
+                                  <h6>{t('Profile.submit')}</h6>
+                                </Button>
+                              </FormAnt.Item>
+                            </FormAnt>
+                          </Panel>
+                        </Collapse>
+                      </li>
+                    </ul>
+                  </div>
+                </Col>
+                <Col xs={24} md={12} sm={24} lg={12}>
+                  <div className="profile__content--info">
+                    <p>{t('Profile.account.title')}</p>
+                    <div className="profile__content--info-detail">
                       <Formik
                         initialValues={{
                           firstName: infoUser?.data?.firstName,
@@ -238,13 +242,15 @@ function InfoManage(prop) {
                           firstName: Yup.string()
                             .required(t('validate.first'))
                             .max(20, t('Profile.max')),
-                            lastName: Yup.string().required(t('validate.last')).max(20, t('Profile.max')),
-                            email: Yup.string()
+                          lastName: Yup.string()
+                            .required(t('validate.last'))
+                            .max(20, t('Profile.max')),
+                          email: Yup.string()
                             .required(t("Email can't be blank !"))
                             .matches(
                               /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                            'Invalid mail !'
-                          ),
+                              'Invalid mail !'
+                            ),
                         })}
                         onSubmit={(value) => handleSubmitInfo(value)}
                       >
@@ -331,14 +337,14 @@ function InfoManage(prop) {
                           </div>
                         </Form>
                       </Formik>
+                    </div>
                   </div>
-                </div>
-              </Col>
-            </Row>
+                </Col>
+              </Row>
+            </div>
           </div>
-        </div>
-      </section>
-      }
+        </section>
+      )}
     </>
   );
 }

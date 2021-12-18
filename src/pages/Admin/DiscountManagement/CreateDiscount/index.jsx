@@ -7,9 +7,9 @@ import CustomField from '../../../../components/Admin/CustomField/index';
 import { FaStarOfLife } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { createDiscount } from '../../../../redux/actions';
-import history from '../../../../until/history';
+import history from '../../../../util/history';
 import moment from 'moment';
-import { dateTime } from '../../../../until/dateTime';
+import { dateTime } from '../../../../util/dateTime';
 import './style.scss';
 
 const CreateDiscount = ({ createDiscount }) => {
@@ -73,22 +73,22 @@ const CreateDiscount = ({ createDiscount }) => {
                 dateExpire: Yup.date().nullable().required('validate.discount end date.required'),
                 total: Yup.string().required(t('validate.discount.required')),
                 discountType: Yup.boolean(),
-                amount: Yup.string()
-                  .when('discountType', (discountType) => {
-                    if (!discountType) {
-                      return Yup.string().required(t('validate.discount.amount.required'));
-                    }
-                  })
-                  .matches(/^[1-9]\d*$/, t('validate.amount.interger'))
-                  .matches(/(^(1|2|3|4|5|6|7|8|9)+[0-9]{4,8}$)/, t('validate.amount.regex')),
+                amount: Yup.string().when('discountType', (discountType) => {
+                  if (!discountType) {
+                    return Yup.string()
+                      .required(t('validate.discount.amount.required'))
+                      .matches(/^[1-9]\d*$/, t('validate.amount.interger'))
+                      .matches(/(^(1|2|3|4|5|6|7|8|9)+[0-9]{4,8}$)/, t('validate.amount.regex'));
+                  }
+                }),
                 description: Yup.string().required(t('validate.discount.description.required')),
-                sale: Yup.string()
-                  .when('discountType', (discountType) => {
-                    if (discountType) {
-                      return Yup.string().required(t('validate.discount.required'));
-                    }
-                  })
-                  .matches(/(^[1-9]?[0-9]{1}$|^100$)/, t('validate.discount.percent')),
+                sale: Yup.string().when('discountType', (discountType) => {
+                  if (discountType) {
+                    return Yup.string()
+                      .required(t('validate.discount.required'))
+                      .matches(/^[1-9][0-9]?$|^100$/, t('validate.discount.percent'));
+                  }
+                }),
               })}
               onSubmit={(values) => {
                 handleCreateDiscount(values);

@@ -4,7 +4,7 @@ import PaymentBreadcrumb from './component/PaymentBreadcrumb';
 import { useTranslation } from 'react-i18next';
 import { getBill, getCartData, createBill } from '../../../redux/actions';
 import { connect } from 'react-redux';
-import history from '../../../until/history';
+import history from '../../../util/history';
 import { TiWarningOutline } from 'react-icons/ti';
 import { MdPayment } from 'react-icons/md';
 import 'moment/locale/vi';
@@ -33,7 +33,7 @@ const Payment = ({ getBill, billData, createBill, getCartData }) => {
       codeName: bill.codeName,
       total: bill.total,
     });
-    
+
     // localStorage.removeItem('infoPayment');
     getCartData();
   };

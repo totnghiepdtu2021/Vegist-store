@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import history from '../../../until/history';
+import history from '../../../util/history';
 
 import { BsChevronDown } from 'react-icons/bs';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';

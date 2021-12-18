@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { Input } from 'antd';
-import { dateTime } from '../../../until/dateTime';
+import { dateTime } from '../../../util/dateTime';
 
 import './style.scss';
 import { useTranslation } from 'react-i18next';

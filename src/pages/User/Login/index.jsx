@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Button, Row, Col } from 'antd';
-import history from '../../../until/history';
+import history from '../../../util/history';
 import { useTranslation } from 'react-i18next';
 
 import './style.scss';

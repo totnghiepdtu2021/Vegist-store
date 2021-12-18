@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getBill } from '../../../redux/actions';
 import './styles.scss';
-import history from '../../../until/history';
+import history from '../../../util/history';
 const Shipping = ({ getBill, billData }) => {
   document.title = 'Vegist | Trang ship';
   const { t } = useTranslation();

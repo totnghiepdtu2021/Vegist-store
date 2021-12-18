@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import ProductItem from '../../../../components/ProductItem';
 import './style.scss';
 import { Col, Row } from 'antd';
-import useWindowDimensions from '../../../../until/width';
+import useWindowDimensions from '../../../../util/width';
 
 const Slide = ({ data, type, xl, lg, md, sm, xs }) => {
   const { width } = useWindowDimensions();

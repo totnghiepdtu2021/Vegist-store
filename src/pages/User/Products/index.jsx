@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Breadcrumb from '../../../components/Breadcrumb';
 import ProductItem from '../../../components/ProductItem';
 import { getProducts, setFlagSearchChange, setValueSearch } from '../../../redux/actions';
-import useWindowDimensions from '../../../until/width';
+import useWindowDimensions from '../../../util/width';
 import Sidebar from './Sidebar';
 import './styles.scss';
 

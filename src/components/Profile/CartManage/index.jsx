@@ -3,15 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getOrderUser, cancelOrderUser, getBillDetailUser } from '../../../redux/actions';
 import { Button, Modal, Select, Input, Pagination, Spin } from 'antd';
-import history from '../../../until/history';
+import history from '../../../util/history';
 
 import './style.scss';
 import moment from 'moment';
 const { Option } = Select;
 const { Search } = Input;
 function CartManage(prop) {
-  const { getOrderUser, orderUser, cancelOrderUser, tabValue,orderCancel } =
-    prop;
+  const { getOrderUser, orderUser, cancelOrderUser, tabValue, orderCancel } = prop;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [current, setCurrent] = useState(1);
   const [searchKey, setSearchKey] = useState('');
@@ -34,7 +33,7 @@ function CartManage(prop) {
       left: 0,
       behavior: 'smooth',
     });
-  }, [current, searchKey, filterSelect,orderCancel]);
+  }, [current, searchKey, filterSelect, orderCancel]);
 
   useEffect(() => {
     tabValue !== '2' &&
@@ -216,12 +215,12 @@ function CartManage(prop) {
 }
 
 const mapStateToProps = (state) => {
-  const { orderUser, billDetailUser,orderCancel } = state.paymentReducer;
+  const { orderUser, billDetailUser, orderCancel } = state.paymentReducer;
 
   return {
     orderUser,
     billDetailUser,
-    orderCancel
+    orderCancel,
   };
 };
 

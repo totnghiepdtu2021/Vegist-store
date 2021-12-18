@@ -7,7 +7,7 @@ import English from '../../../assets/images/english.svg';
 import VietNam from '../../../assets/images/vietnam.svg';
 import CustomField from './component/CustomField';
 import PaymentBreadcrumb from './component/PaymentBreadcrumb';
-import history from '../../../until/history';
+import history from '../../../util/history';
 import './styles.scss';
 
 const Information = ({ getInfo, infoUser, cartData, createBill }) => {
@@ -17,7 +17,7 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
   const [valueSelect, setValueSelect] = useState('vi');
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [infoPayment, setInfoPayment] = useState(JSON.parse(localStorage.getItem('infoPayment')));
-  console.log("🚀 ~ file: Information.jsx ~ line 20 ~ Information ~ infoPayment", infoPayment)
+  console.log('🚀 ~ file: Information.jsx ~ line 20 ~ Information ~ infoPayment', infoPayment);
 
   const handleSubmitForm = (values) => {
     const { firstName, lastName } = values;
@@ -26,7 +26,7 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
     const dataForm = {
       ...values,
       country: valueSelect,
-      phoneNumber:values.phone,
+      phoneNumber: values.phone,
       name: fullName,
     };
 

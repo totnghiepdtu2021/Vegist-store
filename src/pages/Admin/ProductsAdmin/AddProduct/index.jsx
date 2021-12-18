@@ -17,7 +17,7 @@ import {
 } from '../../../../redux/actions';
 import { useLocation } from 'react-router-dom';
 import './styles.scss';
-import history from '../../../../until/history';
+import history from '../../../../util/history';
 
 const AddProductAdmin = ({
   match,

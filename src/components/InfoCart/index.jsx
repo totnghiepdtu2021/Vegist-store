@@ -26,10 +26,8 @@ const InfoCart = ({
   }, []);
 
   useEffect(() => {
-    getDiscountUser({ page: 1, searchKey });
-  }, [searchKey, isShowSearch]);
-
-  useEffect(() => {}, [searchKey]);
+    if (location.pathname === '/payment') getDiscountUser({ page: 1, searchKey });
+  }, [searchKey, isShowSearch, location]);
 
   const renderCartData = (cartData) => {
     return cartData?.cartDetails?.map((item, index) => {
@@ -52,14 +50,14 @@ const InfoCart = ({
     });
   };
 
-  const handleCalculateToTal = () => {
+  const handleCalculateToTal = ({ check }) => {
     let total = 0;
     cartData?.cartDetails?.forEach((element) => {
       total += parseInt(element.productId.price * element.quantity);
     });
-    total += total * 0.1;
+    total += total * (check ? 0.1 : 0);
 
-    if (discount?.sale || discount?.amount) {
+    if (check && (discount?.sale || discount?.amount)) {
       if (discount?.sale) {
         total = total * (1 - discount?.sale / 100);
       } else {
@@ -90,7 +88,11 @@ const InfoCart = ({
         <div className="infoCart__price">
           <div className="infoCart__price--item">
             <h4>{t('infoCart.Subtotal')}</h4>
-            <p>{handleCalculateToTal().toLocaleString()}</p>
+            <p>{handleCalculateToTal({ check: false }).toLocaleString()}</p>
+          </div>
+          <div className="infoCart__price--item">
+            <h4>VAT</h4>
+            <p>{parseInt(handleCalculateToTal({ check: false }) * 0.1).toLocaleString()}</p>
           </div>
           <div className="infoCart__price--item">
             <h4>{t('infoCart.Shipping cost')}</h4>
@@ -120,7 +122,7 @@ const InfoCart = ({
               VND{' '}
               <span>
                 {(
-                  handleCalculateToTal() +
+                  handleCalculateToTal({ check: true }) +
                   (location.pathname === '/shipping' || location.pathname === '/payment'
                     ? 20000
                     : 0)

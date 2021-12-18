@@ -1,7 +1,7 @@
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { all, put, takeEvery } from 'redux-saga/effects';
-import { toastSuccess } from '../../until/toast';
+import { toastSuccess } from '../../util/toast';
 import {
   CREATE_CONTACT,
   CREATE_CONTACT_FAIL,

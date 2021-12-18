@@ -7,9 +7,9 @@ import { BsEyeFill, BsReplyAllFill } from 'react-icons/bs';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { connect } from 'react-redux';
 import { deleteComment, getCommentAdmin, getProducts } from '../../../redux/actions';
-import history from '../../../until/history';
-import { titleCase } from '../../../until/string';
-import { toastSuccess } from '../../../until/toast';
+import history from '../../../util/history';
+import { titleCase } from '../../../util/string';
+import { toastSuccess } from '../../../util/toast';
 import './styles.scss';
 
 function ListComment({

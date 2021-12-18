@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getOrderDetail } from '../../../../redux/actions';
-import history from '../../../../until/history';
+import history from '../../../../util/history';
 import './styles.scss';
 
 function OrderDetail({ match, orderDetail, getOrderDetail }) {

@@ -1,8 +1,8 @@
 import { put, takeEvery } from 'redux-saga/effects';
-import history from '../../until/history';
+import history from '../../util/history';
 import 'react-toastify/dist/ReactToastify.css';
 import axiosClient from '../config/axiosClient';
-import { toastSuccess, toastError } from '../../until/toast';
+import { toastSuccess, toastError } from '../../util/toast';
 
 import {
   CREATE_ACCOUNT,
@@ -31,10 +31,8 @@ import {
   EDIT_USER_PASSWORD_SUCCESS,
   GET_VOUCHER_USER,
   GET_VOUCHER_USER_SUCCESS,
-  GET_VOUCHER_USER_FAIL
+  GET_VOUCHER_USER_FAIL,
 } from '../constants';
-
-const apiURL = process.env.REACT_APP_API_URL;
 
 function* editUserByAdminSaga(action) {
   try {
@@ -250,7 +248,7 @@ function* editPasswordUser(action) {
 
 function* getVoucherUserSaga(action) {
   try {
-    const {page,limit,search} = action.payload;
+    const { page, limit, search } = action.payload;
 
     const { status, error, data } = yield axiosClient({
       url: `/user/discountCodeDetail`,
@@ -261,18 +259,17 @@ function* getVoucherUserSaga(action) {
         ...(search && { q: search }),
       },
     });
-    
+
     if (status === 'failed' && error.message) {
       throw new Error(error.message);
     }
-    
+
     yield put({
       type: GET_VOUCHER_USER_SUCCESS,
       payload: {
-        data
+        data,
       },
     });
-
   } catch (error) {
     yield put({
       type: GET_VOUCHER_USER_FAIL,
