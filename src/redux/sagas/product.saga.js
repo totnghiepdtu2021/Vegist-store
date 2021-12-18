@@ -1,7 +1,7 @@
 import { put, takeEvery } from '@redux-saga/core/effects';
 import { all } from 'redux-saga/effects';
 import axiosClient from '../config/axiosClient';
-import { toastSuccess, toastError } from '../../until/toast';
+import { toastSuccess, toastError } from '../../util/toast';
 
 import {
   CREATE_PRODUCTS,
@@ -23,7 +23,7 @@ import {
   UPDATE_PRODUCTS_FAIL,
   UPDATE_PRODUCTS_SUCCESS,
 } from '../constants';
-import history from '../../until/history';
+import history from '../../util/history';
 
 const apiURL = process.env.REACT_APP_API_URL;
 

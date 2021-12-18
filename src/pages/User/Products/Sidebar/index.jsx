@@ -3,12 +3,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import useWindowDimensions from '../../../../until/width';
+import useWindowDimensions from '../../../../util/width';
 import { RiCloseLine } from 'react-icons/ri';
 import { getSidebar } from '../../../../redux/actions';
 import { useTranslation } from 'react-i18next';
 
-const arrPrice = ['0-100', '100-200', '200-400'];
+const arrPrice = ['0-100.000', '100.000-200.000', '200.000-400.000'];
 
 const Sidebar = ({
   getSidebar,

@@ -19,7 +19,6 @@ import {
   GET_VOUCHER_USER_SUCCESS,
   GET_VOUCHER_USER_FAIL,
   GET_VOUCHER_USER,
-
 } from '../constants';
 
 const initialStore = {
@@ -27,19 +26,19 @@ const initialStore = {
   user: {},
   userDataEdited: {},
   infoUser: {
-    data:[],
-    load:false,
+    data: [],
+    load: false,
   },
   adminCreate: {},
   deleteUser: [],
   userEdit: {},
   listUser: {},
 
-  listVoucherUser:{
-    load:false,
-    data:[],
-    total:''
-  }
+  listVoucherUser: {
+    load: false,
+    data: [],
+    total: '',
+  },
 };
 
 export default function accountReducer(state = initialStore, action) {
@@ -64,33 +63,33 @@ export default function accountReducer(state = initialStore, action) {
       return state;
     }
 
-    case GET_INFO:{
+    case GET_INFO: {
       return {
         ...state,
-        infoUser:{
-          load:true
-        }
-      }
+        infoUser: {
+          load: true,
+        },
+      };
     }
 
     case GET_INFO_SUCCESS: {
-      const {user} = action.payload.data;
+      const { user } = action.payload.data;
       return {
         ...state,
         infoUser: {
           ...state.infoUser,
-          data:user,
-          load:false
-        }
+          data: user,
+          load: false,
+        },
       };
     }
     case GET_INFO_FAIL: {
       return {
         ...state,
-        infoUser:{
-          load:false
-        }
-      }
+        infoUser: {
+          load: false,
+        },
+      };
     }
     case EDIT_PROFILE_SUCCESS: {
       return {
@@ -136,8 +135,8 @@ export default function accountReducer(state = initialStore, action) {
       return {
         ...state,
         userEdit: {
-          ...action.payload
-        }
+          ...action.payload,
+        },
       };
     }
     case EDIT_USER_PASSWORD_FAIL: {
@@ -147,33 +146,33 @@ export default function accountReducer(state = initialStore, action) {
     case GET_VOUCHER_USER: {
       return {
         ...state,
-        listVoucherUser:{
-          load:true,
-        }
-      }
+        listVoucherUser: {
+          load: true,
+        },
+      };
     }
 
     case GET_VOUCHER_USER_SUCCESS: {
-      const {data} = action.payload;
+      const { data } = action.payload;
 
       return {
         ...state,
-        listVoucherUser:{
+        listVoucherUser: {
           ...state.listVoucherUser,
-          data:data.discountCodes,
-          load:false,
-        }
-      }
+          data: data.discountCodes,
+          load: false,
+        },
+      };
     }
 
     case GET_VOUCHER_USER_FAIL: {
       return {
         ...state,
-        listVoucherUser:{
+        listVoucherUser: {
           ...state.listVoucherUser,
-          load:false,
-        }
-      }
+          load: false,
+        },
+      };
     }
 
     default: {

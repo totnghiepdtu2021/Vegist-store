@@ -2,18 +2,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Pagination, Input, Modal, Empty, Button } from 'antd';
 import { getDiscount, deleteDiscount } from '../../../redux/actions';
-import history from '../../../until/history';
+import history from '../../../util/history';
 import { BsTrashFill } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
-import { dateTime } from '../../../until/dateTime';
+import { dateTime } from '../../../util/dateTime';
 import './style.scss';
 
 const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDiscount }) => {
   const { t } = useTranslation();
   const [current, setCurrent] = useState(1);
-  const [search, setSearch] = useState('');
   const [searchKey, setSearchKey] = useState();
-  const typingTimeoutRef = useRef(null);
 
   useEffect(() => {
     document.title = 'Vegist | Quản lý khuyến mãi';
@@ -29,16 +27,9 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
 
   const { Search } = Input;
 
-  const handleChange = (e) => {
-    const valueInput = e.target.value;
-    setSearch(valueInput);
-
-    clearTimeout(typingTimeoutRef.current);
-
-    typingTimeoutRef.current = setTimeout(() => {
-      setSearchKey(valueInput);
-      setCurrent(1);
-    }, 800);
+  const handleChange = (value) => {
+    setSearchKey(value);
+    setCurrent(1);
   };
 
   function confirm(data) {
@@ -81,8 +72,7 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
             <div className="admin__listUser--btn-search">
               <Search
                 placeholder={t('admin.discount.Search')}
-                value={search}
-                onChange={handleChange}
+                onSearch={handleChange}
                 enterButton
               />
             </div>

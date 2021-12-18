@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
-import history from '../../../../../until/history';
+import history from '../../../../../util/history';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 

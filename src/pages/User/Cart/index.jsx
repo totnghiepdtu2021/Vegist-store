@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import history from '../../../until/history';
+import history from '../../../util/history';
 import Breadcrumb from '../../../components/Breadcrumb';
 import { Col, Row, Select, Input, Modal } from 'antd';
 import CartItem from './CartItem';
@@ -49,8 +49,7 @@ const Cart = ({ cartData, clearCart, getCartData }) => {
                 <div className="cart__product--title">
                   <h2>{t('cart.My Cart')}:</h2>
                   <p>
-                    {totalItem}
-                    {t('cart.item')}
+                    {totalItem} {t('cart.item')}
                   </p>
                 </div>
                 <table className="cart__table">
@@ -88,11 +87,11 @@ const Cart = ({ cartData, clearCart, getCartData }) => {
                 <div className="cart__price--subtotal">
                   <div className="cart__price--subtotal-item">
                     <h4>{t('cart.Subtotal')}</h4>
-                    <p>${handleCalculateToTal().toLocaleString()} VND</p>
+                    <p>{handleCalculateToTal().toLocaleString()} VND</p>
                   </div>
                   <div className="cart__price--subtotal-item">
                     <h4>VAT: </h4>
-                    <p>${(handleCalculateToTal() * 0.1).toLocaleString()} VND</p>
+                    <p>{(handleCalculateToTal() * 0.1).toLocaleString()} VND</p>
                   </div>
                 </div>
                 {/* <div className="cart__price--info">
@@ -117,7 +116,7 @@ const Cart = ({ cartData, clearCart, getCartData }) => {
                 </div> */}
                 <div className="cart__price--total">
                   <h4>{t('cart.Total')}</h4>
-                  <p>${(handleCalculateToTal() * 1.1).toLocaleString()} VND</p>
+                  <p>{(handleCalculateToTal() * 1.1).toLocaleString()} VND</p>
                 </div>
                 <div className="cart__price--button">
                   <button

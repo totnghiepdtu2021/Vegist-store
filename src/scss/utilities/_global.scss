@@ -36,6 +36,23 @@ body {
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
 }
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  background-color: $bgc;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: $bgc;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #c1c1c1;
+  border: 2px solid #c1c1c1;
+}
+
 .wrapper {
   max-width: 1440px;
   margin: 0 auto;

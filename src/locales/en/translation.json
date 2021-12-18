@@ -157,7 +157,7 @@
     "discount": {
       "max": "Discount name cannot be longer than 50 characters !",
       "required": "Discount name can't be blank !",
-      "percent": "Discount percentage must be a positive integer between 0 and 100",
+      "percent": "Discount percentage must be a positive integer between 1 and 100",
       "description": {
         "required": "Description can't be blank !",
         "code name": "\nDiscount code containing only characters 0-9, a-z, A-Z"

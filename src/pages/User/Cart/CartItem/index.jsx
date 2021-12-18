@@ -5,7 +5,7 @@ import { Modal, Row, Col } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { updateCart, deleteCart } from '../../../../redux/actions';
 import './styles.scss';
-import history from '../../../../until/history';
+import history from '../../../../util/history';
 
 const CartItem = ({ item, updateCart, deleteCart }) => {
   const { confirm } = Modal;
@@ -62,7 +62,6 @@ const CartItem = ({ item, updateCart, deleteCart }) => {
       onCancel() {
         setValueInput(value);
         updateCart({ id: item._id, productId: data._id, quantity: value });
-
       },
     });
   };
@@ -75,7 +74,6 @@ const CartItem = ({ item, updateCart, deleteCart }) => {
       updateCart({ id: item._id, productId: data._id, quantity: value });
       setValueInput(value);
     } else if (value > 30) {
-     
       modalInc(data, value);
     } else if (value <= 0) {
       value = value + 1;
@@ -136,7 +134,7 @@ const CartItem = ({ item, updateCart, deleteCart }) => {
             </div>
           </td>
           <td className="cart__product--price">
-            ${(item.productId.price * valueInput).toLocaleString()} VND
+            {(item.productId.price * valueInput).toLocaleString()} VND
           </td>
           <td
             className="cart__product--remove"

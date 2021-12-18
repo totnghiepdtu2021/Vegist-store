@@ -5,8 +5,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiDetail } from 'react-icons/bi';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
-import { GiCancel } from 'react-icons/gi';
-import history from '../../../../../until/history';
+import { internationalDateTime } from '../../../../../util/dateTime';
+import history from '../../../../../util/history';
 import './styles.scss';
 
 function Row({ item, index, arrStatus, handleChangeStatus, handleClickDelete, handleClickCancel }) {
@@ -25,7 +25,7 @@ function Row({ item, index, arrStatus, handleChangeStatus, handleClickDelete, ha
         <td>{renderPaymentCode(item?.id)}</td>
         <td>{item?.userId?.fullName}</td>
         <td>{`${item?.total.toLocaleString()} VND`}</td>
-        <td>{moment(item?.dateCreate).format('L')}</td>
+        <td>{moment(internationalDateTime(item?.dateCreate)).format('L')}</td>
         <td>
           <div>
             <Select

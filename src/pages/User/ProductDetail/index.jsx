@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getProductDetail, createComment, getComment, addCart } from '../../../redux/actions';
 import { AiFillHeart } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
-import { toastError, toastComingSoon } from '../../../until/toast';
+import { toastError, toastComingSoon } from '../../../util/toast';
 
 import { GiShoppingBag } from 'react-icons/gi';
 import Slide from '../Home/Slide';
@@ -41,8 +41,8 @@ const ProductDetail = ({
 }) => {
   const product = productDetail.data?.product;
   const sales =
-  product?.sale > 0 && Math.ceil(product?.price - product?.price * (product?.sale / 100));
-  console.log("🚀 ~ file: index.jsx ~ line 44 ~ sales", sales)
+    product?.sale > 0 && Math.ceil(product?.price - product?.price * (product?.sale / 100));
+  console.log('🚀 ~ file: index.jsx ~ line 44 ~ sales', sales);
   const productId = match.params.id;
   const [rateValue, setRateValue] = useState();
   const [valueQuantity, setValueQuantity] = useState(1);
@@ -299,124 +299,122 @@ const ProductDetail = ({
           </div>
         )}
         <div className="productDetail__review">
-        <Tabs className="productDetail__description--tabs" defaultActiveKey="1">
-          <TabPane tab="DESCRIPTION" key="1">
-            <div className="container">
-            {product?.des}
-            </div>
-          </TabPane>
-          <TabPane tab="REVIEW" key="2">
-            <div className="productDetail__description">
-              <div className="container">
-                <div className="review__content">
-                  <p>{t('productDetail.Review__customer')}</p>
-                  <Collapse
-                    activeKey={`${isShowFormComment === true ? 1 : ''}`}
-                    destroyInactivePanel
-                    ghost
-                    bordered={false}
-                    onChange={callback}
-                  >
-                    <Panel
-                      showArrow={false}
-                      header={<p className="write__content">{t('productDetail.Review')}</p>}
-                      key="1"
+          <Tabs className="productDetail__description--tabs" defaultActiveKey="1">
+            <TabPane tab="DESCRIPTION" key="1">
+              <div className="container">{product?.des}</div>
+            </TabPane>
+            <TabPane tab="REVIEW" key="2">
+              <div className="productDetail__description">
+                <div className="container">
+                  <div className="review__content">
+                    <p>{t('productDetail.Review__customer')}</p>
+                    <Collapse
+                      activeKey={`${isShowFormComment === true ? 1 : ''}`}
+                      destroyInactivePanel
+                      ghost
+                      bordered={false}
+                      onChange={callback}
                     >
-                      <div className="review__content--form">
-                        <Form onFinish={handleSubmitFormComment}>
-                          <p>{t('productDetail.Review__rating')}</p>
-                          <Rate
-                            defaultValue={5}
-                            allowClear={false}
-                            onChange={(value) => handleChangRate(value)}
+                      <Panel
+                        showArrow={false}
+                        header={<p className="write__content">{t('productDetail.Review')}</p>}
+                        key="1"
+                      >
+                        <div className="review__content--form">
+                          <Form onFinish={handleSubmitFormComment}>
+                            <p>{t('productDetail.Review__rating')}</p>
+                            <Rate
+                              defaultValue={5}
+                              allowClear={false}
+                              onChange={(value) => handleChangRate(value)}
+                            />
+                            <p>{t('productDetail.Review__title')}</p>
+                            <Form.Item
+                              name="title"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: t('productDetail.Review__validate.title'),
+                                },
+                              ]}
+                            >
+                              <Input />
+                            </Form.Item>
+                            <p>{t('productDetail.Review__body')}</p>
+                            <Form.Item
+                              name="description"
+                              rules={[
+                                {
+                                  max: 255,
+                                  message: t('productDetail.Review__validate.content'),
+                                },
+                              ]}
+                            >
+                              <Input.TextArea />
+                            </Form.Item>
+                            <Form.Item>
+                              <Button type="primary" htmlType="submit">
+                                {t('productDetail.Review__submit')}
+                              </Button>
+                            </Form.Item>
+                          </Form>
+                        </div>
+                      </Panel>
+                    </Collapse>
+                    <List
+                      className="comment-list"
+                      header={`${comments.total || 0} replies`}
+                      itemLayout="horizontal"
+                      dataSource={comments?.data}
+                      renderItem={(item) => (
+                        <li>
+                          <Comment
+                            author={item.userId?.fullName}
+                            avatar={
+                              'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+                            }
+                            content={
+                              <>
+                                <div>
+                                  <Rate disabled value={item.rate} />
+                                </div>
+                                <div>
+                                  <p>{item.title}</p>
+                                  <span>{item.description}</span>
+                                </div>
+                              </>
+                            }
+                            datetime={
+                              <Tooltip title={moment(item.dateCreate).format('DD-MM-YYYY, h:mm')}>
+                                <span>{moment(item.dateCreate).format('DD-MM-YYYY, h:mm')}</span>
+                              </Tooltip>
+                            }
+                            rate={item.rate}
                           />
-                          <p>{t('productDetail.Review__title')}</p>
-                          <Form.Item
-                            name="title"
-                            rules={[
-                              {
-                                required: true,
-                                message: t('productDetail.Review__validate.title'),
-                              },
-                            ]}
-                          >
-                            <Input />
-                          </Form.Item>
-                          <p>{t('productDetail.Review__body')}</p>
-                          <Form.Item
-                            name="description"
-                            rules={[
-                              {
-                                max: 255,
-                                message: t('productDetail.Review__validate.content'),
-                              },
-                            ]}
-                          >
-                            <Input.TextArea />
-                          </Form.Item>
-                          <Form.Item>
-                            <Button type="primary" htmlType="submit">
-                              {t('productDetail.Review__submit')}
-                            </Button>
-                          </Form.Item>
-                        </Form>
-                      </div>
-                    </Panel>
-                  </Collapse>
-                  <List
-                    className="comment-list"
-                    header={`${comments.total || 0} replies`}
-                    itemLayout="horizontal"
-                    dataSource={comments?.data}
-                    renderItem={(item) => (
-                      <li>
-                        <Comment
-                          author={item.userId?.fullName}
-                          avatar={
-                            'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
-                          }
-                          content={
-                            <>
-                              <div>
-                                <Rate disabled value={item.rate} />
-                              </div>
-                              <div>
-                                <p>{item.title}</p>
-                                <span>{item.description}</span>
-                              </div>
-                            </>
-                          }
-                          datetime={
-                            <Tooltip title={moment(item.dateCreate).format('DD-MM-YYYY, h:mm')}>
-                              <span>{moment(item.dateCreate).format('DD-MM-YYYY, h:mm')}</span>
-                            </Tooltip>
-                          }
-                          rate={item.rate}
-                        />
-                      </li>
-                    )}
-                  />
+                        </li>
+                      )}
+                    />
+                  </div>
+                  {comments.data?.length > 0 && (
+                    <Pagination
+                      total={comments.total}
+                      defaultCurrent={1}
+                      current={current}
+                      defaultPageSize={5}
+                      onChange={(page) => {
+                        setCurrent(page);
+                        window.scrollTo({
+                          top: 0,
+                          left: 0,
+                          behavior: 'smooth',
+                        });
+                      }}
+                    />
+                  )}
                 </div>
-                {comments.data?.length > 0 && (
-                  <Pagination
-                    total={comments.total}
-                    defaultCurrent={1}
-                    current={current}
-                    defaultPageSize={5}
-                    onChange={(page) => {
-                      setCurrent(page);
-                      window.scrollTo({
-                        top: 0,
-                        left: 0,
-                        behavior: 'smooth',
-                      });
-                    }}
-                  />
-                )}
               </div>
-            </div>
-          </TabPane>
-        </Tabs>
+            </TabPane>
+          </Tabs>
         </div>
         <div className="productDetail__related">
           <div className="container">

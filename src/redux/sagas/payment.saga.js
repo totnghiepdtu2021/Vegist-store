@@ -1,8 +1,8 @@
 import { put, takeEvery } from '@redux-saga/core/effects';
 import axios from 'axios';
 import { all } from 'redux-saga/effects';
-import history from '../../until/history';
-import { toastError, toastSuccess } from '../../until/toast';
+import history from '../../util/history';
+import { toastError, toastSuccess } from '../../util/toast';
 import axiosClient from '../config/axiosClient';
 
 import {

@@ -7,7 +7,7 @@ import { BiUser } from 'react-icons/bi';
 import { FaRegCommentDots } from 'react-icons/fa';
 import { RiBillLine, RiContactsBookLine, RiLogoutBoxRLine } from 'react-icons/ri';
 import { GiJerusalemCross } from 'react-icons/gi';
-import history from '../../until/history';
+import history from '../../util/history';
 import './style.scss';
 
 const Admin = () => {

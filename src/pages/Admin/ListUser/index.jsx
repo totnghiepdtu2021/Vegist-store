@@ -4,7 +4,7 @@ import { Pagination, Input, Modal, Empty, Switch } from 'antd';
 import { getListUser, deleteUser, editUserByAdmin } from '../../../redux/actions';
 import { FaTrashAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import { titleCase } from '../../../until/string';
+import { titleCase } from '../../../util/string';
 import ModalCreate from './ModalCreate';
 import ModalModify from './ModalModify';
 import './style.scss';

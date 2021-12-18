@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Pagination, Input, Modal, Empty, Button } from 'antd';
 import { getProducts, deleteProduct } from '../../../redux/actions';
-import history from '../../../until/history';
+import history from '../../../util/history';
 import { BsTrashFill } from 'react-icons/bs';
 import { IoEyeSharp } from 'react-icons/io5';
 import { FaEdit } from 'react-icons/fa';

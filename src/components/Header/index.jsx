@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getCartData, clearCart, clearCountCart } from '../../redux/actions';
 import { useLocation } from 'react-router-dom';
 
-import history from '../../until/history';
+import history from '../../util/history';
 import logo from '../../assets/images/logo.png';
 import VietNam from '../../assets/images/vietnam.svg';
 import English from '../../assets/images/english.svg';
@@ -14,7 +14,7 @@ import { AiOutlineUserAdd, AiOutlineHeart } from 'react-icons/ai';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { GiHamburgerMenu, GiExitDoor } from 'react-icons/gi';
 import { ToastContainer } from 'react-toastify';
-import { toastComingSoon } from '../../until/toast';
+import { toastComingSoon } from '../../util/toast';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './styles.scss';

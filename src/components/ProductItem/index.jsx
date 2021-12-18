@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { IoEyeSharp } from 'react-icons/io5';
 import { HiShoppingBag, HiHeart } from 'react-icons/hi';
-import history from '../../until/history';
+import history from '../../util/history';
 import { Tooltip } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { addCart, getCartData } from '../../redux/actions';
 import Star from '../Star';
 import './styles.scss';
-import { toastComingSoon } from '../../until/toast';
+import { toastComingSoon } from '../../util/toast';
 
 const ProductItem = ({ data, addCart, getCartData }) => {
   const { t } = useTranslation();
@@ -76,9 +76,9 @@ const ProductItem = ({ data, addCart, getCartData }) => {
           <Star rate={rate}></Star>
         </div>
         <div className="product-item__price">
-          <span className="product-item__price--new">{`$${price.toLocaleString()} USD`}</span>
+          <span className="product-item__price--new">{`${price.toLocaleString()} VNĐ`}</span>
           {sale > 0 && (
-            <span className="product-item__price--old">{` $${priceSale().toLocaleString()} USD`}</span>
+            <span className="product-item__price--old">{` ${priceSale().toLocaleString()} VNĐ`}</span>
           )}
         </div>
       </div>

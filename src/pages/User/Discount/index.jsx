@@ -3,16 +3,22 @@ import './styles.scss';
 import { BiSearch } from 'react-icons/bi';
 import Breadcrumb from '../../../components/Breadcrumb';
 import { connect } from 'react-redux';
-import { getDiscount } from '../../../redux/actions';
+import { getDiscountUser, getAllDiscountUser, addDiscountUser } from '../../../redux/actions';
 import DiscountItem from './../../../components/DiscountItem/index';
 import { Col, Empty, Pagination, Row } from 'antd';
 
-function Discount({ getDiscount, discountData, totalDiscount }) {
-  console.log('Log :  totalDiscount', totalDiscount);
-  console.log('Log :  discountData', discountData);
+function Discount({
+  getDiscountUser,
+  discountUserData,
+  totalDiscountAll,
+  discountAllData,
+  getAllDiscountUser,
+}) {
   const [current, setCurrent] = useState(1);
   const [search, setSearch] = useState('');
   const [searchKey, setSearchKey] = useState();
+  const [discountData, setDiscountData] = useState();
+
   const typingTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -20,12 +26,37 @@ function Discount({ getDiscount, discountData, totalDiscount }) {
   }, []);
 
   useEffect(() => {
-    getDiscount({
+    getDiscountUser({
       page: current,
       limit: 10,
-      searchKey: searchKey,
+      searchKey,
+    });
+    getAllDiscountUser({
+      page: current,
+      limit: 10,
+      searchKey,
     });
   }, [current, searchKey]);
+
+  useEffect(() => {
+    handleActiveDiscountData();
+  }, [discountUserData.length, discountAllData.length]);
+
+  const handleActiveDiscountData = () => {
+    if (!discountUserData.length && !discountAllData.length) return {};
+    const data = discountAllData?.map((discount) => {
+      if (discountUserData?.findIndex((dc) => dc.id === discount.id) > -1)
+        return {
+          ...discount,
+          status: true,
+        };
+      return {
+        ...discount,
+        status: false,
+      };
+    });
+    setDiscountData(data);
+  };
 
   const handleChange = (e) => {
     const valueInput = e.target.value;
@@ -61,16 +92,10 @@ function Discount({ getDiscount, discountData, totalDiscount }) {
           <div className="discount__content">
             <h3>DANH SÁCH MÃ KHUYẾN MÃI VEGIST</h3>
             <Row gutter={[16, 16]}>
-              {discountData ? (
-                discountData.map((item) => (
-                  <Col md={12} xs={24} className="discount__border">
-                    <DiscountItem
-                      code={item.code}
-                      name={item.name}
-                      percent={item.percent}
-                      endDate={item.endDate}
-                      quantity={item.quantity}
-                    />
+              {discountUserData && discountAllData && discountData ? (
+                discountData?.map((item) => (
+                  <Col md={12} xs={24} className="discount__border" key={item.id}>
+                    <DiscountItem data={item} />
                   </Col>
                 ))
               ) : (
@@ -79,11 +104,11 @@ function Discount({ getDiscount, discountData, totalDiscount }) {
             </Row>
           </div>
           <div className="pagination">
-            {discountData?.length ? (
+            {!totalDiscountAll ? (
               <Pagination
                 current={current}
                 onChange={(page) => setCurrent(page)}
-                total={totalDiscount}
+                total={totalDiscountAll}
                 defaultPageSize={10}
               />
             ) : null}
@@ -96,13 +121,15 @@ function Discount({ getDiscount, discountData, totalDiscount }) {
 
 // export default Discount;
 const mapStateToProps = (state) => {
-  const { discountData, totalDiscount } = state.discountReducer;
-  return { discountData, totalDiscount };
+  const { discountUserData, totalDiscountAll, discountAllData } = state.discountReducer;
+  return { discountUserData, totalDiscountAll, discountAllData };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getDiscount: (params) => dispatch(getDiscount(params)),
+    getDiscountUser: (params) => dispatch(getDiscountUser(params)),
+    getAllDiscountUser: (params) => dispatch(getAllDiscountUser(params)),
+    addDiscountUser: (params) => dispatch(addDiscountUser(params)),
   };
 };
 

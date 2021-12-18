@@ -1,6 +1,6 @@
 import { put, takeEvery } from '@redux-saga/core/effects';
 import { all } from 'redux-saga/effects';
-import { toastError, toastSuccess } from '../../until/toast';
+import { toastError, toastSuccess } from '../../util/toast';
 import axiosClient from '../config/axiosClient';
 import {
   CREATE_COMMENT,

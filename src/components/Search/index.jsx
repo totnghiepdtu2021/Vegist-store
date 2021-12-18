@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { BiSearch } from 'react-icons/bi';
 import { connect } from 'react-redux';
 import { getProducts, setFlagSearchChange, setValueSearch } from '../../redux/actions';
-import history from '../../until/history';
-import { toastError } from '../../until/toast';
+import history from '../../util/history';
+import { toastError } from '../../util/toast';
 import './styles.scss';
 
 function Search({
