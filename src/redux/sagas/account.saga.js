@@ -29,9 +29,9 @@ import {
   EDIT_USER_PASSWORD,
   EDIT_USER_PASSWORD_FAIL,
   EDIT_USER_PASSWORD_SUCCESS,
-  GET_DISCOUNT_USER,
-  GET_DISCOUNT_USER_SUCCESS,
-  GET_DISCOUNT_USER_FAIL
+  GET_VOUCHER_USER,
+  GET_VOUCHER_USER_SUCCESS,
+  GET_VOUCHER_USER_FAIL
 } from '../constants';
 
 const apiURL = process.env.REACT_APP_API_URL;
@@ -248,7 +248,7 @@ function* editPasswordUser(action) {
   }
 }
 
-function* getDiscountUserSaga(action) {
+function* getVoucherUserSaga(action) {
   try {
     const {page,limit,search} = action.payload;
 
@@ -267,7 +267,7 @@ function* getDiscountUserSaga(action) {
     }
     
     yield put({
-      type: GET_DISCOUNT_USER_SUCCESS,
+      type: GET_VOUCHER_USER_SUCCESS,
       payload: {
         data
       },
@@ -275,7 +275,7 @@ function* getDiscountUserSaga(action) {
 
   } catch (error) {
     yield put({
-      type: GET_DISCOUNT_USER_FAIL,
+      type: GET_VOUCHER_USER_FAIL,
       payload: error,
     });
     toastError(error.message);
@@ -291,5 +291,5 @@ export default function* accountSaga() {
   yield takeEvery(EDIT_USER_BY_ADMIN, editUserByAdminSaga);
   yield takeEvery(DELETE_USER, deleteUserSaga);
   yield takeEvery(EDIT_USER_PASSWORD, editPasswordUser);
-  yield takeEvery(GET_DISCOUNT_USER, getDiscountUserSaga);
+  yield takeEvery(GET_VOUCHER_USER, getVoucherUserSaga);
 }

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getDiscountUser } from '../../redux/actions';
+import { getVoucherUser } from '../../redux/actions';
 import { Button, Input, Pagination, Spin, Row, Col,message } from 'antd';
-import history from '../../until/history';
+import { dateTime } from './../../until/dateTime';
+
 import {
     FieldTimeOutlined
   } from '@ant-design/icons';
 import './style.scss';
 import moment from 'moment';
 function ListDiscount(prop) {
-  const { getDiscountUser, tabValue, listDiscountUser } = prop;
+  const { getVoucherUser, tabValue, listVoucherUser } = prop;
   const [current, setCurrent] = useState(1);
   const [searchKey, setSearchKey] = useState('');
   const { Search } = Input;
@@ -18,7 +19,7 @@ function ListDiscount(prop) {
   document.title = 'Vegist | Trang Thông tin cá nhân';
 
   useEffect(() => {
-    getDiscountUser({
+    getVoucherUser({
       search: searchKey,
       page: current,
       limit: 10,
@@ -26,7 +27,7 @@ function ListDiscount(prop) {
   }, [current,searchKey]);
 
   useEffect(() => {
-    tabValue !=='3' && getDiscountUser({
+    tabValue !=='3' && getVoucherUser({
       search: searchKey,
       page: current,
       limit: 10,
@@ -45,7 +46,7 @@ function ListDiscount(prop) {
 
   return (
     <>
-      {listDiscountUser?.load ? (
+      {listVoucherUser?.load ? (
         <div className="loading">
           <Spin />
         </div>
@@ -62,7 +63,7 @@ function ListDiscount(prop) {
               <div className="voucher-list">
                 <div></div>
                 <Row gutter={[16, 16]}>
-                    {listDiscountUser?.data.length !==0 ? listDiscountUser?.data.map((item,index)=>(
+                    {listVoucherUser?.data?.length !==0 ? listVoucherUser?.data?.map((item,index)=>(
                         <Col sm={24}  md={24} lg={12}>
                             <div className="voucher-list__item">
                                 <div className="voucher-img">
@@ -70,15 +71,15 @@ function ListDiscount(prop) {
                                 </div>
                                 <div className="voucher-list__item-content">
                                     <div className="content-top">
-                                        <p className="code">{`[Mã giảm giá tháng 12]-Nhập mã ${item.codeName} Giảm ngay 30000 cho đơn từ 40000`}</p>
-                                        <p className="percent">Còn lại 64%</p>
+                                        <p className="code">{`[${item.name}] - Nhập mã ${item.code} giảm ngay ${item.percent} %`}</p>
+                                        <p className="percent">Còn lại {item.quantity} mã</p>
                                     </div>
                                     <div className="content-bottom">
                                         <div className="item-time">
                                         <FieldTimeOutlined />
-                                        Còn 13 ngày 20:3
+                                        Hết hạn: {dateTime(item.endDate)}
                                         </div>
-                                        <Button onClick={() => handleCopyCode(item.id)} type="primary"> Copy</Button>
+                                        <Button onClick={() => handleCopyCode(item.code)} type="primary"> Copy</Button>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +88,7 @@ function ListDiscount(prop) {
                     }
                 </Row>
               </div>
-                  {listDiscountUser?.data.length !==0 && (
+                  {listVoucherUser?.data?.length !==0 && (
                     <div className="pagination">
                         <Pagination
                         current={current}
@@ -99,7 +100,7 @@ function ListDiscount(prop) {
                             });
                             setCurrent(page);
                         }}
-                        total={listDiscountUser?.total}
+                        total={listVoucherUser?.total}
                         defaultPageSize={10}
                         />
                     </div>
@@ -113,16 +114,16 @@ function ListDiscount(prop) {
 }
 
 const mapStateToProps = (state) => {
-  const {  listDiscountUser } = state.accountReducer;
+  const {  listVoucherUser } = state.accountReducer;
 
   return {
-    listDiscountUser,
+    listVoucherUser,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getDiscountUser: (params) => dispatch(getDiscountUser(params)),
+    getVoucherUser: (params) => dispatch(getVoucherUser(params)),
   };
 };
 

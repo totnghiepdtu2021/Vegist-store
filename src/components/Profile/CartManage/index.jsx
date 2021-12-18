@@ -10,7 +10,7 @@ import moment from 'moment';
 const { Option } = Select;
 const { Search } = Input;
 function CartManage(prop) {
-  const { getOrderUser, orderUser, cancelOrderUser, tabValue } =
+  const { getOrderUser, orderUser, cancelOrderUser, tabValue,orderCancel } =
     prop;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [current, setCurrent] = useState(1);
@@ -28,7 +28,13 @@ function CartManage(prop) {
       status: filterSelect,
       limit: 5,
     });
-  }, [current, searchKey, filterSelect]);
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, [current, searchKey, filterSelect,orderCancel]);
 
   useEffect(() => {
     tabValue !== '2' &&
@@ -58,17 +64,16 @@ function CartManage(prop) {
 
     setCurrent(1);
 
-    getOrderUser({
-      page: current,
-      limit: 5,
-    });
+    // getOrderUser({
+    //   page: current,
+    //   limit: 5,
+    // });
 
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-
+    // window.scrollTo({
+    //   top: 0,
+    //   left: 0,
+    //   behavior: 'smooth',
+    // });
     setIsModalVisible(false);
   };
 
@@ -211,11 +216,12 @@ function CartManage(prop) {
 }
 
 const mapStateToProps = (state) => {
-  const { orderUser, billDetailUser } = state.paymentReducer;
+  const { orderUser, billDetailUser,orderCancel } = state.paymentReducer;
 
   return {
     orderUser,
     billDetailUser,
+    orderCancel
   };
 };
 

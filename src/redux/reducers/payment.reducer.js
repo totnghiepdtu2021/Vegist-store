@@ -45,7 +45,8 @@ const initialState = {
   billDetailUser:{
     data:[],
     load:false,
-  }
+  },
+  orderCancel:{}
 };
 
 export default function paymentReducer(state = initialState, action) {
@@ -133,6 +134,7 @@ export default function paymentReducer(state = initialState, action) {
     case CANCEL_ORDER_SUCCESS:{
       return {
         ...state,
+        orderCancel: { ...action.payload },
       }
     }
 

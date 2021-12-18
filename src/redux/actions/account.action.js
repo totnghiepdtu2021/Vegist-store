@@ -7,7 +7,7 @@ import {
   EDIT_USER_BY_ADMIN,
   DELETE_USER,
   EDIT_USER_PASSWORD,
-  GET_DISCOUNT_USER
+  GET_VOUCHER_USER
 } from '../constants';
 
 export function createAccount(params) {
@@ -61,9 +61,9 @@ export function editUserPassword(params) {
   };
 }
 
-export function getDiscountUser(params) {
+export function getVoucherUser(params) {
   return {
-    type: GET_DISCOUNT_USER,
+    type: GET_VOUCHER_USER,
     payload: params
   };
 }

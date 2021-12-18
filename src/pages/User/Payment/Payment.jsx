@@ -33,8 +33,8 @@ const Payment = ({ getBill, billData, createBill, getCartData }) => {
       codeName: bill.codeName,
       total: bill.total,
     });
-
-    localStorage.removeItem('infoPayment');
+    
+    // localStorage.removeItem('infoPayment');
     getCartData();
   };
 

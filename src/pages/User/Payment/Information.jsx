@@ -17,6 +17,7 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
   const [valueSelect, setValueSelect] = useState('vi');
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [infoPayment, setInfoPayment] = useState(JSON.parse(localStorage.getItem('infoPayment')));
+  console.log("🚀 ~ file: Information.jsx ~ line 20 ~ Information ~ infoPayment", infoPayment)
 
   const handleSubmitForm = (values) => {
     const { firstName, lastName } = values;
@@ -25,6 +26,7 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
     const dataForm = {
       ...values,
       country: valueSelect,
+      phoneNumber:values.phone,
       name: fullName,
     };
 
@@ -45,7 +47,7 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
               lastName: (infoPayment || user).lastName,
               address: (infoPayment || user).address || '',
               zipCode: (infoPayment || user).zipCode || '',
-              phone: infoPayment?.phone || user?.phoneNumber || '',
+              phone: (infoPayment || user).phoneNumber || '',
               check: true,
             }}
             validationSchema={Yup.object({

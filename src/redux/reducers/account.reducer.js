@@ -16,9 +16,9 @@ import {
   EDIT_USER_PASSWORD_SUCCESS,
   EDIT_USER_PASSWORD_FAIL,
   EDIT_USER_BY_ADMIN_FAIL,
-  GET_DISCOUNT_USER_SUCCESS,
-  GET_DISCOUNT_USER_FAIL,
-  GET_DISCOUNT_USER,
+  GET_VOUCHER_USER_SUCCESS,
+  GET_VOUCHER_USER_FAIL,
+  GET_VOUCHER_USER,
 
 } from '../constants';
 
@@ -35,7 +35,7 @@ const initialStore = {
   userEdit: {},
   listUser: {},
 
-  listDiscountUser:{
+  listVoucherUser:{
     load:false,
     data:[],
     total:''
@@ -144,33 +144,33 @@ export default function accountReducer(state = initialStore, action) {
       return state;
     }
 
-    case GET_DISCOUNT_USER: {
+    case GET_VOUCHER_USER: {
       return {
         ...state,
-        listDiscountUser:{
+        listVoucherUser:{
           load:true,
         }
       }
     }
 
-    case GET_DISCOUNT_USER_SUCCESS: {
+    case GET_VOUCHER_USER_SUCCESS: {
       const {data} = action.payload;
 
       return {
         ...state,
-        listDiscountUser:{
-          ...state.listDiscountUser,
+        listVoucherUser:{
+          ...state.listVoucherUser,
           data:data.discountCodes,
           load:false,
         }
       }
     }
 
-    case GET_DISCOUNT_USER_FAIL: {
+    case GET_VOUCHER_USER_FAIL: {
       return {
         ...state,
-        listDiscountUser:{
-          ...state.listDiscountUser,
+        listVoucherUser:{
+          ...state.listVoucherUser,
           load:false,
         }
       }
