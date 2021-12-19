@@ -1,6 +1,4 @@
 import { Button, Select } from 'antd';
-import moment from 'moment';
-import 'moment/locale/vi';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiDetail } from 'react-icons/bi';
@@ -25,7 +23,7 @@ function Row({ item, index, arrStatus, handleChangeStatus, handleClickDelete, ha
         <td>{renderPaymentCode(item?.id)}</td>
         <td>{item?.userId?.fullName}</td>
         <td>{`${item?.total.toLocaleString()} VND`}</td>
-        <td>{moment(internationalDateTime(item?.dateCreate)).format('L')}</td>
+        <td>{internationalDateTime(item?.dateCreate)}</td>
         <td>
           <div>
             <Select

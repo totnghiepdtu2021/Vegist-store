@@ -28,6 +28,7 @@ import {
 
 import './style.scss';
 import moment from 'moment';
+import history from '../../../util/history';
 
 const ProductDetail = ({
   createComment,
@@ -42,16 +43,21 @@ const ProductDetail = ({
   const product = productDetail.data?.product;
   const sales =
     product?.sale > 0 && Math.ceil(product?.price - product?.price * (product?.sale / 100));
-  console.log('🚀 ~ file: index.jsx ~ line 44 ~ sales', sales);
+
   const productId = match.params.id;
   const [rateValue, setRateValue] = useState();
   const [valueQuantity, setValueQuantity] = useState(1);
   const [isShowFormComment, setIsShowFormComment] = useState(false);
   const [current, setCurrent] = useState(1);
+  const [authData, setAuthData] = useState();
   const { t } = useTranslation();
   const { TabPane } = Tabs;
   document.title = 'Vegist | Trang Chi tiết';
   const { confirm } = Modal;
+
+  useEffect(() => {
+    setAuthData(() => JSON.parse(localStorage.getItem('profile')));
+  }, []);
 
   useEffect(() => {
     getProductDetail(productId);
@@ -115,7 +121,7 @@ const ProductDetail = ({
       // getComment({productId,limit:5,page:1})
       setIsShowFormComment(false);
     } else {
-      toastError('Bạn chưa đăng nhập');
+      toastError('Bạn chưa đăng nhập!');
       setIsShowFormComment(false);
     }
   };
@@ -155,7 +161,11 @@ const ProductDetail = ({
   };
 
   const handleAddToCart = () => {
-    addCart({ productId: product.id, quantity: valueQuantity });
+    if (!authData) {
+      history.push('/login');
+    } else {
+      addCart({ productId: product.id, quantity: valueQuantity });
+    }
   };
 
   const renderProductDetail = () => {

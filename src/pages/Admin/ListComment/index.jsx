@@ -1,12 +1,11 @@
 import { Empty, Input, Modal, Pagination } from 'antd';
-import moment from 'moment';
-import 'moment/locale/vi';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BsEyeFill, BsReplyAllFill } from 'react-icons/bs';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { connect } from 'react-redux';
 import { deleteComment, getCommentAdmin, getProducts } from '../../../redux/actions';
+import { internationalDateTime } from '../../../util/dateTime';
 import history from '../../../util/history';
 import { titleCase } from '../../../util/string';
 import { toastSuccess } from '../../../util/toast';
@@ -124,7 +123,7 @@ function ListComment({
                     <td>{item?.title}</td>
                     <td className="text-clamp text-clamp--2">{item?.description}</td>
                     <td>{item?.rate}</td>
-                    <td>{moment(item?.dateCreate).format('L')}</td>
+                    <td>{internationalDateTime(item?.dateCreate)}</td>
                     <td className="comment__button">
                       <BsEyeFill
                         className="comment__icon comment__icon--reply"

@@ -20,7 +20,7 @@ function* createContactSaga(action) {
   try {
     const response = yield axios.post(`${apiURL}/contacts`, { ...action.payload });
     const data = response.data;
-    toastSuccess('Message sent successfully !');
+    toastSuccess('Gửi liên hệ thành công!');
     yield put({
       type: CREATE_CONTACT_SUCCESS,
       payload: data,

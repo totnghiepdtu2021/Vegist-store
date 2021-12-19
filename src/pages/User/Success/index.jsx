@@ -1,11 +1,13 @@
+import { Col, Row, Spin } from 'antd';
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getBill } from '../../../redux/actions';
 import { useTranslation } from 'react-i18next';
 import { FiCheckSquare } from 'react-icons/fi';
-import './styles.scss';
-import { Col, Row, Spin } from 'antd';
+import { connect } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getBill } from '../../../redux/actions';
 import history from '../../../util/history';
+import './styles.scss';
 
 const Success = ({ match, getBill, billData }) => {
   const billId = match.params.id;
@@ -117,6 +119,7 @@ const Success = ({ match, getBill, billData }) => {
               </Col>
             </Row>
           </div>
+          <ToastContainer />
         </section>
       )}
     </>

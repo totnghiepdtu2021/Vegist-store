@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Header from '../components/Header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
+import './styles.scss';
 
 function DefaultLayout({ component: Component, role, ...props }) {
   return (
@@ -14,6 +17,7 @@ function DefaultLayout({ component: Component, role, ...props }) {
             <Component {...routerProps} />
           </div>
           <Footer />
+          <ToastContainer />
         </>
       )}
     />

@@ -1,8 +1,8 @@
 import { put, takeEvery } from '@redux-saga/core/effects';
 import { all } from 'redux-saga/effects';
+import history from '../../util/history';
+import { toastError, toastSuccess } from '../../util/toast';
 import axiosClient from '../config/axiosClient';
-import { toastSuccess, toastError } from '../../util/toast';
-
 import {
   CREATE_PRODUCTS,
   CREATE_PRODUCTS_FAIL,
@@ -16,14 +16,10 @@ import {
   GET_PRODUCT_HOME,
   GET_PRODUCT_HOME_FAIL,
   GET_PRODUCT_HOME_SUCCESS,
-  GET_TOTAL_PRODUCTS,
-  GET_TOTAL_PRODUCTS_FAIL,
-  GET_TOTAL_PRODUCTS_SUCCESS,
   UPDATE_PRODUCTS,
   UPDATE_PRODUCTS_FAIL,
   UPDATE_PRODUCTS_SUCCESS,
 } from '../constants';
-import history from '../../util/history';
 
 const apiURL = process.env.REACT_APP_API_URL;
 

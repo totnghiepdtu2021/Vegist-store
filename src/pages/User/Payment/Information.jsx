@@ -42,12 +42,12 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
           <PaymentBreadcrumb />
           <Formik
             initialValues={{
-              email: (infoPayment || user).email,
-              firstName: (infoPayment || user).firstName,
-              lastName: (infoPayment || user).lastName,
-              address: (infoPayment || user).address || '',
-              zipCode: (infoPayment || user).zipCode || '',
-              phone: (infoPayment || user).phoneNumber || '',
+              email: (user || infoPayment).email,
+              firstName: (user || infoPayment).firstName,
+              lastName: (user || infoPayment).lastName,
+              address: (user || infoPayment).address || '',
+              zipCode: (user || infoPayment).zipCode || '',
+              phone: (user || infoPayment).phoneNumber || '',
               check: true,
             }}
             validationSchema={Yup.object({

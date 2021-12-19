@@ -1,9 +1,8 @@
-import moment from 'moment';
-import 'moment/locale/vi';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getOrderDetail } from '../../../../redux/actions';
+import { internationalDateTime } from '../../../../util/dateTime';
 import history from '../../../../util/history';
 import './styles.scss';
 
@@ -51,7 +50,7 @@ function OrderDetail({ match, orderDetail, getOrderDetail }) {
             )}
             <div className="detail__wrapper">
               <h3 className="detail__subtitle">{t('admin.order.Date Time')}</h3>
-              <p>{moment(bill?.dateCreate).format('L')}</p>
+              <p>{internationalDateTime(bill?.dateCreate)}</p>
             </div>
             <div className="detail__wrapper">
               <h3 className="detail__subtitle">{t('admin.order.Recipient name')}</h3>
