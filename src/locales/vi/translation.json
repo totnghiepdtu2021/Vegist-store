@@ -186,6 +186,10 @@
     "amount": {
       "interger": "Số tiền giảm phải là số nguyên dương!",
       "regex": "Số tiền giảm tối thiểu là 1.000, tối đa là 99.000.000 !"
+    },
+    "string": "Họ không bao gồm số và kí tự đặc biệt !",
+    "first name": {
+      "string": "Tên không bao gồm số và kí tự đặc biệt !"
     }
   },
   "home": {
@@ -591,7 +595,7 @@
     "10 YEAR WARRANTY TEXT": "Chất lượng đi đầu và sản phẩm của chúng tôi được thiết kế để tồn tại.",
     "replies": "Phản hồi"
   },
-  "Last Name": "Họ",
+  "Last Name": "Tên",
   "Phone Number": "Số điện thoại",
   "Password": "Mật khẩu",
   "the length of the Last Name must be greater than 2 and less than 20": "độ dài của Họ phải lớn hơn 2 và nhỏ hơn 20",
@@ -599,7 +603,7 @@
   "First Name ": "Tên",
   "Last name": "Họ",
   "First name": "Tên",
-  "First Name": "Tên",
+  "First Name": "Họ",
   "header text": {
     "free": "Miễn phí vận chuyển"
   },

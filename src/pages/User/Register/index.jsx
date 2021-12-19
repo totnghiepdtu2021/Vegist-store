@@ -46,7 +46,12 @@ const Register = (prop) => {
                       whitespace: true,
                     },
                     {
-                      max: 8,
+                      pattern: /^[^0-9_@./#&+-;'"{},@!%^*()=]+$/,
+                      message: t('validate.first name.string'),
+                      required: true,
+                    },
+                    {
+                      max: 20,
                       min: 2,
                       message: t(
                         'the length  of the First Name must be greater than 2 and less than 20'
@@ -54,7 +59,7 @@ const Register = (prop) => {
                     },
                   ]}
                 >
-                  <Input placeholder={t("First name")} />
+                  <Input placeholder={t('First name')} />
                 </Form.Item>
                 <div className="login__label">
                   {t('Last Name')} <span className="required">*</span>
@@ -68,7 +73,12 @@ const Register = (prop) => {
                       whitespace: true,
                     },
                     {
-                      max: 8,
+                      pattern: /^[^0-9_@./#&+-;'"{},@!%^*()=]+$/,
+                      message: t('validate.string'),
+                      required: true,
+                    },
+                    {
+                      max: 20,
                       min: 2,
                       message: t(
                         'the length of the Last Name must be greater than 2 and less than 20'
@@ -76,7 +86,7 @@ const Register = (prop) => {
                     },
                   ]}
                 >
-                  <Input placeholder={t("Last name")} />
+                  <Input placeholder={t('Last name')} />
                 </Form.Item>
                 <div className="login__label">
                   {t('Phone Number')} <span className="required">*</span>
@@ -95,7 +105,7 @@ const Register = (prop) => {
                     },
                   ]}
                 >
-                  <Input placeholder={t("Phone Number")} />
+                  <Input placeholder={t('Phone Number')} />
                 </Form.Item>
                 <div className="login__label">
                   {t('Password')} <span className="required">*</span>
@@ -115,7 +125,7 @@ const Register = (prop) => {
                   ]}
                   hasFeedback
                 >
-                  <Input.Password placeholder={t("Password")} />
+                  <Input.Password placeholder={t('Password')} />
                 </Form.Item>
                 <Form.Item>
                   <Button type="warning" htmlType="submit">

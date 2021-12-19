@@ -159,7 +159,7 @@
       "required": "Short description can't be blank !"
     },
     "search": {
-      "required": "You have not entered a keyword !"
+      "required": "Bạn chưa nhập từ khóa !"
     },
     "discount": {
       "max": "Discount name cannot be longer than 50 characters !",
@@ -185,6 +185,10 @@
     "amount": {
       "interger": "\nAmount must be a positive integer !",
       "regex": "Minimum amount is 1.000, maximum 99.000.000 !"
+    },
+    "string": "Last name do not include numbers and special characters !",
+    "first name": {
+      "string": "First name do not include numbers and special characters !"
     }
   },
   "home": {
@@ -604,6 +608,6 @@
   "input search text": "input search text",
   "Sort by": "Sort by",
   "action": {
-    "warning": "\nPlease login to take this action !"
+    "warning": "Hãy đăng nhập để thực hiện hành động này !"
   }
 }

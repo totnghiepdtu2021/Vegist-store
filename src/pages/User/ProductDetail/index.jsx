@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getProductDetail, createComment, getComment, addCart } from '../../../redux/actions';
 import { AiFillHeart } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
-import { toastError, toastComingSoon, toastWarning } from '../../../util/toast';
+import { toastComingSoon, toastWarning } from '../../../util/toast';
 
 import { GiShoppingBag } from 'react-icons/gi';
 import Slide from '../Home/Slide';
@@ -91,14 +91,13 @@ const ProductDetail = ({
       id: 1,
       icon: <FaTruckMoving />,
       name: t('DELIVERY INFO'),
-      content:t('prodcutDetail.DELIVERY TEXT'),
+      content: t('prodcutDetail.DELIVERY TEXT'),
     },
     {
       id: 2,
       icon: <FaMoneyBillWave />,
       name: t('30 DAYS RETURNS'),
-      content:
-        t("productDetail.30 DAYS RETURNS TEXT"),
+      content: t('productDetail.30 DAYS RETURNS TEXT'),
     },
     {
       id: 3,
@@ -108,7 +107,7 @@ const ProductDetail = ({
     },
   ];
 
-  const handleSubmitForm = (value) => { };
+  const handleSubmitForm = (value) => {};
 
   const handleSubmitFormComment = async (value) => {
     if (window.localStorage.getItem('token')) {
@@ -162,7 +161,7 @@ const ProductDetail = ({
 
   const handleAddToCart = () => {
     if (!authData) {
-      history.push('/login');
+      toastWarning(t('action.warning'));
     } else {
       addCart({ productId: product.id, quantity: valueQuantity });
     }
@@ -311,9 +310,7 @@ const ProductDetail = ({
         <div className="productDetail__review">
           <Tabs className="productDetail__description--tabs" defaultActiveKey="1">
             <TabPane tab={t('productDetail.DESCRIPTION')} key="1">
-              <div className="container">
-                {product?.des}
-              </div>
+              <div className="container">{product?.des}</div>
             </TabPane>
             <TabPane tab={t('productDetail.REVIEW')} key="2">
               <div className="productDetail__description">
