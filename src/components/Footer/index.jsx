@@ -131,7 +131,7 @@ const Footer = () => {
                       <MdCall />
                     </div>
                     <div>
-                      <div className="info__title">{t('Contact')}</div>
+                      <div className="info__title">{t('contact')}</div>
                       <p>+014-33333-8888-6868</p>
                       <p>support@spacingtech.com</p>
                     </div>

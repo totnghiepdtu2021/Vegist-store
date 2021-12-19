@@ -98,7 +98,7 @@ function CartManage(prop) {
               <p className="profile__order--title">{t('orderHistory.title')}</p>
               <div className="profile__order-content">
                 <div className="profile__order-content-action">
-                  <div>Sort by:</div>
+                  <div>{t('Sort by')}:</div>
                   <div className="action-select">
                     <Select value={filterSelect} onChange={handleChange}>
                       <Option value="all">Tất cả</Option>
@@ -111,7 +111,7 @@ function CartManage(prop) {
                   </div>
                   <div>
                     <Search
-                      placeholder="input search text"
+                      placeholder={t("input search text")}
                       onSearch={handleSearchOrder}
                       enterButton
                     />
@@ -121,11 +121,11 @@ function CartManage(prop) {
                   <thead>
                     <tr>
                       <td>STT</td>
-                      <td>PRODUCT</td>
-                      <td>DATE</td>
-                      <td>TOTAL</td>
-                      <td>STATUS</td>
-                      <td>ACTION</td>
+                      <td>{t('PRODUCT')}</td>
+                      <td>{t('DATE')}</td>
+                      <td>{t('TOTAL')}</td>
+                      <td>{t('STATUS')}</td>
+                      <td>{t('ACTION')}</td>
                     </tr>
                   </thead>
                   {orderUser.data.length !== 0 && (
@@ -204,12 +204,12 @@ function CartManage(prop) {
         </section>
       )}
       <Modal
-        title="Cancel Bill"
+        title={t("Cancel Bill")}
         visible={isModalVisible}
         onOk={handleCancelBill}
         onCancel={handleCancel}
       >
-        <p>Are you sure you want to cancel your order ?</p>
+        <p>{t('Notice file cancel')}</p>
       </Modal>
     </>
   );

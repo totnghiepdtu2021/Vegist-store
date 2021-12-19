@@ -27,7 +27,7 @@
   "Online Support": "Online Support",
   "Address": "Address",
   "Contact": {
-    "title": "Contact Us",
+    "title": "Contact",
     "description": "Got a question? We had love to hear from you. Send us a message and we will respond as soon as possible.",
     "Drop us message": "Drop us message",
     "Name": "Name",
@@ -38,12 +38,19 @@
     "Your message here": "Your message here...",
     "Get in touch": "Get in touch",
     "Get description": "We are happy to receive contact from you. We look forward to assisting you so that you can have a great experience.",
-    "SUBMIT": "SUBMIT"
+    "SUBMIT": "SUBMIT",
+    "Contact": "Contact"
   },
   "Cart": "Cart",
   "Add card success": "Add card success",
   "notFound": "No search results for",
   "Categories": {
+    "Privacy_Terms.name": "name",
+    "Privacy_Terms.Payment policy": "Payment Policy",
+    "Privacy_Terms.Privacy policy": "Privacy Policy",
+    "Privacy_Terms.Return policy": "Return Policy",
+    "Privacy_Terms.shipping policy": "Shipping Policy",
+    "Privacy_Terms.Terms & Conditions": "Terms & Conditions",
     "Top_Categories": {
       "name": "Top Categories",
       "Fruits": "Fruits",
@@ -256,7 +263,9 @@
     "placeholder": "Select a type",
     "Anything...": "Anything...",
     "Organic Juice ": "Organic Juice ",
-    "Organic Dryfruit": "Organic Dryfruit"
+    "Organic Dryfruit": "Organic Dryfruit",
+    "New": "New",
+    "Hot": "Hot"
   },
   "productDetail": {
     "Review": "Write a review",
@@ -277,7 +286,16 @@
     "Material": "Material",
     "Quantity": "Quantity",
     "Share": "Share",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and"
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and",
+    "DELIVERY INFO": "DELIVERY INFO",
+    "DELIVERY TEXT": "From then, delivery is generally within 2-10 days, depending on your location.",
+    "30 DAYS RETURNS": "30 DAYS RETURNS",
+    "30 DAYS RETURNS TEXT": "Not the right fit? No worries. We'll arrange pick up and a full refund within 7 days including the delivery fee.",
+    "10 YEAR WARRANTY": "10 YEAR WARRANTY",
+    "10 YEAR WARRANTY TEXT": "Quality comes first and our products are designed to last.",
+    "DESCRIPTION": "DESCRIPTION",
+    "bill": "Not the right fit? No worries. We'll arrange pick up and a full refund within 7 days including the delivery fee.",
+    "REVIEW": "REVIEW"
   },
   "cart": {
     "Yes": "Yes",
@@ -297,9 +315,12 @@
     "Zip/Postal code": "Zip/Postal code",
     "The shopping cart has no products": "The shopping cart has no products",
     "Do you want to delete all products": "Do you want to delete all products?",
-    "Checkout": "Checkout"
+    "Checkout": "Checkout",
+    "You can only order a minimum of 1 product": "You can only order a minimum of 1 product"
   },
   "Profile": {
+    "Info Manage": "Info Manage",
+    "Order Manage": "Order Manage",
     "welcome": "Welcome",
     "edit": "Edit password",
     "inner": "Inner Password",
@@ -542,5 +563,43 @@
       "Action": "Action"
     }
   },
-  "logout": "Logout"
+  "logout": "Logout",
+  "Related Product": "Related Product",
+  "Category": "Category",
+  "Footer": {
+    "Payment policy": "Payment policy"
+  },
+  "Payment policy": "Payment policy",
+  "Full Name": "Full name",
+  "Email": "Email",
+  "DELIVERY INFO": "DELIVERY INFO\n",
+  "30 DAYS RETURNS": "30 DAYS RETURNS",
+  "10 YEAR WARRANTY": "10 YEAR WARRANTY",
+  "Info Manage": "Info Manage",
+  "Order Manage": "Order Manage",
+  "profile": {
+    "Info Manage": "Info Manage",
+    "Order Manage": "Order Manage"
+  },
+  "prodcutDetail": {
+    "DELIVERY TEXT": "From then, delivery is generally within 2-10 days, depending on your location.",
+    "10 YEAR WARRANTY TEXT": "Quality comes first and our products are designed to last.",
+    "replies": "Replies"
+  },
+  "Last Name": "Last name\n",
+  "Phone Number": "Phone Number",
+  "First Name": "First Name",
+  "header text": {
+    "free": "Free Shipping"
+  },
+  "List Discount": "List Discount",
+  "Cancel Bill": "Cancel Bill",
+  "Notice file cancel": "Are you sure you want to cancel your order ?",
+  "PRODUCT": "PRODUCT",
+  "DATE": "DATE",
+  "TOTAL": "TOTAL",
+  "STATUS": "STATUS",
+  "ACTION": "ACTION",
+  "input search text": "input search text",
+  "Sort by": "Sort by"
 }

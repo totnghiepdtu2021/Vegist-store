@@ -56,14 +56,14 @@ function InfoManage(prop) {
   const arrProfile = [
     {
       id: 1,
-      title: 'Full Name',
+      title: t('Full Name'),
       content: infoUser?.data?.fullName,
       type: 'name',
       last: 'last',
     },
     {
       id: 2,
-      title: 'Email',
+      title: t('Email'),
       content: infoUser?.data?.email,
       type: 'email',
     },
