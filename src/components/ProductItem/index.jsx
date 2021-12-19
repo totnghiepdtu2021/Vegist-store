@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { addCart, getCartData } from '../../redux/actions';
 import Star from '../Star';
 import './styles.scss';
-import { toastComingSoon } from '../../util/toast';
+import { toastComingSoon, toastWarning } from '../../util/toast';
 
 const ProductItem = ({ data, addCart, getCartData }) => {
   const { t } = useTranslation();
@@ -21,7 +21,7 @@ const ProductItem = ({ data, addCart, getCartData }) => {
 
   const handleAddToCart = ({ id }) => {
     if (!authData) {
-      history.push('/login');
+      toastWarning(t('action.warning'));
     } else {
       addCart({ productId: id, quantity: 1 });
     }

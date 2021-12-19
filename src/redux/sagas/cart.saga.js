@@ -1,5 +1,6 @@
 import { put, takeEvery } from '@redux-saga/core/effects';
-import { toastError, toastSuccess } from '../../util/toast';
+import { toast } from 'react-toastify';
+import { toastError, toastSuccess, toastWarning } from '../../util/toast';
 import axiosClient from '../config/axiosClient';
 
 import {
@@ -32,7 +33,10 @@ function* addCartSaga(action) {
       type: ADD_CART_SUCCESS,
       payload: data.cartDetails,
     });
-    toastSuccess('Thêm vào giỏ hàng thành công!');
+
+    if (data.warningMessage) {
+      toastWarning(data.warningMessage, 'top-right', 2500);
+    } else toastSuccess('Thêm vào giỏ hàng thành công!');
   } catch (error) {
     yield put({
       type: ADD_CART_FAIL,

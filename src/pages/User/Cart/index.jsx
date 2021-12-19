@@ -5,8 +5,6 @@ import Breadcrumb from '../../../components/Breadcrumb';
 import { Col, Row, Select, Input, Modal } from 'antd';
 import CartItem from './CartItem';
 import { useTranslation } from 'react-i18next';
-import VietNam from '../../../assets/images/vietnam.svg';
-import English from '../../../assets/images/english.svg';
 import './styles.scss';
 import { clearCart, getCartData } from '../../../redux/actions';
 
@@ -17,7 +15,7 @@ const Cart = ({ cartData, clearCart, getCartData }) => {
   const { Option } = Select;
 
   useEffect(() => {
-    getCartData();
+    if (localStorage.getItem('profile')) getCartData();
   }, []);
 
   useEffect(() => {

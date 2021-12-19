@@ -29,6 +29,14 @@ const InfoCart = ({
     if (location.pathname === '/payment') getDiscountUser({ page: 1, searchKey });
   }, [searchKey, isShowSearch, location]);
 
+  useEffect(() => {
+    if (location.pathname !== '/payment') {
+      setDiscount({});
+      setSearchKey('');
+      setIsShowSearch(false);
+    }
+  }, [location]);
+
   const renderCartData = (cartData) => {
     return cartData?.cartDetails?.map((item, index) => {
       const { productId } = item;
@@ -95,25 +103,25 @@ const InfoCart = ({
             <p>{parseInt(handleCalculateToTal({ check: false }) * 0.1).toLocaleString()}</p>
           </div>
           <div className="infoCart__price--item">
+            <h4>{t('infoCart.Discount')}</h4>
+            <p>
+              {location.pathname === '/payment' && discount ? (
+                <span>
+                  {discount?.sale || discount?.amount ? '-' : ''}
+                  {discount?.sale || discount?.amount?.toLocaleString()}
+                  {discount?.sale || discount?.amount ? (discount?.amount ? 'VND' : '%') : 0}
+                </span>
+              ) : (
+                0
+              )}
+            </p>
+          </div>
+          <div className="infoCart__price--item">
             <h4>{t('infoCart.Shipping cost')}</h4>
             <p>
               {location.pathname === '/shipping' || location.pathname === '/payment'
                 ? parseInt(20000).toLocaleString()
                 : t('infoCart.Calculated at next step')}
-            </p>
-          </div>
-          <div className="infoCart__price--item">
-            <h4>{t('infoCart.Discount')}</h4>
-            <p>
-              {(location.pathname === '/shipping' || location.pathname === '/payment') &&
-              discount ? (
-                <span>
-                  {discount?.amount?.toLocaleString() || discount?.sale}
-                  {discount?.amount ? 'VND' : '%'}
-                </span>
-              ) : (
-                0
-              )}
             </p>
           </div>
           <div className="infoCart__price--total">

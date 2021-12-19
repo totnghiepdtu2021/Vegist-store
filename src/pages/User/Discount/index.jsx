@@ -26,11 +26,12 @@ function Discount({
   }, []);
 
   useEffect(() => {
-    getDiscountUser({
-      page: current,
-      limit: 10,
-      searchKey,
-    });
+    if (localStorage.getItem('profile'))
+      getDiscountUser({
+        page: current,
+        limit: 10,
+        searchKey,
+      });
     getAllDiscountUser({
       page: current,
       limit: 10,

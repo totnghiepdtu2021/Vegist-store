@@ -90,8 +90,7 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
                   <td>{t('admin.discount.key')}</td>
                   <td>{t('admin.discount.Discount name')}</td>
                   <td>{t('admin.discount.Discount code')}</td>
-                  <td>{t('admin.discount.Percent')}</td>
-                  <td>{t('admin.discount.Amount')}</td>
+                  <td>{t('admin.discount.Percent / Amount')}</td>
                   <td>{t('admin.discount.Start date')}</td>
                   <td>{t('admin.discount.End date')}</td>
                   <td>{t('admin.discount.Discount type')}</td>
@@ -106,8 +105,10 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
                       <td>{index + 1}</td>
                       <td>{item.title}</td>
                       <td>{item.codeName}</td>
-                      <td>{item.sale}%</td>
-                      <td>{item.amount}</td>
+                      <td>
+                        {item.sale || item.amount}
+                        {item.sale ? '%' : ' VNĐ'}
+                      </td>
                       <td>{dateTime(item.dateCreate || new Date())}</td>
                       <td>{dateTime(item.endDate || new Date())}</td>
                       <td>{item.sale ? 'Giảm theo phần trăm' : 'Giảm theo giá trực tiếp'}</td>

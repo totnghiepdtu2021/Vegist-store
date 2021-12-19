@@ -3,9 +3,11 @@ import PaymentBreadcrumb from './component/PaymentBreadcrumb';
 import { Radio } from 'antd';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { AiFillHome } from 'react-icons/ai';
 import { getBill } from '../../../redux/actions';
-import './styles.scss';
 import history from '../../../util/history';
+import './styles.scss';
+
 const Shipping = ({ getBill, billData }) => {
   document.title = 'Vegist | Trang ship';
   const { t } = useTranslation();
@@ -16,7 +18,9 @@ const Shipping = ({ getBill, billData }) => {
     <div className="payment-page fadeIn">
       <div className="container payment__container">
         <section className="shipping">
-          <h1 className="information__title">vegina-store</h1>
+          <div className="payment-page__title" onClick={() => history.push('/')}>
+            <AiFillHome /> <h1 className="information__title">vegina-store</h1>
+          </div>
           <PaymentBreadcrumb />
           <div className="shipping__container">
             <div className="shipping__info shipping__content">

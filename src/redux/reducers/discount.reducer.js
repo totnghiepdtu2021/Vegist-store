@@ -74,10 +74,17 @@ export default function discountReducer(state = initialState, action) {
     }
     case ADD_DISCOUNT_USER_SUCCESS: {
       const discountUser = JSON.parse(JSON.stringify(state.discountUserData));
+      const discountAllUser = JSON.parse(JSON.stringify(state.discountAllData));
       const { discountCodeId } = action.payload.discountCodeDetail;
-      discountUser.push({ ...discountCodeId, id: discountCodeId._id });
+      const index = discountUser.findIndex((discount) => discount.id === discountCodeId._id);
 
-      return { ...state, discountUserData: discountUser };
+      discountUser.push({ ...discountCodeId, id: discountCodeId._id });
+      discountAllUser[index] = {
+        ...discountAllUser[index],
+        total: discountAllUser[index].total - 1,
+      };
+
+      return { ...state, discountUserData: discountUser, discountAllData: discountAllUser };
     }
     case ADD_DISCOUNT_USER_FAIL: {
       return state;
