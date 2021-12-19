@@ -180,7 +180,7 @@ function* loginSaga(action) {
     if (data.token && status === 'success') {
       localStorage.setItem('token', data.token);
       localStorage.setItem('profile', JSON.stringify(data.user));
-      toastSuccess('Đăng Nhập Thành Công');
+      toastSuccess('Đăng Nhập Thành Công!');
       data.user.role === 'admin' ? history.push('/admin') : history.push('/');
     }
 
@@ -210,7 +210,7 @@ function* editProfileSaga(action) {
     });
     localStorage.setItem('profile', JSON.stringify(data.user));
 
-    toastSuccess('Đổi thông tin thành công');
+    toastSuccess('Đổi thông tin thành công!');
   } catch (error) {
     yield put({
       type: EDIT_PROFILE_FAIL,

@@ -1,11 +1,10 @@
 import { Empty, Modal, Pagination } from 'antd';
-import moment from 'moment';
-import 'moment/locale/vi';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { connect } from 'react-redux';
 import { deleteContact, getContact } from '../../../redux/actions';
-import { useTranslation } from 'react-i18next';
+import { internationalDateTime } from '../../../util/dateTime';
 import './styles.scss';
 
 function ListContact({ getContact, contactData, deleteContact, deleteData }) {
@@ -30,10 +29,6 @@ function ListContact({ getContact, contactData, deleteContact, deleteData }) {
       limit: 10,
     });
   }, [current, deleteData]);
-
-  const renderDatetime = (datetime) => {
-    return moment(datetime).format('L');
-  };
 
   const handleClickDelete = (message, id) => {
     Modal.confirm({
@@ -75,7 +70,7 @@ function ListContact({ getContact, contactData, deleteContact, deleteData }) {
                     <td>{item.name}</td>
                     <td>{item.email}</td>
                     <td className="listContact__Message">{item.message}</td>
-                    <td>{renderDatetime(item.datetime)}</td>
+                    <td>{internationalDateTime(item.datetime)}</td>
                     <td className="listContact__Action">
                       <RiDeleteBin5Fill
                         className="order__icon order__icon--delete"

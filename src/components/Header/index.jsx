@@ -13,7 +13,6 @@ import { useTranslation } from 'react-i18next';
 import { AiOutlineUserAdd, AiOutlineHeart } from 'react-icons/ai';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { GiHamburgerMenu, GiExitDoor } from 'react-icons/gi';
-import { ToastContainer } from 'react-toastify';
 import { toastComingSoon } from '../../util/toast';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -180,7 +179,6 @@ const Header = ({ getCartData, cartData, userDataEdited, clearCountCart }) => {
           />
         </div>
       </section>
-      <ToastContainer />
     </header>
   );
 };

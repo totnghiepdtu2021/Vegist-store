@@ -1,8 +1,8 @@
 import moment from 'moment';
 
 const format = {
-  default: 'YYYY/MM/DD',
-  internationalDateTime: 'YYYY/MM/DD HH:mm',
+  default: 'DD/MM/YYYY',
+  internationalDateTime: 'DD/MM/YYYY HH:mm',
 };
 
 /**

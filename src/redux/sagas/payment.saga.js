@@ -168,7 +168,7 @@ function* deletePayments(action) {
       type: DELETE_PAYMENTS_SUCCESS,
       payload: data,
     });
-    toastSuccess('Xóa đơn đặt hàng thành công!');
+    toastSuccess('Xóa đơn thành công!');
   } catch (error) {
     yield put({
       type: DELETE_PAYMENTS_FAIL,
@@ -193,7 +193,7 @@ function* updatePayments(action) {
       type: UPDATE_PAYMENTS_SUCCESS,
       payload: data,
     });
-    toastSuccess('Cập nhật trạng thái đơn đặt hàng thành công!');
+    toastSuccess('Cập nhật trạng thái thành công!');
   } catch (error) {
     yield put({
       type: UPDATE_PAYMENTS_FAIL,
@@ -241,7 +241,7 @@ function* cancelOrderUserSaga(action) {
         data: data,
       },
     });
-    toastSuccess('Huỷ đơn hàng thành công !');
+    toastSuccess('Huỷ đơn thành công!');
   } catch (error) {
     yield put({
       type: CANCEL_ORDER_FAIL,

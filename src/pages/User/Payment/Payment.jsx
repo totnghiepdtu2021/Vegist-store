@@ -9,6 +9,8 @@ import { TiWarningOutline } from 'react-icons/ti';
 import { MdPayment } from 'react-icons/md';
 import 'moment/locale/vi';
 import './styles.scss';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Payment = ({ getBill, billData, createBill, getCartData }) => {
   const { t } = useTranslation();
@@ -146,6 +148,7 @@ const Payment = ({ getBill, billData, createBill, getCartData }) => {
           </div>
         </section>
       </div>
+      <ToastContainer />
     </div>
   );
 };

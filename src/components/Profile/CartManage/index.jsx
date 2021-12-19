@@ -7,6 +7,7 @@ import history from '../../../util/history';
 
 import './style.scss';
 import moment from 'moment';
+import { internationalDateTime } from '../../../util/dateTime';
 const { Option } = Select;
 const { Search } = Input;
 function CartManage(prop) {
@@ -145,7 +146,7 @@ function CartManage(prop) {
                                 ))}
                               </div>
                             </td>
-                            <td>{moment(item.dateCreate).format('L')}</td>
+                            <td>{internationalDateTime(item.dateCreate)}</td>
                             <td>{`${item.total.toLocaleString()} VND`}</td>
                             <td>{item.status}</td>
                             <td className="action-cart-manage">
