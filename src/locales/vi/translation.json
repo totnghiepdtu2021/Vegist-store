@@ -455,7 +455,8 @@
       "Add": "Thêm mới mã giảm giá",
       "CREATE DISCOUNT CODE": "Thêm mới mã giảm giá",
       "Discount type": "Kiểu giảm giá",
-      "Amount": "Số tiền giảm"
+      "Amount": "Số tiền giảm",
+      "Percent / Amount": "Phần trăm / Số tiền"
     },
     "table": {
       "name": "Họ tên",
@@ -611,5 +612,11 @@
   "STATUS": "TRẠNG THÁI",
   "ACTION": "HÀNH ĐỘNG",
   "input search text": "Nhập từ khóa ",
-  "Sort by": "Sắp xếp theo"
+  "Sort by": "Sắp xếp theo",
+  "dicount": {
+    "add warning": "Hãy đăng nhập để thực hiện hành động này !"
+  },
+  "action": {
+    "warning": "Hãy đăng nhập để thực hiện hành động này !"
+  }
 }

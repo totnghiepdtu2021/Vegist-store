@@ -8,13 +8,13 @@ import history from '../../../util/history';
 import { TiWarningOutline } from 'react-icons/ti';
 import { MdPayment } from 'react-icons/md';
 import 'moment/locale/vi';
-import './styles.scss';
+import { AiFillHome } from 'react-icons/ai';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './styles.scss';
 
 const Payment = ({ getBill, billData, createBill, getCartData }) => {
   const { t } = useTranslation();
-  const [billingAddress, setBillingAddress] = useState(1);
   const [infoPayment, setInfoPayment] = useState(JSON.parse(localStorage.getItem('infoPayment')));
 
   useEffect(() => {
@@ -44,7 +44,9 @@ const Payment = ({ getBill, billData, createBill, getCartData }) => {
     <div className="payment-page fadeIn">
       <div className="container payment__container">
         <section className="payments">
-          <h1 className="information__title">vegina-store</h1>
+          <div className="payment-page__title" onClick={() => history.push('/')}>
+            <AiFillHome /> <h1 className="information__title">vegina-store</h1>
+          </div>
           <PaymentBreadcrumb />
           <div className="shipping__info shipping__content">
             <div className=" shipping__content--item   ">

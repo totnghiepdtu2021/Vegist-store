@@ -6,14 +6,14 @@ const format = {
 };
 
 /**
- * Example format: 2019/11/25 19:00
+ * Example format: 11/12/2019 19:00
  */
 export const dateTime = (date) => {
   return moment(date).format(format.default);
 };
 
 /**
- * Example format: 2019/11/25 19:00
+ * Example format: 11/12/2019 19:00
  */
 export const internationalDateTime = (date) => {
   return moment(date).format(format.internationalDateTime);

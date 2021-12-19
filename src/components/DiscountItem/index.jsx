@@ -5,10 +5,13 @@ import { addDiscountUser } from '../../redux/actions';
 import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { message } from 'antd';
+import { toastWarning } from '../../util/toast';
+import { useTranslation } from 'react-i18next';
 import './styles.scss';
 
 function DiscountItem({ data, addDiscountUser }) {
   const location = useLocation();
+  const { t } = useTranslation();
   const [isProfilePage, setIsProfilePage] = useState(false);
 
   useEffect(() => {
@@ -18,7 +21,9 @@ function DiscountItem({ data, addDiscountUser }) {
   }, [location]);
 
   const handleAddDiscount = () => {
-    addDiscountUser({ id: data.id });
+    if (localStorage.getItem('profile')) {
+      addDiscountUser({ id: data.id });
+    } else toastWarning(t('action.warning'));
   };
 
   const handleCopyCode = () => {

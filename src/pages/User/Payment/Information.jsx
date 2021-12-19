@@ -3,11 +3,10 @@ import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
-import English from '../../../assets/images/english.svg';
-import VietNam from '../../../assets/images/vietnam.svg';
 import CustomField from './component/CustomField';
 import PaymentBreadcrumb from './component/PaymentBreadcrumb';
 import history from '../../../util/history';
+import { AiFillHome } from 'react-icons/ai';
 import './styles.scss';
 
 const Information = ({ getInfo, infoUser, cartData, createBill }) => {
@@ -17,7 +16,6 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
   const [valueSelect, setValueSelect] = useState('vi');
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [infoPayment, setInfoPayment] = useState(JSON.parse(localStorage.getItem('infoPayment')));
-  console.log('🚀 ~ file: Information.jsx ~ line 20 ~ Information ~ infoPayment', infoPayment);
 
   const handleSubmitForm = (values) => {
     const { firstName, lastName } = values;
@@ -38,7 +36,9 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
     <div className="payment-page fadeIn">
       <div className="container payment__container">
         <section className="information">
-          <h1 className="information__title">vegina-store</h1>
+          <div className="payment-page__title" onClick={() => history.push('/')}>
+            <AiFillHome /> <h1 className="information__title">vegina-store</h1>
+          </div>
           <PaymentBreadcrumb />
           <Formik
             initialValues={{

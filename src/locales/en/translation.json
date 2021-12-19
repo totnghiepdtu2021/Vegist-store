@@ -456,7 +456,8 @@
       "Add": "ADD DISCOUNT CODE",
       "CREATE DISCOUNT CODE": "CREATE DISCOUNT CODE",
       "Discount type": "Discount type",
-      "Amount": "Amount"
+      "Amount": "Amount",
+      "Percent / Amount": "Percent / Amount"
     },
     "table": {
       "name": "NAME",
@@ -601,5 +602,8 @@
   "STATUS": "STATUS",
   "ACTION": "ACTION",
   "input search text": "input search text",
-  "Sort by": "Sort by"
+  "Sort by": "Sort by",
+  "action": {
+    "warning": "\nPlease login to take this action !"
+  }
 }

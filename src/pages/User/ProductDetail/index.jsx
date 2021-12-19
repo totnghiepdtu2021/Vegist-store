@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getProductDetail, createComment, getComment, addCart } from '../../../redux/actions';
 import { AiFillHeart } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
-import { toastError, toastComingSoon } from '../../../util/toast';
+import { toastError, toastComingSoon, toastWarning } from '../../../util/toast';
 
 import { GiShoppingBag } from 'react-icons/gi';
 import Slide from '../Home/Slide';
@@ -121,7 +121,7 @@ const ProductDetail = ({
       // getComment({productId,limit:5,page:1})
       setIsShowFormComment(false);
     } else {
-      toastError('Bạn chưa đăng nhập!');
+      toastWarning(t('action.warning'));
       setIsShowFormComment(false);
     }
   };
