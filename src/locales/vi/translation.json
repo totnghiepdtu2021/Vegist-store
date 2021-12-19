@@ -16,7 +16,7 @@
   "About Us": "Về chúng tôi",
   "Faq's": "Hỏi đáp",
   "Discount": "Mã giảm giá",
-  "Contact Us": "Liên hệ",
+  "Contact Us": "Liên hệ với chúng tôi",
   "Blog": "Nhật ký",
   "Account": "Tài khoản",
   "Register": "Đăng ký",
@@ -39,12 +39,19 @@
     "Your message here": "Nhập thông điệp tại đây...",
     "Get in touch": "Liên lạc",
     "Get description": "Chúng tôi rất vui khi được nhận liên hệ từ các bạn. Rất mong được hỗ trợ các bạn để các bạn có thể có được những trải nghiệm tuyệt vời.",
-    "SUBMIT": "GỬI"
+    "SUBMIT": "GỬI",
+    "Contact": "Liên hệ"
   },
   "Cart": "Giỏ hàng",
   "Add card success": "Thêm vào giỏ hàng thành công",
   "notFound": "Không có kết quả tìm kiếm cho từ khóa",
   "Categories": {
+    "Privacy_Terms.name": "tên",
+    "Privacy_Terms.Payment policy": "Chính sách thanh toán",
+    "Privacy_Terms.Privacy policy": "Chính sách bảo mật",
+    "Privacy_Terms.Return policy": "Chính sách hoàn trả",
+    "Privacy_Terms.shipping policy": "Chính sách vận chuyển",
+    "Privacy_Terms.Terms & Conditions": "Điều kiện & Điều khoản",
     "Top_Categories": {
       "name": "Danh mục hàng đầu",
       "Fruits": "Trái cây",
@@ -245,7 +252,7 @@
     "sort by": "Sắp xếp theo",
     "Featured": "Đặc sắc",
     "Best Selling": "Bán chạy nhất",
-    "Price, low to high": "Giá tỪ thấp đến cao",
+    "Price, low to high": "Giá từ thấp đến cao",
     "Price, high to low": "Giá từ cao đến thấp",
     "Date, new to old": "Sản phẩm mới",
     "Categories": "Thể loại",
@@ -255,7 +262,9 @@
     "of": "trên",
     "result": "kết quả",
     "placeholder": "Chọn một loại",
-    "Anything...": "Bất cứ thứ gì..."
+    "Anything...": "Bất cứ thứ gì...",
+    "New": "Mới",
+    "Hot": "Nổi bật"
   },
   "productDetail": {
     "Review": "Viết đánh giá",
@@ -276,7 +285,16 @@
     "Material": "Xuất xứ",
     "Quantity": "Số lượng",
     "Share": "Chia sẻ",
-    "description": "Nó có quả nhỏ hơn quả bưởi, vỏ mỏng, khi chín thường có màu da cam, có vị ngọt hoặc hơi chua. Loài cam là một cây lai được trồng từ xưa, có thể lai giống giữa loài bưởi (Citrus maxima) và quýt (Citrus reticulata)."
+    "description": "Nó có quả nhỏ hơn quả bưởi, vỏ mỏng, khi chín thường có màu da cam, có vị ngọt hoặc hơi chua. Loài cam là một cây lai được trồng từ xưa, có thể lai giống giữa loài bưởi (Citrus maxima) và quýt (Citrus reticulata).",
+    "DELIVERY INFO": "THÔNG TIN GIAO HÀNG",
+    "DELIVERY TEXT": "Từ đó, giao hàng thường trong vòng 2-10 ngày, tùy thuộc vào vị trí của bạn.",
+    "30 DAYS RETURNS": "30 HOÀN TRẢ",
+    "30 DAYS RETURNS TEXT": "Không phù hợp đúng không? \nĐừng lo lắng. \nChúng tôi sẽ sắp xếp việc nhận hàng và hoàn trả đầy đủ trong vòng 7 ngày kể cả phí giao hàng.",
+    "10 YEAR WARRANTY": "BẢO HÀNH 10 NĂM",
+    "10 YEAR WARRANTY TEXT": "Chất lượng đi đầu và sản phẩm của chúng tôi được thiết kế để tồn tại.",
+    "DESCRIPTION": "MÔ TẢ",
+    "REVIEW": "ĐÁNH GIÁ",
+    "bill": "abc"
   },
   "cart": {
     "Yes": "Đồng ý",
@@ -296,9 +314,12 @@
     "Zip/Postal code": "Mã zip / mã bưu điện",
     "The shopping cart has no products": "Giỏ hàng chưa có sản phẩm nào",
     "Do you want to delete all products": "Bạn có muốn xoá tất cả sản phẩm không?",
-    "Checkout": "Thanh toán"
+    "Checkout": "Thanh toán",
+    "You can only order a minimum of 1 product": "Bạn chỉ có thể đặt tối thiểu 1 sản phẩm"
   },
   "Profile": {
+    "Info Manage": "Quản lý thông tin",
+    "Order Manage": "Quản lý đơn hàng",
     "welcome": "Chào mừng",
     "edit": "Thay đổi mật khẩu",
     "inner": "Mật khẩu hiện tại",
@@ -544,5 +565,51 @@
       "Action": "Hành động"
     }
   },
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+  "Related Product": "Sản phẩm liên quan",
+  "Category": "Loại",
+  "Footer": {
+    "Payment policy": "Chính sách thanh toán"
+  },
+  "Payment policy": "Chính sách thanh toán",
+  "Full Name": "Họ và tên",
+  "Email": "Email",
+  "DELIVERY INFO": "THÔNG TIN GIAO HÀNG",
+  "30 DAYS RETURNS": "30 NGÀY HOÀN TRẢ",
+  "10 YEAR WARRANTY": "BẢO HÀNH 10 NĂM",
+  "contact": "Liên hệ",
+  "Fresh food": "Thức ăn sạch",
+  "Info Manage": "Quản lý thông tin",
+  "Order Manage": "Quản lý đơn hàng",
+  "profile": {
+    "Info Manage": "Quản lý thông tin",
+    "Order Manage": "Quản lý đơn hàng"
+  },
+  "prodcutDetail": {
+    "DELIVERY TEXT": "Từ đó, giao hàng thường trong vòng 2-10 ngày, tùy thuộc vào vị trí của bạn.",
+    "10 YEAR WARRANTY TEXT": "Chất lượng đi đầu và sản phẩm của chúng tôi được thiết kế để tồn tại.",
+    "replies": "Phản hồi"
+  },
+  "Last Name": "Họ",
+  "Phone Number": "Số điện thoại",
+  "Password": "Mật khẩu",
+  "the length of the Last Name must be greater than 2 and less than 20": "độ dài của Họ phải lớn hơn 2 và nhỏ hơn 20",
+  "the length  of the First Name must be greater than 2 and less than 20": "độ dài của Tên phải lớn hơn 2 và nhỏ hơn 20",
+  "First Name ": "Tên",
+  "Last name": "Họ",
+  "First name": "Tên",
+  "First Name": "Tên",
+  "header text": {
+    "free": "Miễn phí vận chuyển"
+  },
+  "List Discount": "Mã giảm giá",
+  "Cancel Bill": "Hủy đơn",
+  "Notice file cancel": "Bạn có chắc chắn muốn hủy đặt hàng của bạn ?",
+  "PRODUCT": "SẢN PHẨM",
+  "DATE": "NGÀY",
+  "TOTAL": "TỔNG TIỀN",
+  "STATUS": "TRẠNG THÁI",
+  "ACTION": "HÀNH ĐỘNG",
+  "input search text": "Nhập từ khóa ",
+  "Sort by": "Sắp xếp theo"
 }

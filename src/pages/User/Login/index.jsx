@@ -35,7 +35,7 @@ const Login = ({ getUser }) => {
                   <p>{t('login.text')}</p>
                 </div>
                 <div className="login__label">
-                  Phone Number <span className="required">*</span>
+                  {t('Phone Number')} <span className="required">*</span>
                 </div>
                 <Form.Item
                   name="phoneNumber"
@@ -50,7 +50,7 @@ const Login = ({ getUser }) => {
                     },
                   ]}
                 >
-                  <Input placeholder="Phone Number" />
+                  <Input placeholder={t("Phone Number")} />
                 </Form.Item>
                 <div className="login__label">
                   {t('Password')} <span className="required">*</span>
@@ -69,7 +69,7 @@ const Login = ({ getUser }) => {
                   ]}
                   hasFeedback
                 >
-                  <Input.Password placeholder="Password" />
+                  <Input.Password placeholder={t("Password")} />
                 </Form.Item>
                 <Form.Item>
                   <Button type="warning" htmlType="submit">

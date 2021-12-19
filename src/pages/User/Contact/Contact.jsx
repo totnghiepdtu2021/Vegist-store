@@ -64,7 +64,7 @@ function Contact({ createContact }) {
                     },
                   ]}
                 >
-                  <Input placeholder="Enter your name" />
+                  <Input placeholder={t("Contact.Enter your name")} />
                 </Form.Item>
                 <div className="login__label">{t('Contact.Email')}</div>
                 <Form.Item

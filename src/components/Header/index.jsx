@@ -87,7 +87,7 @@ const Header = ({ getCartData, cartData, userDataEdited, clearCountCart }) => {
             </Select>
           </div>
           <div className="header__text">
-            <span className="header__text--animation">{t('header_text.free')}</span>{' '}
+            <span className="header__text--animation">{t('header text.free')}</span>{' '}
             {t('header_text.order')}
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React ,{useState} from 'react';
 import { Tabs } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 import InfoManage from '../../../components/Profile/InfoManage/index'
 import CartManage from '../../../components/Profile/CartManage/index'
@@ -10,6 +11,7 @@ import './style.scss';
 const { TabPane } = Tabs;
 
 function Profile() {
+  const { t } = useTranslation();
   const [tabValue,setTabValue] = useState('1')
   const handleChange = (value) => {
     setTabValue(value)
@@ -18,13 +20,13 @@ function Profile() {
   return (
     <>
       <Tabs onChange={handleChange} tabPosition='left'>
-        <TabPane tab="Info Manage" key="1">
+        <TabPane tab={t('Info Manage')} key="1">
           <InfoManage tabValue={tabValue}/>
         </TabPane>
-        <TabPane tab="Order Manage" key="2">
+        <TabPane tab={t('Order Manage')} key="2">
           <CartManage tabValue={tabValue}/>
         </TabPane>
-        <TabPane tab="List Discount" key="3">
+        <TabPane tab={t("List Discount")} key="3">
           <ListDiscount />
         </TabPane>
     </Tabs>
