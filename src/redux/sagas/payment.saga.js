@@ -53,8 +53,10 @@ function* createBillSaga(action) {
       payload: data,
     });
 
-    history.push(`/success/${data.bill.id}`);
-    toastSuccess('Đặt hàng thành công!');
+    toastSuccess('Đặt hàng thành công!', 'top-right', 1500);
+    setTimeout(() => {
+      history.push(`/success/${data.bill.id}`);
+    }, 2000);
   } catch (error) {
     yield put({
       type: CREATE_BILL_FAIL,

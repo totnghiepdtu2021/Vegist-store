@@ -24,7 +24,7 @@ export const toastError = (value, position = 'top-right', time = 2000) =>
   });
 
 export const toastComingSoon = (value, position = 'top-right', time = 1500) =>
-  toast.success(`Coming Soon !`, {
+  toast.success(`Sắp ra mắt !`, {
     position,
     autoClose: time,
     hideProgressBar: false,

@@ -25,7 +25,7 @@ import {
 
 function* getDiscountSaga(action) {
   try {
-    const { page, limit, searchKey } = action;
+    const { page, limit, searchKey } = action.payload;
     const { status, error, data } = yield axiosClient({
       method: 'get',
       url: '/admin/discountCode',

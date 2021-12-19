@@ -131,7 +131,7 @@ function ListComment({
                       />
                       <BsReplyAllFill
                         className="comment__icon comment__icon--reply"
-                        onClick={() => toastSuccess('Coming soon !')}
+                        onClick={() => toastSuccess('Sắp ra mắt !')}
                       />
                       <RiDeleteBin5Fill
                         className="comment__icon comment__icon--delete"
