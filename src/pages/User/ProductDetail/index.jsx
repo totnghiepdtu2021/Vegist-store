@@ -216,7 +216,7 @@ const ProductDetail = ({
                 <p className="gray-color">
                   {t('Category')}: {product?.categoryId.name}
                 </p>
-                <p className="gray-color">{product?.shortDes}</p>
+                <p className="gray-color">{product?.shortDes || description}</p>
               </div>
               <Form name="validate_other" onFinish={handleSubmitForm}>
                 <Form.Item label={<p>{t('productDetail.Quantity')}</p>}>
@@ -310,7 +310,7 @@ const ProductDetail = ({
         <div className="productDetail__review">
           <Tabs className="productDetail__description--tabs" defaultActiveKey="1">
             <TabPane tab={t('productDetail.DESCRIPTION')} key="1">
-              <div className="container">{product?.des}</div>
+              <div className="container">{product?.des || description}</div>
             </TabPane>
             <TabPane tab={t('productDetail.REVIEW')} key="2">
               <div className="productDetail__description">
@@ -445,6 +445,9 @@ const ProductDetail = ({
     </>
   );
 };
+
+const description =
+  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.";
 
 const mapStateToProps = (state) => {
   const { productDetail, comments, listComment } = state.productDetailReducer;

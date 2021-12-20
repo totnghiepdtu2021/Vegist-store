@@ -464,7 +464,8 @@
       "Discount type": "Kiểu giảm giá",
       "Amount": "Số tiền giảm",
       "Percent / Amount": "Phần trăm / Số tiền",
-      "discount delete": "Bạn muốn xóa mã giảm giá tên"
+      "discount delete": "Bạn muốn xóa mã giảm giá tên",
+      "status": "Trạng thái"
     },
     "table": {
       "name": "Họ tên",
@@ -631,5 +632,10 @@
   },
   "action": {
     "warning": "Hãy đăng nhập để thực hiện hành động này !"
+  },
+  "discount": {
+    "Out date": "Quá hạn",
+    "In date": "Còn hạn",
+    "comming soon": "Sắp diễn ra"
   }
 }

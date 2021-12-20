@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { createDiscount } from '../../../../redux/actions';
 import history from '../../../../util/history';
 import moment from 'moment';
-import { dateTime } from '../../../../util/dateTime';
 import './style.scss';
 
 const CreateDiscount = ({ createDiscount }) => {
@@ -32,16 +31,14 @@ const CreateDiscount = ({ createDiscount }) => {
   }
 
   const handleCreateDiscount = (values) => {
-    const dateCreate = dateTime(values.dateCreate._d);
-    const dateExpire = dateTime(values.dateExpire._d);
+    const dateCreate = values.dateCreate._d;
+    const dateExpire = values.dateExpire._d;
+
     delete values.discountType;
     if (discountType) {
       delete values.amount;
     } else delete values.sale;
     createDiscount({ ...values, dateCreate, dateExpire, codeName: values.codeName.toUpperCase() });
-    setTimeout(() => {
-      history.push('/admin/discount');
-    }, 300);
   };
   return (
     <section className="addProductAdmin">

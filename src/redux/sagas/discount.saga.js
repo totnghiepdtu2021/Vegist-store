@@ -1,6 +1,7 @@
 import { put, takeEvery } from '@redux-saga/core/effects';
 import axiosClient from '../config/axiosClient';
 import { toastSuccess, toastError } from '../../util/toast';
+import history from '../../util/history';
 
 import {
   GET_DISCOUNT,
@@ -126,6 +127,7 @@ function* createDiscountSaga(action) {
       payload: data.discountCode,
     });
     toastSuccess(data.message);
+    history.push('/admin/discount');
   } catch (error) {
     yield put({
       type: CREATE_DISCOUNT_FAIL,

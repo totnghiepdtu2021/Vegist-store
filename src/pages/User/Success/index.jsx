@@ -41,7 +41,9 @@ const Success = ({ match, getBill, billData }) => {
                   </p>
                   <div className="success__management">
                     <h3>#Vegist-{`${billId.slice(-8).toUpperCase()}`}</h3>
-                    <button className="button">{t('success.Order Management')}</button>
+                    <button className="button" onClick={() => history.push('/profile')}>
+                      {t('success.Order Management')}
+                    </button>
                   </div>
                   <div className="success__info">
                     <div className="success__info--item">
