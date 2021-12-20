@@ -64,6 +64,21 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
     return `${start} - ${end}`;
   };
 
+  const checkDate = (startD, endD) => {
+    const now = new Date();
+    const start = new Date(startD);
+    const end = new Date(endD);
+    start.setHours(0);
+    start.setMinutes(0);
+    end.setHours(23);
+    end.setMinutes(59);
+    return now.getTime() > end.getTime()
+      ? t('discount.Out date')
+      : start.getTime() > now.getTime()
+      ? t('discount.comming soon')
+      : t('discount.In date');
+  };
+
   return (
     <>
       <section className="admin__listUser admin__products fadeIn">
@@ -95,6 +110,7 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
                   <td>{t('admin.discount.End date')}</td>
                   <td>{t('admin.discount.Discount type')}</td>
                   <td>{t('admin.discount.Quantity')}</td>
+                  <td>{t('admin.discount.status')}</td>
                   <td>{t('admin.discount.Action')}</td>
                 </tr>
               </thead>
@@ -109,10 +125,11 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
                         {item.sale || item.amount}
                         {item.sale ? '%' : ' VNĐ'}
                       </td>
-                      <td>{dateTime(item.dateCreate || new Date())}</td>
-                      <td>{dateTime(item.endDate || new Date())}</td>
+                      <td>{dateTime(item?.dateCreate)}</td>
+                      <td>{dateTime(item?.dateExpire)}</td>
                       <td>{item.sale ? 'Giảm theo phần trăm' : 'Giảm theo giá trực tiếp'}</td>
                       <td>{item.total}</td>
+                      <td>{checkDate(item.dateCreate, item.dateExpire)}</td>
                       <td>
                         <button className="button" onClick={() => confirm(item)}>
                           <BsTrashFill />

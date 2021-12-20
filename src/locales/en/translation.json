@@ -465,7 +465,8 @@
       "Discount type": "Discount type",
       "Amount": "Amount",
       "Percent / Amount": "Percent / Amount",
-      "discount delete": "Do you want to delete discount name"
+      "discount delete": "Do you want to delete discount name",
+      "status": "Status"
     },
     "table": {
       "name": "NAME",
@@ -618,5 +619,10 @@
   "Sort by": "Sort by",
   "action": {
     "warning": "Hãy đăng nhập để thực hiện hành động này !"
+  },
+  "discount": {
+    "Out date": "Out date",
+    "In date": "In date",
+    "comming soon": "Comming soon"
   }
 }
