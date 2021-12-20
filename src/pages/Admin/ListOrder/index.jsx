@@ -67,7 +67,7 @@ function ListOrder({
       title: 'Confirm',
       content: (
         <p>
-          Do you want to delete this payment{' '}
+          {t('admin.order.payment delete')}{' '}
           <span style={{ fontWeight: 600 }}>{`#${paymentCode}`}</span> ?
         </p>
       ),
@@ -85,7 +85,7 @@ function ListOrder({
       title: 'Confirm',
       content: (
         <p>
-          Do you want to cancel this payment{' '}
+          {t('admin.order.payment cancel')}{' '}
           <span style={{ fontWeight: 600 }}>{`#${paymentCode}`}</span> ?
         </p>
       ),
@@ -125,7 +125,7 @@ function ListOrder({
       <div className="container">
         <div className="order__filter">
           <div className="order__sort">
-            <h3 className="order__sort--title">By Sort</h3>
+            <h3 className="order__sort--title">{t('admin.order.By Sort')}</h3>
             <Select
               showSearch
               style={{ width: 160 }}

@@ -73,7 +73,7 @@ function ListComment({
       title: 'Confirm',
       content: (
         <p>
-          Do you want to delete this comment{' '}
+          {t('admin.comment.comment delete')}{' '}
           <span style={{ fontWeight: 600 }}>{titleCase(title)}</span> ?
         </p>
       ),

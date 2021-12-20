@@ -39,7 +39,9 @@
     "Get in touch": "Get in touch",
     "Get description": "We are happy to receive contact from you. We look forward to assisting you so that you can have a great experience.",
     "SUBMIT": "SUBMIT",
-    "Contact": "Contact"
+    "Contact": "Contact",
+    "Contact Notify": "Contact sent successfully!",
+    "Contact Delete": "Do you want to delete this message"
   },
   "Cart": "Cart",
   "Add card success": "Add card success",
@@ -426,7 +428,8 @@
   },
   "admin": {
     "listUser": {
-      "title": "User Management"
+      "title": "User Management",
+      "user delete": "Do you want to delete this user"
     },
     "listProduct": {
       "title": "Product Management "
@@ -461,7 +464,8 @@
       "CREATE DISCOUNT CODE": "CREATE DISCOUNT CODE",
       "Discount type": "Discount type",
       "Amount": "Amount",
-      "Percent / Amount": "Percent / Amount"
+      "Percent / Amount": "Percent / Amount",
+      "discount delete": "Do you want to delete discount name"
     },
     "table": {
       "name": "NAME",
@@ -514,7 +518,8 @@
       "Total": "Total",
       "Enter description": "Enter description",
       "Description": "Description",
-      "Enter amount": "Enter amount"
+      "Enter amount": "Enter amount",
+      "product delete": "Do you want to delete this product"
     },
     "sales": {
       "title": "Discount Management"
@@ -529,6 +534,7 @@
     "order": {
       "Select a status": "Select a status",
       "Search": "Search a payment code or a user...",
+      "By Sort": "By Sort",
       "Payment Code": "Payment Code",
       "User Name": "User Name",
       "Total Price": "Total Price",
@@ -548,7 +554,9 @@
       "Name": "Name",
       "Quantity": "Quantity",
       "Price": "Price",
-      "GO TO LIST ORDER": "GO TO LIST ORDER"
+      "GO TO LIST ORDER": "GO TO LIST ORDER",
+      "payment delete": "Do you want to delete this payment",
+      "payment cancel": "Do you want to cancel this payment"
     },
     "comment": {
       "Name Product": "Name Product",
@@ -558,7 +566,8 @@
       "Rating": "Rating",
       "Date Time": "Date Time",
       "Action": "Action",
-      "Search": "Search a product or a user..."
+      "Search": "Search a product or a user...",
+      "comment delete": "Do you want to delete this comment"
     },
     "contact": {
       "Full Name": "Full Name",

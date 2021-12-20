@@ -37,8 +37,8 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
       title: 'Confirm',
       content: (
         <p>
-          Do you want to delete discount name <span style={{ fontWeight: 600 }}>{data.title}</span>{' '}
-          ?
+          {t('admin.discount.discount delete')}{' '}
+          <span style={{ fontWeight: 600 }}>{data.title}</span> ?
         </p>
       ),
       okText: 'OK',

@@ -48,7 +48,8 @@ const ListUser = ({ getProducts, deleteProduct, productsData, totalProduct }) =>
       title: 'Confirm',
       content: (
         <p>
-          Do you want to delete this product <span style={{ fontWeight: 600 }}>{data.name}</span> ?
+          {t('admin.products.product delete')} <span style={{ fontWeight: 600 }}>{data.name}</span>{' '}
+          ?
         </p>
       ),
       okText: 'OK',

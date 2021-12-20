@@ -35,8 +35,7 @@ function ListContact({ getContact, contactData, deleteContact, deleteData }) {
       title: 'Confirm',
       content: (
         <p>
-          Do you want to delete this message{' '}
-          <span style={{ fontWeight: 600 }}>{`#${message}`}</span> ?
+          {t('Contact.Contact Delete')} <span style={{ fontWeight: 600 }}>{`#${message}`}</span> ?
         </p>
       ),
       okText: 'OK',
@@ -56,7 +55,7 @@ function ListContact({ getContact, contactData, deleteContact, deleteData }) {
             <thead>
               <tr>
                 {title.map((item) => (
-                  <td key={item.id} className={`listContact__${item.title}`}>
+                  <td key={item.id} className={`listContact__${item.id}`}>
                     {item.title}
                   </td>
                 ))}
@@ -69,9 +68,9 @@ function ListContact({ getContact, contactData, deleteContact, deleteData }) {
                     <td>{index + 1}</td>
                     <td>{item.name}</td>
                     <td>{item.email}</td>
-                    <td className="listContact__Message">{item.message}</td>
+                    <td className="listContact__4">{item.message}</td>
                     <td>{internationalDateTime(item.datetime)}</td>
-                    <td className="listContact__Action">
+                    <td className="listContact__6">
                       <RiDeleteBin5Fill
                         className="order__icon order__icon--delete"
                         onClick={() => handleClickDelete(item.message, item.id)}

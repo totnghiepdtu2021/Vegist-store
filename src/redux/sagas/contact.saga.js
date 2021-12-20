@@ -68,6 +68,7 @@ function* deleteContactSaga(action) {
     const { id } = action.payload;
     const response = yield axios.delete(`${apiURL}/contacts/${id}`);
     const data = response;
+    toastSuccess('Xóa liên hệ thành công!');
     yield put({
       type: DELETE_CONTACT_SUCCESS,
       payload: data,
