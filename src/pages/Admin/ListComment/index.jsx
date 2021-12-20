@@ -73,7 +73,7 @@ function ListComment({
       title: 'Confirm',
       content: (
         <p>
-          Do you want to delete this comment{' '}
+          {t('admin.comment.comment delete')}{' '}
           <span style={{ fontWeight: 600 }}>{titleCase(title)}</span> ?
         </p>
       ),
@@ -131,7 +131,7 @@ function ListComment({
                       />
                       <BsReplyAllFill
                         className="comment__icon comment__icon--reply"
-                        onClick={() => toastSuccess('Coming soon !')}
+                        onClick={() => toastSuccess('Sắp ra mắt !')}
                       />
                       <RiDeleteBin5Fill
                         className="comment__icon comment__icon--delete"

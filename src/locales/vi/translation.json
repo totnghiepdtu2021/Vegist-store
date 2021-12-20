@@ -40,7 +40,9 @@
     "Get in touch": "Liên lạc",
     "Get description": "Chúng tôi rất vui khi được nhận liên hệ từ các bạn. Rất mong được hỗ trợ các bạn để các bạn có thể có được những trải nghiệm tuyệt vời.",
     "SUBMIT": "GỬI",
-    "Contact": "Liên hệ"
+    "Contact": "Liên hệ",
+    "Contact Notify": "Gửi liên hệ thành công!",
+    "Contact Delete": "Bạn có muốn xóa liên hệ này không"
   },
   "Cart": "Giỏ hàng",
   "Add card success": "Thêm vào giỏ hàng thành công",
@@ -421,7 +423,8 @@
   },
   "admin": {
     "listUser": {
-      "title": "Quản lý người dùng"
+      "title": "Quản lý người dùng",
+      "user delete": "Bạn muốn xóa người dùng"
     },
     "listProduct": {
       "title": "Quản lý sản phẩm"
@@ -456,7 +459,8 @@
       "CREATE DISCOUNT CODE": "Thêm mới mã giảm giá",
       "Discount type": "Kiểu giảm giá",
       "Amount": "Số tiền giảm",
-      "Percent / Amount": "Phần trăm / Số tiền"
+      "Percent / Amount": "Phần trăm / Số tiền",
+      "discount delete": "Bạn muốn xóa mã giảm giá tên"
     },
     "table": {
       "name": "Họ tên",
@@ -512,7 +516,8 @@
       "Total": "Tổng sản phẩm",
       "Enter description": "Nhập mô tả",
       "Description": "Mô tả",
-      "Enter amount": "Nhập số tiền giảm"
+      "Enter amount": "Nhập số tiền giảm",
+      "product delete": "Bạn muốn xóa sản phẩm"
     },
     "sales": {
       "title": "Quản lý khuyến mãi"
@@ -527,6 +532,7 @@
     "order": {
       "Select a status": "Chọn trạng thái",
       "Search": "Tìm kiếm đơn hàng hoặc người dùng...",
+      "By Sort": "Sắp xếp theo",
       "Payment Code": "Mã đơn hàng",
       "User Name": "Tên người dùng",
       "Total Price": "Tổng tiền",
@@ -546,7 +552,9 @@
       "Name": "Tên",
       "Quantity": "Số lượng",
       "Price": "Giá",
-      "GO TO LIST ORDER": "QUAY LẠI"
+      "GO TO LIST ORDER": "QUAY LẠI",
+      "payment delete": "Bạn muốn xóa đơn đặt hàng",
+      "payment cancel": "Bạn muốn hủy đơn đặt hàng"
     },
     "comment": {
       "Name Product": "Tên sản phẩm",
@@ -556,7 +564,8 @@
       "Rating": "Xếp hạng",
       "Date Time": "Thời gian",
       "Action": "Hành động",
-      "Search": "Tìm kiếm sản phẩm hoặc người dùng..."
+      "Search": "Tìm kiếm sản phẩm hoặc người dùng...",
+      "comment delete": "Bạn muốn xóa đánh giá"
     },
     "contact": {
       "Full Name": "Họ tên",

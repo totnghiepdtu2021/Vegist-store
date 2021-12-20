@@ -57,7 +57,7 @@ const ListUser = ({
       title: 'Confirm',
       content: (
         <p>
-          Do you want to delete this user{' '}
+          {t('admin.listUser.user delete')}{' '}
           <span style={{ fontWeight: 600 }}>{titleCase(data.fullName)}</span> ?
         </p>
       ),
