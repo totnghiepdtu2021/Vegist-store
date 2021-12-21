@@ -7,6 +7,7 @@ import cartReducer from './cart.reducer';
 import paymentReducer from './payment.reducer';
 import discountReducer from './discount.reducer';
 import contactReducer from './contact.reducer';
+import dashboardReducer from './dashboard.reducer';
 
 export default combineReducers({
   productReducer,
@@ -17,4 +18,5 @@ export default combineReducers({
   paymentReducer,
   discountReducer,
   contactReducer,
+  dashboardReducer,
 });

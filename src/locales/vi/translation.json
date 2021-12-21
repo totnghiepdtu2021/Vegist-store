@@ -611,8 +611,8 @@
   "the length of the Last Name must be greater than 2 and less than 20": "độ dài của Họ phải lớn hơn 2 và nhỏ hơn 20",
   "the length  of the First Name must be greater than 2 and less than 20": "độ dài của Tên phải lớn hơn 2 và nhỏ hơn 20",
   "First Name ": "Tên",
-  "Last name": "Họ",
-  "First name": "Tên",
+  "Last name": "Tên",
+  "First name": "Họ",
   "First Name": "Họ",
   "header text": {
     "free": "Miễn phí vận chuyển"

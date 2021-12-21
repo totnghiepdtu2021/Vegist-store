@@ -1,18 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Card from './Card';
 import LineChart from './LineChart';
+import { Input, Pagination, Spin, Row, Col, message } from 'antd';
+import { getMasterData } from '../../../redux/actions';
 import './style.scss';
 
-const HomeAdmin = () => {
-  const [report, setReport] = useState(data);
+const Dashboard = ({ getMasterData, masterData, loading }) => {
+  const [cartDat, setCartData] = useState();
+  const [dataCard, setDataCard] = useState();
+
+  useEffect(() => {
+    getMasterData();
+  }, []);
+
+  useEffect(() => {
+    if (masterData) handleDataCard();
+  }, [masterData]);
+
+  const handleDataCard = () => {
+    if (!masterData) {
+      setDataCard([]);
+    } else {
+      const bills = masterData?.bills?.reduce((sum, bill) => sum + bill.bills, 0);
+      const users = masterData?.users?.reduce((sum, bill) => sum + bill.users, 0);
+      const products = masterData?.products?.reduce((sum, bill) => sum + bill.products, 0);
+
+      setDataCard([
+        { id: 1, title: 'Sản phẩm', count: products || 0 },
+        { id: 2, title: 'Người dùng', count: users || 0 },
+        { id: 3, title: 'Doanh thu', count: bills || 0 },
+      ]);
+    }
+  };
+
+  const handleChangeData = () => {};
 
   return (
     <section className="dashboard">
       <div className="container">
         <div className="dashboard__card">
-          <Card data={cardData}></Card>
+          <Card data={dataCard}></Card>
         </div>
-        <LineChart data={report} />
+        <LineChart data={masterData} loading={loading} setCartData={setCartData} />
       </div>
     </section>
   );
@@ -24,246 +54,15 @@ const cardData = [
   { id: 3, title: 'Doanh thu', count: '123100' },
 ];
 
-const data = [
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 2,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c6721',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 3,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c67252',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 4,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c67253',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 25,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c67254',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 27,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c67255',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 29,
-    City: '',
-    CityCode: '',
-    Revenue: 2,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c67256',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 223,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c67257',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 21,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c67258',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 23,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c67259',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 24,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c672510',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 27,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c672511',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 28,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c672521',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 28,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c6725213',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 29,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c672532',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 256,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c672542',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-  {
-    User: 2,
-    City: '',
-    CityCode: '',
-    Revenue: 266,
-    Country: 'Viet Nam',
-    CountryCode: 'VN',
-    Date: '2020-01-23T00:00:00Z',
-    Deaths: 0,
-    ID: '09a5955e-f234-4e63-a349-2483ca6c672514',
-    Lat: '14.06',
-    Lon: '108.28',
-    Province: '',
-    Product: 0,
-  },
-];
-export default HomeAdmin;
+const mapStateToProps = (state) => {
+  const { masterData, loading } = state.dashboardReducer;
+  return { masterData, loading };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMasterData: (params) => dispatch(getMasterData(params)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
