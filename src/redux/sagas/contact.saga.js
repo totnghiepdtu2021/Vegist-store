@@ -14,7 +14,7 @@ import {
   DELETE_CONTACT_FAIL,
 } from '../constants';
 
-const apiURL = process.env.REACT_APP_API_URL;
+const apiURL = 'http://localhost:3002';
 
 function* createContactSaga(action) {
   try {

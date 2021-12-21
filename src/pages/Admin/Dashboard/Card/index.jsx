@@ -4,7 +4,7 @@ import './style.scss';
 const Card = ({ data }) => {
   return (
     <div className="card">
-      {data.map((item) => (
+      {data?.map((item) => (
         <div className="card__item" key={item.id}>
           <div className="card__content">
             <p className="card__title">{item.title}</p>

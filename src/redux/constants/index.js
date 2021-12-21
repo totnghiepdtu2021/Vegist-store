@@ -6,3 +6,4 @@ export * from './cart.constant';
 export * from './payment.constant';
 export * from './discount.constant';
 export * from './contact.constant';
+export * from './dashboard.constant';

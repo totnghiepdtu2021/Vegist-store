@@ -8,6 +8,7 @@ import cartSaga from './cart.saga';
 import paymentSaga from './payment.saga';
 import discountSaga from './discount.saga';
 import contactSaga from './contact.saga';
+import dashboardSaga from './dashboard.saga';
 
 export default function* mySaga() {
   yield all([
@@ -19,5 +20,6 @@ export default function* mySaga() {
     fork(paymentSaga),
     fork(discountSaga),
     fork(contactSaga),
+    fork(dashboardSaga),
   ]);
 }
