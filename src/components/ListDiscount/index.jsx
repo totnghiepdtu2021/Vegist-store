@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { Col, Input, Pagination, Row, Spin } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getVoucherUser } from '../../redux/actions';
-import { Input, Pagination, Spin, Row, Col, message } from 'antd';
 import DiscountItem from './../../components/DiscountItem/index';
-
 import './style.scss';
+
 function ListDiscount(prop) {
   const { getVoucherUser, tabValue, listVoucherUser } = prop;
   const [current, setCurrent] = useState(1);
   const [searchKey, setSearchKey] = useState('');
   const { Search } = Input;
   const { t } = useTranslation();
-  document.title = 'Vegist | Trang Thông tin cá nhân';
+
+  useEffect(() => {
+    document.title = 'Vegist | Trang Thông tin cá nhân';
+  }, []);
 
   useEffect(() => {
     tabValue !== '3' &&
@@ -21,6 +24,7 @@ function ListDiscount(prop) {
         page: current,
         limit: 10,
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, searchKey, tabValue]);
 
   function onSearch(value) {

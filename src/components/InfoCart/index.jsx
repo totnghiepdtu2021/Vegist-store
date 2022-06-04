@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getCartData } from '../../redux/actions';
 import { useLocation } from 'react-router-dom';
+import { getCartData, getDiscountUser } from '../../redux/actions';
 import SearchDiscount from './Search';
-import { getDiscountUser } from '../../redux/actions';
-
 import './styles.scss';
 
 const InfoCart = ({
@@ -23,10 +21,12 @@ const InfoCart = ({
 
   useEffect(() => {
     getCartData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (location.pathname === '/payment') getDiscountUser({ page: 1, searchKey });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchKey, isShowSearch, location]);
 
   useEffect(() => {
@@ -38,24 +38,28 @@ const InfoCart = ({
   }, [location]);
 
   const renderCartData = (cartData) => {
-    return cartData?.cartDetails?.map((item, index) => {
-      const { productId } = item;
-      return (
-        <tr className="infoCart__cart--item" key={index}>
-          <td className="infoCart__cart--img">
-            <img src={productId.imgs[0]} alt="anh"></img>
-            <span className="infoCart__cart--amount">{item.quantity}</span>
-          </td>
-          <td className="infoCart__cart--name">
-            <h5>{productId.name}</h5>
-            {productId.unit && <p>{productId.unit}</p>}
-          </td>
-          <td className="infoCart__cart--price">
-            ${(item.quantity * productId.price).toLocaleString()} VND
-          </td>
-        </tr>
-      );
-    });
+    return (
+      <tbody>
+        {cartData?.cartDetails?.map((item, index) => {
+          const { productId } = item;
+          return (
+            <tr className="infoCart__cart--item" key={index}>
+              <td className="infoCart__cart--img">
+                <img src={productId.imgs[0]} alt="anh"></img>
+                <span className="infoCart__cart--amount">{item.quantity}</span>
+              </td>
+              <td className="infoCart__cart--name">
+                <h5>{productId.name}</h5>
+                {productId.unit && <p>{productId.unit}</p>}
+              </td>
+              <td className="infoCart__cart--price">
+                ${(item.quantity * productId.price).toLocaleString()} VND
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    );
   };
 
   const handleCalculateToTal = ({ check }) => {

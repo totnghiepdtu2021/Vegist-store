@@ -33,12 +33,8 @@ const Slide = ({ data, type, xl, lg, md, sm, xs }) => {
 
   const slideShow = (item, index) => {
     return (
-      <div>
-        <div
-          className="slideShow__img"
-          style={{ backgroundImage: `url(${item.img})` }}
-          key={`slideShow-${index}`}
-        >
+      <div key={`slideShow-${index}`}>
+        <div className="slideShow__img" style={{ backgroundImage: `url(${item.img})` }}>
           <div className={`slideShow__content  slideShow__content--${index + 1}`}>
             <h4>{item.thumbnail}</h4>
             <h2>
@@ -51,10 +47,10 @@ const Slide = ({ data, type, xl, lg, md, sm, xs }) => {
     );
   };
 
-  const slideCategory = (item, index) => {
+  const slideCategory = (item) => {
     return (
       <div className="slide-category__item" key={`category-${item.id}`}>
-        <a href="#" className="slide-category__img">
+        <a href="/products" className="slide-category__img">
           <img src={item.img} alt="anh category"></img>
         </a>
         <div className="slide-category__content">

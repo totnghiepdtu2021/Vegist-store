@@ -197,16 +197,6 @@
   -o-border-radius: $size;
 }
 
-// @mixin font($font-size, $font-weight, $color) {
-//     font-size: $font-size;
-//     // @if $font-weight !=0 {
-//     // font-weight: $font-weight;
-//     // // }
-//     // // @if $color != 0 {
-//     // color: $color;
-//     // }
-// }
-
 @mixin absolute($top, $right, $bottom, $left) {
   position: absolute;
   @if $top != '' {

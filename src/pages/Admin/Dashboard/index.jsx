@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { getMasterData } from '../../../redux/actions';
 import Card from './Card';
 import LineChart from './LineChart';
-import { Input, Pagination, Spin, Row, Col, message } from 'antd';
-import { getMasterData } from '../../../redux/actions';
 import './style.scss';
 
-const Dashboard = ({ getMasterData, masterData, loading }) => {
-  const [cartDat, setCartData] = useState();
+const Dashboard = ({ getMasterData, masterData }) => {
   const [dataCard, setDataCard] = useState();
 
   useEffect(() => {
     getMasterData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (masterData) handleDataCard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [masterData]);
 
   const handleDataCard = () => {
@@ -34,29 +34,21 @@ const Dashboard = ({ getMasterData, masterData, loading }) => {
     }
   };
 
-  const handleChangeData = () => {};
-
   return (
     <section className="dashboard">
       <div className="container">
         <div className="dashboard__card">
           <Card data={dataCard}></Card>
         </div>
-        <LineChart data={masterData} loading={loading} setCartData={setCartData} />
+        <LineChart data={masterData} setCartData={setDataCard} />
       </div>
     </section>
   );
 };
 
-const cardData = [
-  { id: 1, title: 'Sản phẩm', count: '123' },
-  { id: 2, title: 'Người dùng', count: '12' },
-  { id: 3, title: 'Doanh thu', count: '123100' },
-];
-
 const mapStateToProps = (state) => {
-  const { masterData, loading } = state.dashboardReducer;
-  return { masterData, loading };
+  const { masterData } = state.dashboardReducer;
+  return { masterData };
 };
 
 const mapDispatchToProps = (dispatch) => {

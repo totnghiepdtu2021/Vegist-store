@@ -1,14 +1,14 @@
+import { Col, DatePicker, Row, Select } from 'antd';
+import { Field, Form, Formik } from 'formik';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { Row, Col, DatePicker, Select } from 'antd';
-import CustomField from '../../../../components/Admin/CustomField/index';
 import { FaStarOfLife } from 'react-icons/fa';
 import { connect } from 'react-redux';
+import * as Yup from 'yup';
+import CustomField from '../../../../components/Admin/CustomField/index';
 import { createDiscount } from '../../../../redux/actions';
 import history from '../../../../util/history';
-import moment from 'moment';
 import './style.scss';
 
 const CreateDiscount = ({ createDiscount }) => {

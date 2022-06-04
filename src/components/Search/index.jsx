@@ -16,22 +16,19 @@ function Search({
   productsData,
   getProducts,
 }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
-  const [flag, setFlag] = useState(true); //Biến cờ để bật/tắt list kết quả tìm kiếm
+  const [flag, setFlag] = useState(true);
 
-  const typingTimeoutRef = useRef(null); //Debounce
+  const typingTimeoutRef = useRef(null);
 
-  //debounce
   const handleChangeSearch = (e) => {
     setValue(e.target.value);
     setFlag(true);
-    //Điều chỉnh thanh Scroll.
     if (e.target.value) setFlagSearchChange(true);
     if (typingTimeoutRef.current) {
       clearTimeout(typingTimeoutRef.current);
     }
-
     typingTimeoutRef.current = setTimeout(() => {
       if (e.target.value)
         getProducts({

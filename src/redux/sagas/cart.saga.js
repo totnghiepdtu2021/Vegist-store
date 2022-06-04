@@ -1,24 +1,22 @@
 import { put, takeEvery } from '@redux-saga/core/effects';
-import { toast } from 'react-toastify';
 import { toastError, toastSuccess, toastWarning } from '../../util/toast';
 import axiosClient from '../config/axiosClient';
-
 import {
   ADD_CART,
   ADD_CART_FAIL,
   ADD_CART_SUCCESS,
-  UPDATE_CART,
-  UPDATE_CART_FAIL,
-  UPDATE_CART_SUCCESS,
-  DELETE_CART,
-  DELETE_CART_FAIL,
-  DELETE_CART_SUCCESS,
   CLEAR_CART,
   CLEAR_CART_FAIL,
   CLEAR_CART_SUCCESS,
+  DELETE_CART,
+  DELETE_CART_FAIL,
+  DELETE_CART_SUCCESS,
   GET_CART,
   GET_CART_FAIL,
   GET_CART_SUCCESS,
+  UPDATE_CART,
+  UPDATE_CART_FAIL,
+  UPDATE_CART_SUCCESS,
 } from '../constants';
 
 function* addCartSaga(action) {

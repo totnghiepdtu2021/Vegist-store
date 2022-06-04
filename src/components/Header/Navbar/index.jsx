@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
 import { Drawer } from 'antd';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-import history from '../../../util/history';
-
 import { BsChevronDown } from 'react-icons/bs';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-
+import { useLocation } from 'react-router-dom';
+import history from '../../../util/history';
 import './styles.scss';
-import { setFlagSearchChange } from '../../../redux/actions';
 
 const navbarData = [
   {
@@ -114,17 +109,13 @@ const navbarData = [
   },
 ];
 
-const Navbar = ({ setShowNavbar, showNavbar, setValue, setFlagSearchChange, authData }) => {
+const Navbar = ({ setShowNavbar, showNavbar, setValue, authData }) => {
   const location = useLocation();
   const { t } = useTranslation();
-  // eslint-disable-next-line no-unused-vars
-  const [isActive, setIsActive] = useState(1);
   const [isActiveMobile, setIsActiveMobile] = useState({});
   const handelNavbarClick = (id, path) => {
-    setIsActive(id);
     history.push(path);
-    setValue(''); //Xóa ô search khi chuyển trang
-    setFlagSearchChange(false); //check ô search để điều chỉnh thanh Scroll
+    setValue('');
     if (window.innerWidth < 992) {
       setIsActiveMobile({
         idParentNavbar: id,
@@ -165,11 +156,11 @@ const Navbar = ({ setShowNavbar, showNavbar, setValue, setFlagSearchChange, auth
                   }`
             } ${index === 2 && 'dropdown__collection'} `}
           >
-            {item.dropdownData.map((itemDropdown, indexDropdown) => (
+            {item.dropdownData.map((itemDropdown) => (
               <li className="dropdown__item" key={`dropdown__item-${itemDropdown.id}`}>
                 {itemDropdown.img ? (
                   <>
-                    <a href="#">
+                    <a href="/products">
                       <img src={itemDropdown.img} alt="itemDropdown" className="dropdown__img" />
                     </a>
                     <h3 className="dropdown__title">{itemDropdown.name} </h3>
@@ -185,15 +176,16 @@ const Navbar = ({ setShowNavbar, showNavbar, setValue, setFlagSearchChange, auth
                         })
                       }
                     >
-                      {itemDropdown.name}{' '}
+                      {itemDropdown.name}
                     </h3>
                     <div
                       className={
-                        showNavbar &&
-                        ` dropdown__item--mobile ${
-                          isActiveMobile.idChildrenNavbar === itemDropdown.id &&
-                          'dropdown__item--mobile-active'
-                        }`
+                        showNavbar
+                          ? ` dropdown__item--mobile ${
+                              isActiveMobile.idChildrenNavbar === itemDropdown.id &&
+                              'dropdown__item--mobile-active'
+                            }`
+                          : ''
                       }
                     >
                       {itemDropdown.data.map((itemDropdownData, itemDropdownIndex) => (
@@ -248,9 +240,4 @@ const Navbar = ({ setShowNavbar, showNavbar, setValue, setFlagSearchChange, auth
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setFlagSearchChange: (params) => dispatch(setFlagSearchChange(params)),
-  };
-};
-export default connect(null, mapDispatchToProps)(Navbar);
+export default Navbar;

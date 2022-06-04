@@ -8,7 +8,6 @@ import './style.scss';
 
 const generateOptions = (data, sortType) => {
   const categories = data?.map((item) => item.date);
-  const { Option } = Select;
 
   return {
     chart: {
@@ -61,8 +60,9 @@ const sortData = [
   { id: 1, value: 'bills', title: 'Doanh thu' },
 ];
 
-export default function LineChart({ data, loading, setCartData }) {
+export default function LineChart({ data, setCartData }) {
   const { t } = useTranslation();
+  const { Option } = Select;
   const [options, setOptions] = useState({});
   const [reportType, setReportType] = useState('all');
   const [sort, setSort] = useState('bills');
@@ -114,7 +114,6 @@ export default function LineChart({ data, loading, setCartData }) {
 
         case '1': {
           customData = mData.slice(Math.max(mData.length - 2, 1));
-          console.log('file: index.jsx > line 118 > useEffect > customData', customData);
           break;
         }
         default:
@@ -125,27 +124,29 @@ export default function LineChart({ data, loading, setCartData }) {
 
       setOptions(generateOptions(customData, sortType));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, reportType, sort]);
 
   const handelChangeSort = (e) => {
     setSort(e);
   };
 
-  function example(arr1, type) {
-    if (!arr1) return;
-    let firstDate = moment(arr1[0].date, 'DD/MM/YYYY');
+  function example(arrData, type) {
+    if (!arrData) return;
+    let firstDate = moment(arrData[0]?.date, 'DD/MM/YYYY');
     firstDate.hour(12);
     const lastDate = moment();
     lastDate.hour(12);
     var arr = [];
     while (firstDate <= lastDate) {
       let obj = { date: firstDate.format('DD/MM/YYYY'), [type]: 0 };
-      const index = arr1.findIndex(
+      const index = arrData.findIndex(
+        // eslint-disable-next-line no-loop-func
         (item) =>
           firstDate.format('DD/MM/YYYY') === moment(item.date, 'DD/MM/YYYY').format('DD/MM/YYYY')
       );
       if (index > -1) {
-        obj[type] = arr1[index][type];
+        obj[type] = arrData[index][type];
       }
       arr.push({ ...obj });
       firstDate = moment(firstDate + 24 * 3600 * 1000);
@@ -208,7 +209,7 @@ export default function LineChart({ data, loading, setCartData }) {
               onChange={handelChangeSort}
               defaultValue="bills"
             >
-              {sortData.map((item, index) => (
+              {sortData.map((item) => (
                 <Option value={item.value} key={`option-${item.value}`}>
                   {item.title}
                 </Option>

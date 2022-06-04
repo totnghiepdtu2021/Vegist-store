@@ -66,6 +66,7 @@ const Products = ({
     return () => {
       setValueSearch('');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -80,6 +81,7 @@ const Products = ({
       sort: filterProducts.sort,
       searchKey: valueSearch,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterProducts, currentPage, valueSearch]);
 
   const handelChangePage = (page) => {
@@ -156,7 +158,7 @@ const Products = ({
                     optionFilterProp="children"
                     onChange={handelChangeSort}
                   >
-                    {arrSelect.map((item, index) => (
+                    {arrSelect.map((item) => (
                       <Option value={item.value} key={`option-${item.value}`}>
                         {t(`products.${item.title}`)}
                       </Option>

@@ -27,6 +27,7 @@ const ListUser = ({ getProducts, deleteProduct, productsData, totalProduct }) =>
       limit: 10,
       searchKey: searchKey,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, searchKey]);
 
   const { Search } = Input;

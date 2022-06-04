@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Col, Collapse, Row, Button, Input, Form as FormAnt, Spin } from 'antd';
-import { BsPencilSquare } from 'react-icons/bs';
+import { Button, Col, Collapse, Form as FormAnt, Input, Row, Spin } from 'antd';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { BsPencilSquare } from 'react-icons/bs';
 import { connect } from 'react-redux';
-import { editProfile, getInfo, editUserPassword } from '../../../redux/actions';
 import * as Yup from 'yup';
-import { toastSuccess, toastComingSoon, toastError } from '../../../util/toast';
-import './style.scss';
+import { editProfile, editUserPassword, getInfo } from '../../../redux/actions';
 import history from '../../../util/history';
+import { toastComingSoon, toastError } from '../../../util/toast';
+import './style.scss';
 const { Panel } = Collapse;
 
 function InfoManage(prop) {
@@ -17,14 +17,16 @@ function InfoManage(prop) {
 
   const [editable, setEditable] = useState(false);
   const [isShowChangePw, setIsShowChangePw] = useState(false);
-  document.title = 'Vegist | Trang Thông tin cá nhân';
 
   useEffect(() => {
+    document.title = 'Vegist | Trang Thông tin cá nhân';
     getInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     tabValue !== '1' && getInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tabValue]);
 
   const handleSubmitInfo = async (value) => {
@@ -83,7 +85,6 @@ function InfoManage(prop) {
 
   return (
     <>
-      {/* <div className="profile__modal"></div> */}
       {infoUser.load ? (
         <div className="loading">
           <Spin />

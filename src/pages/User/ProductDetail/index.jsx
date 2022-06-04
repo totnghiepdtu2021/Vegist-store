@@ -1,34 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getProductDetail, createComment, getComment, addCart } from '../../../redux/actions';
-import { AiFillHeart } from 'react-icons/ai';
-import { useTranslation } from 'react-i18next';
-import { toastComingSoon, toastWarning } from '../../../util/toast';
-
-import { GiShoppingBag } from 'react-icons/gi';
-import Slide from '../Home/Slide';
-import { FaTruckMoving, FaMoneyBillWave } from 'react-icons/fa';
 import {
-  Row,
-  Col,
-  Tabs,
-  Input,
   Button,
-  Comment,
-  Tooltip,
-  List,
+  Col,
   Collapse,
-  Rate,
+  Comment,
   Form,
-  Radio,
-  Pagination,
-  Spin,
+  Input,
+  List,
   Modal,
+  Pagination,
+  Rate,
+  Row,
+  Spin,
+  Tabs,
+  Tooltip,
 } from 'antd';
-
-import './style.scss';
 import moment from 'moment';
-import history from '../../../util/history';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { AiFillHeart } from 'react-icons/ai';
+import { FaMoneyBillWave, FaTruckMoving } from 'react-icons/fa';
+import { GiShoppingBag } from 'react-icons/gi';
+import { connect } from 'react-redux';
+import { addCart, createComment, getComment, getProductDetail } from '../../../redux/actions';
+import { toastComingSoon, toastWarning } from '../../../util/toast';
+import Slide from '../Home/Slide';
+import './style.scss';
 
 const ProductDetail = ({
   createComment,
@@ -52,10 +48,11 @@ const ProductDetail = ({
   const [authData, setAuthData] = useState();
   const { t } = useTranslation();
   const { TabPane } = Tabs;
-  document.title = 'Vegist | Trang Chi tiết';
+  const { Panel } = Collapse;
   const { confirm } = Modal;
 
   useEffect(() => {
+    document.title = 'Vegist | Trang Chi tiết';
     setAuthData(() => JSON.parse(localStorage.getItem('profile')));
   }, []);
 
@@ -66,6 +63,7 @@ const ProductDetail = ({
       left: 0,
       behavior: 'smooth',
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productId]);
 
   useEffect(() => {
@@ -74,9 +72,8 @@ const ProductDetail = ({
       page: current,
       limit: 5,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listComment, current, productId]);
-
-  const { Panel } = Collapse;
 
   function callback(key) {
     setIsShowFormComment(!isShowFormComment);
@@ -117,7 +114,6 @@ const ProductDetail = ({
         rate: rateValue,
         dateCreate: moment(),
       });
-      // getComment({productId,limit:5,page:1})
       setIsShowFormComment(false);
     } else {
       toastWarning(t('action.warning'));

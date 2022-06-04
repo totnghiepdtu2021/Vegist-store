@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Pagination, Input, Modal, Empty, Switch } from 'antd';
-import { getListUser, deleteUser, editUserByAdmin } from '../../../redux/actions';
-import { FaTrashAlt } from 'react-icons/fa';
+import { Empty, Input, Modal, Pagination, Switch } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FaTrashAlt } from 'react-icons/fa';
+import { connect } from 'react-redux';
+import { deleteUser, editUserByAdmin, getListUser } from '../../../redux/actions';
 import { titleCase } from '../../../util/string';
-import ModalCreate from './ModalCreate';
 import ModalModify from './ModalModify';
 import './style.scss';
 
@@ -32,6 +31,7 @@ const ListUser = ({
       limit: 10,
       search: searchKey,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, adminCreate, isDeleted, userEdit, searchKey]);
 
   const { Search } = Input;
@@ -98,9 +98,6 @@ const ListUser = ({
                 enterButton
               />
             </div>
-            {/* <div className="admin__listUser--btn-create">
-              <ModalCreate setIsDeleted={setIsDeleted} />
-            </div> */}
           </div>
           <div className="admin__listUser--tableNormal">
             <table>
@@ -118,7 +115,7 @@ const ListUser = ({
               <tbody>
                 {listUser?.length > 0 ? (
                   listUser?.map((item, index) => (
-                    <tr>
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{titleCase(item.fullName)}</td>
                       <td>{item.phoneNumber}</td>
@@ -143,9 +140,7 @@ const ListUser = ({
                     </tr>
                   ))
                 ) : (
-                  <tr>
-                    <Empty />
-                  </tr>
+                  <Empty />
                 )}
               </tbody>
             </table>

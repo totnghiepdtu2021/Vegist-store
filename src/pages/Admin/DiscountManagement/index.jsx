@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Pagination, Input, Modal, Empty, Button } from 'antd';
-import { getDiscount, deleteDiscount } from '../../../redux/actions';
-import history from '../../../util/history';
-import { BsTrashFill } from 'react-icons/bs';
+import { Button, Empty, Input, Modal, Pagination } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { BsTrashFill } from 'react-icons/bs';
+import { connect } from 'react-redux';
+import { deleteDiscount, getDiscount } from '../../../redux/actions';
 import { dateTime } from '../../../util/dateTime';
+import history from '../../../util/history';
 import './style.scss';
 
 const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDiscount }) => {
@@ -23,6 +23,7 @@ const DiscountManagement = ({ getDiscount, discountData, totalDiscount, deleteDi
       limit: 10,
       searchKey,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, searchKey]);
 
   const { Search } = Input;

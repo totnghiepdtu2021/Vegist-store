@@ -41,16 +41,18 @@ function ListComment({
   ];
 
   useEffect(() => {
-    document.title = 'Vegist | Trang Quản lý đánh giá';
     getCommentAdmin({
       page: current,
       limit: 10,
       search: searchKey,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchKey, current, deleteData]);
 
   useEffect(() => {
+    document.title = 'Vegist | Trang Quản lý đánh giá';
     getProducts({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
