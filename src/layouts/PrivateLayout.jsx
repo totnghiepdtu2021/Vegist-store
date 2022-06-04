@@ -2,16 +2,16 @@ import { Select } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Redirect, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import English from '../assets/images/english.svg';
 import VietNam from '../assets/images/vietnam.svg';
 import Admin from '../pages/Admin';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import './styles.scss';
-const { Option } = Select;
 
 function PrivateLayout({ component: Component, role, ...props }) {
   const { t, i18n } = useTranslation();
+  const { Option } = Select;
 
   const userInfo = JSON.parse(localStorage.getItem('profile'));
   if (userInfo && userInfo.phoneNumber) {
@@ -41,11 +41,11 @@ function PrivateLayout({ component: Component, role, ...props }) {
                   <span className="mr-16">{t('language.name')}: </span>
                   <Select onChange={changeLanguage} defaultValue="en">
                     <Option value="en">
-                      <img src={English} className="header__language--img" />
+                      <img src={English} alt="" className="header__language--img" />
                       {t('language.english')}
                     </Option>
                     <Option value="vi">
-                      <img src={VietNam} className="header__language--img" />
+                      <img src={VietNam} alt="" className="header__language--img" />
                       {t('language.vietnam')}
                     </Option>
                   </Select>

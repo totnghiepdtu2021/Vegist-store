@@ -21,8 +21,6 @@ import {
   UPDATE_PRODUCTS_SUCCESS,
 } from '../constants';
 
-const apiURL = process.env.REACT_APP_API_URL;
-
 function* getProductHomeSaga() {
   try {
     const [responseNew, responseSale, responseSpecial] = yield all([

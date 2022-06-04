@@ -10,15 +10,14 @@ import history from '../../../util/history';
 import './styles.scss';
 
 const Success = ({ match, getBill, billData }) => {
-  const billId = match.params.id;
   const { t } = useTranslation();
-
   const bill = billData?.data?.bill;
   const billDetails = billData?.data?.billDetails;
 
   useEffect(() => {
     document.title = 'Vegist | Trang Success';
-    getBill({ billId });
+    getBill({ billId: match.params.id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -40,7 +39,7 @@ const Success = ({ match, getBill, billData }) => {
                     {t('success.Thanks')} <span>{t('success.Order Management')}</span>
                   </p>
                   <div className="success__management">
-                    <h3>#Vegist-{`${billId.slice(-8).toUpperCase()}`}</h3>
+                    <h3>#Vegist-{`${match.params.id.slice(-8).toUpperCase()}`}</h3>
                     <button className="button" onClick={() => history.push('/profile')}>
                       {t('success.Order Management')}
                     </button>
@@ -130,7 +129,6 @@ const Success = ({ match, getBill, billData }) => {
 
 const mapStateToProps = (state) => {
   const { billData } = state.paymentReducer;
-
   return { billData };
 };
 

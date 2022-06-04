@@ -37,10 +37,12 @@ function Discount({
       limit: 10,
       searchKey,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, searchKey]);
 
   useEffect(() => {
     handleActiveDiscountData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [discountUserData.length, discountAllData.length]);
 
   const handleActiveDiscountData = () => {
@@ -120,7 +122,6 @@ function Discount({
   );
 }
 
-// export default Discount;
 const mapStateToProps = (state) => {
   const { discountUserData, totalDiscountAll, discountAllData } = state.discountReducer;
   return { discountUserData, totalDiscountAll, discountAllData };

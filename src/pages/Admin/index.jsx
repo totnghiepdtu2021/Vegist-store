@@ -1,21 +1,21 @@
 import { ContainerOutlined, PieChartOutlined } from '@ant-design/icons';
 import { Menu, Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineHome } from 'react-icons/ai';
 import { BiUser } from 'react-icons/bi';
 import { FaRegCommentDots } from 'react-icons/fa';
-import { RiBillLine, RiContactsBookLine, RiLogoutBoxRLine } from 'react-icons/ri';
 import { GiJerusalemCross } from 'react-icons/gi';
+import { RiBillLine, RiContactsBookLine, RiLogoutBoxRLine } from 'react-icons/ri';
 import history from '../../util/history';
 import './style.scss';
 
 const Admin = () => {
   const { t } = useTranslation();
   document.title = 'Vegist | Trang Admin';
-  const [collapsed, setCollapsed] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [authData, setAuthData] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  const infoUser = useMemo(() => JSON.parse(localStorage.getItem('profile')), []);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -35,18 +35,18 @@ const Admin = () => {
     <>
       <div className="admin-navbar fadeIn" style={{ width: 256 }}>
         <Menu
-          inlineCollapsed={collapsed}
+          inlineCollapsed={false}
           defaultSelectedKeys={['3']}
           defaultOpenKeys={['3']}
           mode="inline"
           theme="dark"
         >
-          {authData && (
+          {infoUser && (
             <div className="admin__account">
               <div className="admin__account--avt">
-                <img src={authData?.avatar} alt="avatar" />
+                <img src={infoUser?.avatar} alt="avatar" />
               </div>
-              <p className="admin__account--name">{authData?.fullName}</p>
+              <p className="admin__account--name">{infoUser?.fullName}</p>
             </div>
           )}
           <Menu.Item key="2" icon={<AiOutlineHome />} onClick={() => history.push('/')}>

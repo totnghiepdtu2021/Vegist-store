@@ -24,16 +24,15 @@ const dataSlide = [
   },
 ];
 
-const { TabPane } = Tabs;
-
 function Home({ getProductHome, productHome, getCategory, categoryData }) {
   const { t } = useTranslation();
+  const { TabPane } = Tabs;
 
   useEffect(() => {
     document.title = 'Vegist | Trang Chủ';
-
     getProductHome();
     getCategory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -46,7 +45,7 @@ function Home({ getProductHome, productHome, getCategory, categoryData }) {
           <Row gutter={24}>
             <Col md={12} sm={24}>
               <div className="banner__item">
-                <a href="#" className="banner__img">
+                <a href="/products" className="banner__img">
                   <img
                     src="https://cdn.shopify.com/s/files/1/0412/8151/9765/files/banner1.jpg?v=1593258151"
                     alt="banner"
@@ -65,7 +64,7 @@ function Home({ getProductHome, productHome, getCategory, categoryData }) {
             </Col>
             <Col md={12} sm={24}>
               <div className="banner__item">
-                <a href="#" className="banner__img">
+                <a href="/products" className="banner__img">
                   <img
                     src="https://cdn.shopify.com/s/files/1/0412/8151/9765/files/banner2-min.jpg?v=1593256886"
                     alt="banner"
@@ -192,7 +191,7 @@ function Home({ getProductHome, productHome, getCategory, categoryData }) {
       </section>
       <section className="home__shopify ">
         <div
-          className="  shopify__wrapper"
+          className="shopify__wrapper"
           style={{
             backgroundImage:
               "url('https://cdn.shopify.com/s/files/1/0412/8151/9765/files/banner3-min.jpg?v=1593256888')",

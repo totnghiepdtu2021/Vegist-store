@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { Button, Input, Modal, Pagination, Select, Spin } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getOrderUser, cancelOrderUser, getBillDetailUser } from '../../../redux/actions';
-import { Button, Modal, Select, Input, Pagination, Spin } from 'antd';
-import history from '../../../util/history';
-
-import './style.scss';
-import moment from 'moment';
+import { cancelOrderUser, getBillDetailUser, getOrderUser } from '../../../redux/actions';
 import { internationalDateTime } from '../../../util/dateTime';
-const { Option } = Select;
-const { Search } = Input;
+import history from '../../../util/history';
+import './style.scss';
+
 function CartManage(prop) {
+  const { t } = useTranslation();
+  const { Search } = Input;
+  const { Option } = Select;
   const { getOrderUser, orderUser, cancelOrderUser, tabValue, orderCancel } = prop;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [current, setCurrent] = useState(1);
@@ -18,8 +18,9 @@ function CartManage(prop) {
   const [filterSelect, setFilterSelect] = useState('all');
   const [idProductCancel, isIdProductCancel] = useState();
 
-  const { t } = useTranslation();
-  document.title = 'Vegist | Trang Thông tin cá nhân';
+  useEffect(() => {
+    document.title = 'Vegist | Trang Thông tin cá nhân';
+  }, []);
 
   useEffect(() => {
     getOrderUser({
@@ -34,6 +35,7 @@ function CartManage(prop) {
       left: 0,
       behavior: 'smooth',
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, searchKey, filterSelect, orderCancel]);
 
   useEffect(() => {
@@ -42,6 +44,7 @@ function CartManage(prop) {
         page: current,
         limit: 5,
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tabValue]);
 
   function handleChange(value) {
@@ -61,19 +64,7 @@ function CartManage(prop) {
 
   const handleCancelBill = async () => {
     await cancelOrderUser({ billId: idProductCancel, status: 'Đã hủy' });
-
     setCurrent(1);
-
-    // getOrderUser({
-    //   page: current,
-    //   limit: 5,
-    // });
-
-    // window.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: 'smooth',
-    // });
     setIsModalVisible(false);
   };
 
@@ -111,7 +102,7 @@ function CartManage(prop) {
                   </div>
                   <div>
                     <Search
-                      placeholder={t("input search text")}
+                      placeholder={t('input search text')}
                       onSearch={handleSearchOrder}
                       enterButton
                     />
@@ -204,7 +195,7 @@ function CartManage(prop) {
         </section>
       )}
       <Modal
-        title={t("Cancel Bill")}
+        title={t('Cancel Bill')}
         visible={isModalVisible}
         onOk={handleCancelBill}
         onCancel={handleCancel}

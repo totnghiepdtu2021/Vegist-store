@@ -1,23 +1,20 @@
+import { Col, Row, Select } from 'antd';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { Row, Col, Select } from 'antd';
-import CustomField from '../../../../components/Admin/CustomField/index';
-import VietNam from '../../../../assets/images/vietnam.svg';
-import English from '../../../../assets/images/english.svg';
 import { FaStarOfLife } from 'react-icons/fa';
-import { AiOutlineRollback } from 'react-icons/ai';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import * as Yup from 'yup';
+import CustomField from '../../../../components/Admin/CustomField/index';
 import {
   createProduct,
+  getProductDetail,
   getSidebar,
   updateProduct,
-  getProductDetail,
 } from '../../../../redux/actions';
-import { useLocation } from 'react-router-dom';
-import './styles.scss';
 import history from '../../../../util/history';
+import './styles.scss';
 
 const AddProductAdmin = ({
   match,
@@ -40,6 +37,7 @@ const AddProductAdmin = ({
     if (location.pathname.indexOf(`edit`) !== -1) {
       getProductDetail(productId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCreateProduct = (values) => {
@@ -56,14 +54,6 @@ const AddProductAdmin = ({
   };
   return (
     <section className="addProductAdmin">
-      {/* <Row>
-        <Col offset={2}>
-          <AiOutlineRollback
-            className="icon-back"
-            onClick={() => history.push('/admin/products')}
-          />
-        </Col>
-      </Row> */}
       <Row justify="center">
         <Col xs={18}>
           <div className="addProductAdmin__container container">
@@ -108,7 +98,6 @@ const AddProductAdmin = ({
                   location.pathname.indexOf(`edit`) !== -1
                     ? productDetail?.data?.product?.total
                     : '',
-                // image: [],
               }}
               validationSchema={Yup.object({
                 name: Yup.string()
@@ -130,7 +119,6 @@ const AddProductAdmin = ({
                     .required(t('validate.size.required'))
                     .matches(/([0-9]{1,2})/, t('validate.size.regex')),
                 }),
-                // imgs: Yup.array.min(4, t('validate.image.required')),
               })}
               onSubmit={(values) => {
                 if (location.pathname !== `/admin/products/edit/${productId}`)

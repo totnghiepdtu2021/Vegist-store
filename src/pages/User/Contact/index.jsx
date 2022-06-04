@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import { Col, Form, Input, Row } from 'antd';
 import moment from 'moment';
 import React from 'react';
@@ -64,7 +65,7 @@ function Contact({ createContact }) {
                     },
                   ]}
                 >
-                  <Input placeholder={t("Contact.Enter your name")} />
+                  <Input placeholder={t('Contact.Enter your name')} />
                 </Form.Item>
                 <div className="login__label">{t('Contact.Email')}</div>
                 <Form.Item
@@ -131,8 +132,6 @@ function Contact({ createContact }) {
     </div>
   );
 }
-
-// export default Contact;
 
 const mapStateToProps = (state) => {};
 const mapDispatchToProps = (dispatch) => {

@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useLocation } from 'react-router';
 import { Input } from 'antd';
-import { dateTime } from '../../../util/dateTime';
-
-import './style.scss';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router';
+import { dateTime } from '../../../util/dateTime';
+import './style.scss';
 
 const SearchDiscount = ({
   setSearchKey,
@@ -28,6 +27,7 @@ const SearchDiscount = ({
 
   useEffect(() => {
     if (!isShowSearch) setIsShowSearch(!!searchKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchKey]);
 
   const handleChange = (e) => {

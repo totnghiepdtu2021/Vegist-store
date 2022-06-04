@@ -1,21 +1,23 @@
-import { Checkbox, Col, Row, Select } from 'antd';
+import { Checkbox, Col, Row } from 'antd';
 import { Field, Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AiFillHome } from 'react-icons/ai';
 import * as Yup from 'yup';
+import history from '../../../util/history';
 import CustomField from './component/CustomField';
 import PaymentBreadcrumb from './component/PaymentBreadcrumb';
-import history from '../../../util/history';
-import { AiFillHome } from 'react-icons/ai';
 import './styles.scss';
 
-const Information = ({ getInfo, infoUser, cartData, createBill }) => {
+const Information = () => {
   document.title = 'Vegist | Thông tin';
-  const { Option } = Select;
   const { t } = useTranslation();
-  const [valueSelect, setValueSelect] = useState('vi');
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  const [infoPayment, setInfoPayment] = useState(JSON.parse(localStorage.getItem('infoPayment')));
+
+  const info = useMemo(() => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const payment = JSON.parse(localStorage.getItem('infoPayment'));
+    return { user, payment };
+  }, []);
 
   const handleSubmitForm = (values) => {
     const { firstName, lastName } = values;
@@ -23,7 +25,7 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
 
     const dataForm = {
       ...values,
-      country: valueSelect,
+      country: 'vi',
       phoneNumber: values.phone,
       name: fullName,
     };
@@ -42,19 +44,16 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
           <PaymentBreadcrumb />
           <Formik
             initialValues={{
-              email: (user || infoPayment).email,
-              firstName: (user || infoPayment).firstName,
-              lastName: (user || infoPayment).lastName,
-              address: (user || infoPayment).address || '',
-              zipCode: (user || infoPayment).zipCode || '',
-              phone: (user || infoPayment).phoneNumber || '',
+              email: (info.user || info.payment).email,
+              firstName: (info.user || info.payment).firstName,
+              lastName: (info.user || info.payment).lastName,
+              address: (info.user || info.payment).address || '',
+              zipCode: (info.user || info.payment).zipCode || '',
+              phone: (info.user || info.payment).phoneNumber || '',
               check: true,
             }}
             validationSchema={Yup.object({
-              email: Yup.string()
-                // .required(t('validate.email.required'))
-                .max(50, t('validate.email.max'))
-                .email('validate.email.regex'),
+              email: Yup.string().max(50, t('validate.email.max')).email('validate.email.regex'),
               firstName: Yup.string()
                 .max(50, t('validate.firstName.max'))
                 .required(t('validate.firstName.required')),
@@ -75,7 +74,6 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
             <Form>
               <Row gutter={[24, 16]}>
                 <Col xs={24}>
-                  {/* <CustomField name="email" type="email" label="Email" /> */}
                   <CustomField name="phone" type="text" label={t('payments.information.Phone')} />
                 </Col>
                 <Col xs={24}>
@@ -113,42 +111,8 @@ const Information = ({ getInfo, infoUser, cartData, createBill }) => {
                   />
                 </Col>
                 <Col sm={9} xs={24}>
-                  {/* <CustomField name="phone" type="text" label={t('payments.information.Phone')} /> */}
                   <CustomField name="email" type="email" label="Email" />
                 </Col>
-                {/* <Col sm={9} xs={24}>
-                  <div className="form__control">
-                    <label htmlFor="title">{t('payments.information.Country/region')}</label>
-                    <Field
-                      name="country"
-                      render={({ field }) => (
-                        <Select
-                          {...field}
-                          defaultValue="vi"
-                          style={{ width: '100%' }}
-                          className="form__control--select"
-                          onChange={(value) => setValueSelect(value)}
-                        >
-                          <Option value="vi">
-                            <img src={VietNam} className="header__language--img" />
-                            <span>Viet Nam</span>
-                          </Option>
-                          <Option value="en">
-                            <img src={English} className="header__language--img" />
-                            <span>England</span>
-                          </Option>
-                        </Select>
-                      )}
-                    />
-                  </div>
-                </Col>
-                <Col sm={15} xs={24}>
-                  <CustomField
-                    name="zipCode"
-                    type="text"
-                    label={t('payments.information.ZIP code')}
-                  />
-                </Col> */}
                 <Col>
                   <button type="submit" className="button button-round--lg button-primary">
                     {t('payments.information.Continue to shipping')}

@@ -1,21 +1,21 @@
+import { Col, Modal, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import history from '../../../util/history';
-import Breadcrumb from '../../../components/Breadcrumb';
-import { Col, Row, Select, Input, Modal } from 'antd';
-import CartItem from './CartItem';
 import { useTranslation } from 'react-i18next';
-import './styles.scss';
+import { connect } from 'react-redux';
+import Breadcrumb from '../../../components/Breadcrumb';
 import { clearCart, getCartData } from '../../../redux/actions';
+import history from '../../../util/history';
+import CartItem from './CartItem';
+import './styles.scss';
 
 const Cart = ({ cartData, clearCart, getCartData }) => {
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [totalItem, setTotalItem] = useState(0);
-  const { Option } = Select;
 
   useEffect(() => {
     if (localStorage.getItem('profile')) getCartData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -92,26 +92,6 @@ const Cart = ({ cartData, clearCart, getCartData }) => {
                     <p>{(handleCalculateToTal() * 0.1).toLocaleString()} VND</p>
                   </div>
                 </div>
-                {/* <div className="cart__price--info">
-                  <h2 className="cart__price--title">{t('cart.Shipping Info')}</h2>
-                  <div className="cart__price--info-item">
-                    <p>{t('cart.Country')}</p>
-                    <Select defaultValue="vi" style={{ width: '100%' }}>
-                      <Option value="vi">
-                        <img src={VietNam} alt="VietNam" className="header__language--img" />
-                        <span>Viet Nam</span>
-                      </Option>
-                      <Option value="en">
-                        <img src={English} alt="English" className="header__language--img" />
-                        <span>England</span>
-                      </Option>
-                    </Select>
-                  </div>
-                  <div className="cart__price--info-item">
-                    <p>{t('cart.Zip/Postal code')}</p>
-                    <Input placeholder="Zip/Postal code" />
-                  </div>
-                </div> */}
                 <div className="cart__price--total">
                   <h4>{t('cart.Total')}</h4>
                   <p>{(handleCalculateToTal() * 1.1).toLocaleString()} VND</p>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import PaymentBreadcrumb from './component/PaymentBreadcrumb';
 import { Radio } from 'antd';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiFillHome } from 'react-icons/ai';
+import { connect } from 'react-redux';
 import { getBill } from '../../../redux/actions';
 import history from '../../../util/history';
+import PaymentBreadcrumb from './component/PaymentBreadcrumb';
 import './styles.scss';
 
 const Shipping = ({ getBill, billData }) => {

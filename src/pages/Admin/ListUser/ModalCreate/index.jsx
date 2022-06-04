@@ -1,17 +1,15 @@
+import { Button, Modal } from 'antd';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { createAccount } from '../../../../redux/actions';
+import * as Yup from 'yup';
 import { regexPhone } from '../../../../Constant';
-
-import { Modal, Button, Select } from 'antd';
+import { createAccount } from '../../../../redux/actions';
 import './style.scss';
 
 const ModalCreate = ({ createAccount }) => {
   const { t } = useTranslation();
-  const { Option } = Select;
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 

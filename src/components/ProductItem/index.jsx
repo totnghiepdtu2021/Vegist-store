@@ -5,12 +5,12 @@ import history from '../../util/history';
 import { Tooltip } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { addCart, getCartData } from '../../redux/actions';
+import { addCart } from '../../redux/actions';
 import Star from '../Star';
 import './styles.scss';
 import { toastComingSoon, toastWarning } from '../../util/toast';
 
-const ProductItem = ({ data, addCart, getCartData }) => {
+const ProductItem = ({ data, addCart }) => {
   const { t } = useTranslation();
   const { id, name, rate, price, sale, status, imgs } = data;
 
@@ -34,7 +34,7 @@ const ProductItem = ({ data, addCart, getCartData }) => {
   return (
     <div className="product-item">
       <div className="product-item__img">
-        <a href="#" className="rotate-img">
+        <a href={`/product/${id}`} className="rotate-img">
           {imgs && (
             <>
               <img src={imgs[0]} alt="anh" />
@@ -89,7 +89,6 @@ const ProductItem = ({ data, addCart, getCartData }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addCart: (params) => dispatch(addCart(params)),
-    getCartData: (params) => dispatch(getCartData(params)),
   };
 };
 export default connect(null, mapDispatchToProps)(ProductItem);

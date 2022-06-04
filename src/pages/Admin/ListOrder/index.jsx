@@ -53,6 +53,7 @@ function ListOrder({
       search: searchKey,
       status: sort,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, searchKey, sort, deleteData, updateData]);
 
   const handleChangeStatus = (value, newID) => {
@@ -193,7 +194,6 @@ function ListOrder({
   );
 }
 
-// export default ListOrder;
 const mapStateToProps = (state) => {
   const { paymentsData, deleteData, updateData } = state.paymentReducer;
   return {

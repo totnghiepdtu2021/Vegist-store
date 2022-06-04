@@ -1,11 +1,10 @@
 import {
-  GET_PRODUCT_DETAIL,
   CREATE_COMMENT,
-  GET_COMMENT,
-  GET_COUNT_COMMENT,
-  GET_TOTAL_COMMENT,
   DELETE_COMMENT,
+  GET_COMMENT,
   GET_COMMENT_ADMIN,
+  GET_COUNT_COMMENT,
+  GET_PRODUCT_DETAIL,
 } from '../constants';
 
 export function getProductDetail(params) {

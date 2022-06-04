@@ -1,43 +1,34 @@
-import React, { useEffect, useState } from 'react';
 import { Radio } from 'antd';
-import PaymentBreadcrumb from './component/PaymentBreadcrumb';
-import { useTranslation } from 'react-i18next';
-import { getBill, getCartData, createBill } from '../../../redux/actions';
-import { connect } from 'react-redux';
-import history from '../../../util/history';
-import { TiWarningOutline } from 'react-icons/ti';
-import { MdPayment } from 'react-icons/md';
 import 'moment/locale/vi';
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AiFillHome } from 'react-icons/ai';
+import { MdPayment } from 'react-icons/md';
+import { TiWarningOutline } from 'react-icons/ti';
+import { connect } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { createBill, getCartData } from '../../../redux/actions';
+import history from '../../../util/history';
+import PaymentBreadcrumb from './component/PaymentBreadcrumb';
 import './styles.scss';
 
-const Payment = ({ getBill, billData, createBill, getCartData }) => {
+const Payment = ({ createBill, getCartData }) => {
   const { t } = useTranslation();
-  const [infoPayment, setInfoPayment] = useState(JSON.parse(localStorage.getItem('infoPayment')));
 
-  useEffect(() => {
-    const bill = JSON.parse(localStorage.getItem('infoPayment'));
-    delete bill.codeName;
-    return () => {
-      localStorage.setItem('infoPayment', JSON.stringify({ ...bill, total: infoPayment.total }));
-    };
-  }, []);
+  const infoPayment = useMemo(() => JSON.parse(localStorage.getItem('infoPayment')), []);
 
   const handelCreateBill = async () => {
-    const bill = JSON.parse(localStorage.getItem('infoPayment'));
     await createBill({
       payment: 'Trực tiếp',
-      name: bill.name,
-      address: bill.address,
-      phoneNumber: bill.phone,
-      codeName: bill.codeName,
-      total: bill.total,
+      name: infoPayment.name,
+      address: infoPayment.address,
+      phoneNumber: infoPayment.phone,
+      codeName: infoPayment.codeName,
+      total: infoPayment.total,
     });
-
-    // localStorage.removeItem('infoPayment');
     getCartData();
+    localStorage.removeItem('infoPayment');
   };
 
   return (
@@ -107,33 +98,6 @@ const Payment = ({ getBill, billData, createBill, getCartData }) => {
               <Radio checked>{t('payments.payment.Cash on Delivery (COD)')}</Radio>
             </div>
           </div>
-          {/* <div className="shipping__title">
-            <h2>{t('payments.payment.Billing address')}</h2>
-            <p>
-              {t('payments.payment.Select the address that matches your card or payment method.')}
-            </p>
-          </div>
-          <div className="payments__content">
-            <Radio.Group
-              onChange={(e) => setBillingAddress(e.target.value)}
-              value={billingAddress}
-              style={{ width: '100%' }}
-            >
-              <div className="payments__item">
-                <Radio value="Same as shipping address" onClick={(e) => setBillingAddress(e)}>
-                  {t('payments.payment.Same as shipping address')}
-                </Radio>
-              </div>
-              <div className="payments__item">
-                <Radio
-                  value="Use a different billing address"
-                  onClick={(e) => setBillingAddress(e)}
-                >
-                  {t('payments.payment.Use a different billing address')}
-                </Radio>
-              </div>
-            </Radio.Group>
-          </div> */}
           <div className="shipping__btn">
             <button
               className="button  button-animation--1 button-round--lg "
@@ -155,17 +119,10 @@ const Payment = ({ getBill, billData, createBill, getCartData }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { billData, billInitData } = state.paymentReducer;
-
-  return { billData, billInitData };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    getBill: (params) => dispatch(getBill(params)),
     createBill: (params) => dispatch(createBill(params)),
     getCartData: (params) => dispatch(getCartData(params)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Payment);
+export default connect(null, mapDispatchToProps)(Payment);

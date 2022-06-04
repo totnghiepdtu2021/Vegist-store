@@ -10,6 +10,7 @@ function OrderDetail({ match, orderDetail, getOrderDetail }) {
   useEffect(() => {
     document.title = 'Vegist | Trang Chi tiết đơn đặt hàng';
     getOrderDetail({ id: match.params.id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { bill, billDetails } = orderDetail;
@@ -124,7 +125,6 @@ function OrderDetail({ match, orderDetail, getOrderDetail }) {
   );
 }
 
-// export default OrderDetail;
 const mapStateToProps = (state) => {
   const { orderDetail } = state.paymentReducer;
   return {

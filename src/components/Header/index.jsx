@@ -1,38 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Select, Modal } from 'antd';
+import { Modal, Select } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { AiOutlineHeart, AiOutlineUserAdd } from 'react-icons/ai';
+import { GiExitDoor, GiHamburgerMenu } from 'react-icons/gi';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { connect } from 'react-redux';
-import { getCartData, clearCart, clearCountCart } from '../../redux/actions';
 import { useLocation } from 'react-router-dom';
-
-import history from '../../util/history';
+import 'react-toastify/dist/ReactToastify.css';
+import English from '../../assets/images/english.svg';
 import logo from '../../assets/images/logo.png';
 import VietNam from '../../assets/images/vietnam.svg';
-import English from '../../assets/images/english.svg';
-import { useTranslation } from 'react-i18next';
-
-import { AiOutlineUserAdd, AiOutlineHeart } from 'react-icons/ai';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
-import { GiHamburgerMenu, GiExitDoor } from 'react-icons/gi';
+import { clearCountCart, getCartData } from '../../redux/actions';
+import history from '../../util/history';
 import { toastComingSoon } from '../../util/toast';
-
-import 'react-toastify/dist/ReactToastify.css';
-import './styles.scss';
-
-import Navbar from './Navbar';
 import Search from '../Search';
-
-const { Option } = Select;
+import Navbar from './Navbar';
+import './styles.scss';
 
 const Header = ({ getCartData, cartData, userDataEdited, clearCountCart }) => {
   const { t, i18n } = useTranslation();
+  const { Option } = Select;
   const location = useLocation();
   const [totalItemInCart, setTotalItemInCart] = useState(0);
   const [showNavbar, setShowNavbar] = useState(false);
   const [authData, setAuthData] = useState();
-  const [value, setValue] = useState(''); //State lưu từ nhập vào từ ô search
+  const [value, setValue] = useState('');
 
   useEffect(() => {
     if (authData) getCartData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authData]);
 
   useEffect(() => {
@@ -63,7 +59,7 @@ const Header = ({ getCartData, cartData, userDataEdited, clearCountCart }) => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  // Để về trang Home và xóa ô search
+
   const handleClickLogo = () => {
     setValue('');
     history.push('/');
@@ -77,11 +73,11 @@ const Header = ({ getCartData, cartData, userDataEdited, clearCountCart }) => {
             <span>{t('language.name')}: </span>
             <Select onChange={changeLanguage} defaultValue="en">
               <Option value="en">
-                <img src={English} className="header__language--img" />
+                <img src={English} alt="" className="header__language--img" />
                 {t('language.english')}
               </Option>
               <Option value="vi">
-                <img src={VietNam} className="header__language--img" />
+                <img src={VietNam} alt="" className="header__language--img" />
                 {t('language.vietnam')}
               </Option>
             </Select>
@@ -170,7 +166,7 @@ const Header = ({ getCartData, cartData, userDataEdited, clearCountCart }) => {
         </div>
       </section>
       <section className="header__navbar">
-        <div className="container ">
+        <div className="container">
           <Navbar
             showNavbar={showNavbar}
             setShowNavbar={setShowNavbar}

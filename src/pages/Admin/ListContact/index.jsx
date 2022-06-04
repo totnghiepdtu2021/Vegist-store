@@ -28,6 +28,7 @@ function ListContact({ getContact, contactData, deleteContact, deleteData }) {
       page: current,
       limit: 10,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, deleteData]);
 
   const handleClickDelete = (message, id) => {
@@ -99,7 +100,6 @@ function ListContact({ getContact, contactData, deleteContact, deleteData }) {
   );
 }
 
-// export default ListContact;
 const mapStateToProps = (state) => {
   const { contactData, deleteData } = state.contactReducer;
   return {

@@ -27,14 +27,14 @@ import Dashboard from './pages/Admin/Dashboard';
 import ProductsAdmin from './pages/Admin/ProductsAdmin';
 import AddProductAdmin from './pages/Admin/ProductsAdmin/AddProduct';
 import ListOrder from './pages/Admin/ListOrder';
-import OrderDetail from './pages/Admin/ListOrder/OrderDetail/OrderDetail';
-import NotFound from './components/NotFound/NotFound';
+import OrderDetail from './pages/Admin/ListOrder/OrderDetail';
+import NotFound from './components/NotFound';
 import About from './pages/User/About/index';
 import ListComment from './pages/Admin/ListComment';
 import DiscountManagement from './pages/Admin/DiscountManagement';
 import CreateDiscount from './pages/Admin/DiscountManagement/CreateDiscount';
-import Contact from './pages/User/Contact/Contact';
-import ListContact from './pages/Admin/ListContact/ListContact';
+import Contact from './pages/User/Contact';
+import ListContact from './pages/Admin/ListContact';
 import Discount from './pages/User/Discount';
 
 function App() {

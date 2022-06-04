@@ -1,12 +1,12 @@
 import { Checkbox, Menu } from 'antd';
-import React, { useEffect, useState, useRef } from 'react';
-import { connect } from 'react-redux';
-import './styles.scss';
 import SubMenu from 'antd/lib/menu/SubMenu';
-import useWindowDimensions from '../../../../util/width';
-import { RiCloseLine } from 'react-icons/ri';
-import { getSidebar } from '../../../../redux/actions';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { RiCloseLine } from 'react-icons/ri';
+import { connect } from 'react-redux';
+import { getSidebar } from '../../../../redux/actions';
+import useWindowDimensions from '../../../../util/width';
+import './styles.scss';
 
 const arrPrice = ['0-100.000', '100.000-200.000', '200.000-400.000'];
 
@@ -16,7 +16,6 @@ const Sidebar = ({
   filterProducts,
   setFilterProducts,
   setCurrentPage,
-  products,
   setBannerData,
 }) => {
   const { t } = useTranslation();
@@ -27,6 +26,7 @@ const Sidebar = ({
 
   useEffect(() => {
     getSidebar();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handelChangePrice = (value) => {
@@ -230,12 +230,10 @@ const Sidebar = ({
           </Menu>
         </section>
         <section className="sidebar__banner">
-          <a href="#" className="sidebar__banner--img">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0412/8151/9765/files/banner10-min.jpg?v=1593256899"
-              alt="sidebar__banner--img"
-            ></img>
-          </a>
+          <img
+            src="https://cdn.shopify.com/s/files/1/0412/8151/9765/files/banner10-min.jpg?v=1593256899"
+            alt="sidebar__banner--img"
+          ></img>
         </section>
       </div>
     </article>
